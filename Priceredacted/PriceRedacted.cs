@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Priceredacted
 {
-    public partial class Form1 : Form
+    public partial class PriceRedacted : Form
     {
-        public Form1()
+        public PriceRedacted()
         {
             InitializeComponent();
         }

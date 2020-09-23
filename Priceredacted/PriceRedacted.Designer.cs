@@ -1,6 +1,6 @@
 ﻿namespace Priceredacted
 {
-    partial class Form1
+    partial class PriceRedacted
     {
         /// <summary>
         ///  Required designer variable.
@@ -35,8 +35,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "PriceRedacted";
+            this.Text = "PriceRedacted";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
 
