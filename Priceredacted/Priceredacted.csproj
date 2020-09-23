@@ -6,4 +6,10 @@
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+    <Folder Include="DataBase\" />
+    <Folder Include="UI\" />
+  </ItemGroup>
+
 </Project>
