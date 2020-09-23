@@ -6,4 +6,24 @@
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Tesseract" Version="3.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\Deimantas\.nuget\packages\tesseract\3.3.0\build\\..\x86\liblept1753.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\Deimantas\.nuget\packages\tesseract\3.3.0\build\\..\x86\libtesseract3052.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\Deimantas\.nuget\packages\tesseract\3.3.0\build\\..\x64\liblept1753.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\Deimantas\.nuget\packages\tesseract\3.3.0\build\\..\x64\libtesseract3052.dll" />
+  </ItemGroup>
+
 </Project>
