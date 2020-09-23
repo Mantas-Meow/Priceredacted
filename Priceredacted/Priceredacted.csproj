@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="DataBase\" />
+    <Folder Include="UI\" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Tesseract" Version="3.3.0" />
   </ItemGroup>
 
