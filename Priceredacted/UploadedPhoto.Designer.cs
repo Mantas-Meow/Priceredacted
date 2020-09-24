@@ -39,35 +39,37 @@
             // 
             this.pictureBox1.Location = new System.Drawing.Point(16, 23);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(258, 230);
+            this.pictureBox1.Size = new System.Drawing.Size(342, 300);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 280);
+            this.label1.Location = new System.Drawing.Point(16, 391);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 15);
             this.label1.TabIndex = 1;
             this.label1.Text = "label1";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(330, 23);
+            this.richTextBox1.Location = new System.Drawing.Point(417, 23);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(433, 230);
+            this.richTextBox1.Size = new System.Drawing.Size(346, 354);
             this.richTextBox1.TabIndex = 2;
             this.richTextBox1.Text = "";
             // 
             // Scan_Button
             // 
-            this.Scan_Button.Location = new System.Drawing.Point(688, 272);
+            this.Scan_Button.Location = new System.Drawing.Point(688, 383);
             this.Scan_Button.Name = "Scan_Button";
             this.Scan_Button.Size = new System.Drawing.Size(75, 23);
             this.Scan_Button.TabIndex = 3;
             this.Scan_Button.Text = "Scan";
             this.Scan_Button.UseVisualStyleBackColor = true;
+            this.Scan_Button.Click += new System.EventHandler(this.Scan_Button_Click);
             // 
             // UploadedPhoto
             // 
