@@ -44,6 +44,7 @@
             this.button1.Size = new System.Drawing.Size(45, 45);
             this.button1.TabIndex = 0;
             this.button1.Text = "+";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -63,6 +64,7 @@
             this.label1.Size = new System.Drawing.Size(80, 15);
             this.label1.TabIndex = 2;
             this.label1.Text = "Upload Photo";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // button2
             // 

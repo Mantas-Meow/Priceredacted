@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Priceredacted.Tesseract_Ocr;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,5 +28,23 @@ namespace Priceredacted
          {
 
          }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Scan_Button_Click(object sender, EventArgs e)
+        {
+            string scannedText = ImageRecognition.GetTextFromImage(PriceRedacted.selectedFile);
+            if (scannedText == null)
+            {
+                MessageBox.Show("Image is not valid!");
+            }
+            else
+            {
+                richTextBox1.Text = scannedText;
+            }
+        }
     }
 }
