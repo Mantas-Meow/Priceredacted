@@ -15,19 +15,21 @@ namespace Priceredacted.Tesseract_Ocr
             try
             {
                 var image = imagePath;
-                Bitmap newImage = (Bitmap)Image.FromFile(imagePath);
+                Bitmap tempImage = (Bitmap)Image.FromFile(imagePath);
                 
-                string testImagePath = "./Tesseract Ocr/testImage.png";
+                string imageSavePath = "./Tesseract Ocr/testImage.png";
 
-                newImage = SetContrast(newImage, 500);
-                // - improving image quality
 
-                newImage.Save(testImagePath);
+                // improving image quality
+                tempImage = ProcessImage(tempImage);
 
-                var img = Pix.LoadFromFile(testImagePath);
 
+                tempImage.Save(imageSavePath);
+
+                var img = Pix.LoadFromFile(imageSavePath);
+
+                // read text from the image
                 TesseractEngine engine = new TesseractEngine("./Tesseract Ocr/tessdata", "lit", EngineMode.Default);
-
 
                 Page page = engine.Process(img, PageSegMode.Auto);
                 text = page.GetText();
@@ -39,7 +41,14 @@ namespace Priceredacted.Tesseract_Ocr
             }
             return text;
         }
-        public static Bitmap SetContrast(Bitmap original, int value)
+
+        private static Bitmap ProcessImage(Bitmap img)
+        {
+            img = SetContrast(img, 128);
+            return img;
+        }
+
+        private static Bitmap SetContrast(Bitmap original, int value)
         {
             Bitmap newBitmap = new Bitmap(original.Width, original.Height);
 
