@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 using Tesseract;
 
@@ -13,7 +14,16 @@ namespace Priceredacted.Tesseract_Ocr
             try
             {
                 var image = imagePath;
-                var img = Pix.LoadFromFile(image);
+                Bitmap newImage = (Bitmap)Image.FromFile(imagePath);
+                
+                string testImagePath = "./Tesseract Ocr/testImage.png";
+
+                
+                // - improving image quality
+
+                newImage.Save(testImagePath);
+
+                var img = Pix.LoadFromFile(testImagePath);
 
                 TesseractEngine engine = new TesseractEngine("./Tesseract Ocr/tessdata", "lit", EngineMode.Default);
 
