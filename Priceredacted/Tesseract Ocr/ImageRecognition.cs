@@ -47,7 +47,8 @@ namespace Priceredacted.Tesseract_Ocr
         private static void ProcessImage(Bitmap img, string imageSavePath)
         {
             img = ResizeImage(img, img.Width * 2, img.Height * 2);
-            //img = SetContrast(img, 128);
+            img = SetContrast(img, 128);
+            img = SetBlackWhite(img);
 
             img.Save(imageSavePath);
         }
@@ -75,6 +76,35 @@ namespace Priceredacted.Tesseract_Ocr
             }
 
             return destImage;
+        }
+
+        public static Bitmap SetBlackWhite(Bitmap img)
+        {
+
+            Bitmap temp = (Bitmap)img;
+            Bitmap bmap = (Bitmap)temp.Clone();
+            Color c;
+            for (int i = 0; i < bmap.Width; i++)
+            {
+                for (int j = 0; j < bmap.Height; j++)
+                {
+                    c = bmap.GetPixel(i, j);
+                    byte color;
+                    if (c.R < 100 && c.G < 100 && c.B < 100)
+                    {
+                        color = (byte)(((c.R + c.G + c.R) / 3) * 0.2f);
+                    }
+                    else
+                    {
+                        color = Byte.MaxValue;
+                    }
+                    //byte gray = (byte)(.299 * c.R + .587 * c.G + .114 * c.B);
+                    //byte gray = (byte)((c.R + c.G + c.R) / 3);
+                    bmap.SetPixel(i, j, Color.FromArgb(color, color, color));
+                }
+            }
+            return (Bitmap)bmap.Clone();
+
         }
         private static Bitmap SetContrast(Bitmap original, int value)
         {
