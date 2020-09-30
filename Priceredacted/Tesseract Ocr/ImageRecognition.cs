@@ -84,9 +84,9 @@ namespace Priceredacted.Tesseract_Ocr
             Bitmap temp = (Bitmap)img;
             Bitmap bmap = (Bitmap)temp.Clone();
             Color c;
-            float avgDarkness = 1f;
+            float avgDarkness = 100;
 
-            for (int i = 0; i < bmap.Width; i++)
+            /*for (int i = 0; i < bmap.Width; i++)
             {
                 for (int j = 0; j < bmap.Height; j++)
                 {
@@ -94,7 +94,7 @@ namespace Priceredacted.Tesseract_Ocr
                     avgDarkness += (float)(c.R * 0.299 + c.G * 0.578 + c.B * 0.114);
                 }
             }
-            avgDarkness /= (bmap.Width * bmap.Height);
+            avgDarkness /= (bmap.Width * bmap.Height);*/
 
             for (int i = 0; i < bmap.Width; i++)
             {
