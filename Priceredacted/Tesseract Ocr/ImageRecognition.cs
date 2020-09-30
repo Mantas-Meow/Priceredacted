@@ -84,20 +84,42 @@ namespace Priceredacted.Tesseract_Ocr
             Bitmap temp = (Bitmap)img;
             Bitmap bmap = (Bitmap)temp.Clone();
             Color c;
+            float avgDarkness = 1f;
+
             for (int i = 0; i < bmap.Width; i++)
             {
                 for (int j = 0; j < bmap.Height; j++)
                 {
                     c = bmap.GetPixel(i, j);
-                    byte color;
-                    if (c.R < 100 && c.G < 100 && c.B < 100)
+                    avgDarkness += (float)(c.R * 0.299 + c.G * 0.578 + c.B * 0.114);
+                }
+            }
+            avgDarkness /= (bmap.Width * bmap.Height);
+
+            for (int i = 0; i < bmap.Width; i++)
+            {
+                for (int j = 0; j < bmap.Height; j++)
+                {
+                    c = bmap.GetPixel(i, j);
+                    int color = (int)(c.R * 0.299 + c.G * 0.578 + c.B * 0.114);
+
+                    if (color > avgDarkness)
+                    {
+                        color = 255;
+                    }
+                    else
+                    {
+                        color = 0;
+                    }
+
+                    /*if (c.R < 100 && c.G < 100 && c.B < 100)
                     {
                         color = (byte)(((c.R + c.G + c.R) / 3) * 0.2f);
                     }
                     else
                     {
                         color = Byte.MaxValue;
-                    }
+                    }*/
                     //byte gray = (byte)(.299 * c.R + .587 * c.G + .114 * c.B);
                     //byte gray = (byte)((c.R + c.G + c.R) / 3);
                     bmap.SetPixel(i, j, Color.FromArgb(color, color, color));
