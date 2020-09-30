@@ -195,7 +195,7 @@
         private System.Windows.Forms.TextBox SearchBox;
         private System.Windows.Forms.DataGridView SearchResults;
         private System.Windows.Forms.Button SearchButton;
-        private System.Windows.Forms.TextBox ProductName;
+        private new System.Windows.Forms.TextBox ProductName;
         private System.Windows.Forms.TextBox Price;
         private System.Windows.Forms.Button SaveData;
         private System.Windows.Forms.Label label1;
