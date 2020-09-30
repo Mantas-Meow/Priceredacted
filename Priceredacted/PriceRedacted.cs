@@ -16,7 +16,7 @@ namespace Priceredacted
     public partial class PriceRedacted : Form
     {
         
-        SqlConnection sqlCon = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\benas\Documents\C#\Priceredacted\DB\Prekes.mdf;Integrated Security=True");
+        SqlConnection sqlCon = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Deimantas\Source\Repos\Priceredacted\Priceredacted\DB\Prekes.mdf;Integrated Security=True");
 
         public static string selectedFile;
 
