@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.DirectoryServices;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
-using System.Text;
 using Tesseract;
 
 namespace Priceredacted.Tesseract_Ocr
@@ -11,43 +12,70 @@ namespace Priceredacted.Tesseract_Ocr
     {
         public static string GetTextFromImage(string imagePath)
         {
-            string text = null;
+            string text;
             try
             {
-                var image = imagePath;
-                Bitmap tempImage = (Bitmap)Image.FromFile(imagePath);
+                Bitmap tempImage = new Bitmap(imagePath);
                 
-                string imageSavePath = "./Tesseract Ocr/testImage.png";
-
+                string imageSavePath = "./Tesseract Ocr/testImage11.png";
 
                 // improving image quality
-                tempImage = ProcessImage(tempImage);
+                ProcessImage(tempImage, imageSavePath);
 
+                
 
-                tempImage.Save(imageSavePath);
-
-                var img = Pix.LoadFromFile(imageSavePath);
+                var imga = Pix.LoadFromFile(imageSavePath);
 
                 // read text from the image
                 TesseractEngine engine = new TesseractEngine("./Tesseract Ocr/tessdata", "lit", EngineMode.Default);
+                //engine.SetVariable("load_system_dawg", false);
+                //engine.SetVariable("load_freq_dawg", false);
 
-                Page page = engine.Process(img, PageSegMode.Auto);
+
+                Page page = engine.Process(imga, PageSegMode.Auto);
+                //File.Delete(imageSavePath);
                 text = page.GetText();
             }
             catch (Exception)
             {
-                text = null;
+                return null;
                 //throw new System.InvalidOperationException("file doesn't exist");
             }
             return text;
         }
 
-        private static Bitmap ProcessImage(Bitmap img)
+        private static void ProcessImage(Bitmap img, string imageSavePath)
         {
-            img = SetContrast(img, 128);
-            return img;
+            img = ResizeImage(img, img.Width * 2, img.Height * 2);
+            //img = SetContrast(img, 128);
+
+            img.Save(imageSavePath);
         }
 
+        private static Bitmap ResizeImage(Bitmap image, int width, int height)
+        {
+            var destRect = new Rectangle(0, 0, width, height);
+            var destImage = new Bitmap(width, height);
+
+            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+
+            using (var graphics = Graphics.FromImage(destImage))
+            {
+                graphics.CompositingMode = CompositingMode.SourceCopy;
+                graphics.CompositingQuality = CompositingQuality.HighQuality;
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.SmoothingMode = SmoothingMode.HighQuality;
+                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                using (var wrapMode = new ImageAttributes())
+                {
+                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
+                }
+            }
+
+            return destImage;
+        }
         private static Bitmap SetContrast(Bitmap original, int value)
         {
             Bitmap newBitmap = new Bitmap(original.Width, original.Height);
