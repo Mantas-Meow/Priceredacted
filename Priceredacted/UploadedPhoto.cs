@@ -11,12 +11,13 @@ namespace Priceredacted
 {
     public partial class UploadedPhoto : Form
     {
+        private string selectedFile;
 
-        public UploadedPhoto(Image pic1)
+        public UploadedPhoto(Image pic1, String Text)
         {
             InitializeComponent();
-            label1.Text = PriceRedacted.selectedFile;
             pictureBox1.Image = pic1;
+            richTextBox1.Text = Text;
         }
 
          public UploadedPhoto()
@@ -34,9 +35,17 @@ namespace Priceredacted
 
         }
 
-        private void Scan_Button_Click(object sender, EventArgs e)
+        private void ScanNewImage_Button_Click(object sender, EventArgs e)
         {
-            string scannedText = ImageRecognition.GetTextFromImage(PriceRedacted.selectedFile);
+            OpenFileDialog open = new OpenFileDialog();
+            open.Filter = "Image Files(*.jpeg;*.bmp;*.png;*.jpg)|*.jpeg;*.bmp;*.png;*.jpg";
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+                selectedFile = open.FileName;
+                pictureBox1.Image = new Bitmap(open.FileName);
+            }
+            
+            string scannedText = ImageRecognition.GetTextFromImage(selectedFile);
             if (scannedText == null)
             {
                 MessageBox.Show("Image is not valid!");
