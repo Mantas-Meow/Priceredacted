@@ -46,9 +46,9 @@ namespace Priceredacted.Tesseract_Ocr
 
         private static void ProcessImage(Bitmap img, string imageSavePath)
         {
-            img = ResizeImage(img, img.Width * 2, img.Height * 2);
-            img = SetContrast(img, 128);
-            img = SetBlackWhite(img);
+            img = ResizeImage(img, img.Width * 3, img.Height * 2);
+            //img = SetContrast(img, 128);
+            //img = SetBlackWhite(img);
 
             img.Save(imageSavePath);
         }

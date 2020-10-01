@@ -84,7 +84,7 @@
             // SearchBox
             // 
             this.SearchBox.Location = new System.Drawing.Point(481, 12);
-            this.SearchBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SearchBox.Margin = new System.Windows.Forms.Padding(2);
             this.SearchBox.Name = "SearchBox";
             this.SearchBox.Size = new System.Drawing.Size(170, 23);
             this.SearchBox.TabIndex = 4;
@@ -95,7 +95,7 @@
             this.SearchResults.AllowUserToDeleteRows = false;
             this.SearchResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.SearchResults.Location = new System.Drawing.Point(481, 49);
-            this.SearchResults.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SearchResults.Margin = new System.Windows.Forms.Padding(2);
             this.SearchResults.Name = "SearchResults";
             this.SearchResults.RowHeadersWidth = 62;
             this.SearchResults.Size = new System.Drawing.Size(309, 211);
@@ -105,7 +105,7 @@
             // SearchButton
             // 
             this.SearchButton.Location = new System.Drawing.Point(666, 13);
-            this.SearchButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SearchButton.Margin = new System.Windows.Forms.Padding(2);
             this.SearchButton.Name = "SearchButton";
             this.SearchButton.Size = new System.Drawing.Size(101, 18);
             this.SearchButton.TabIndex = 7;
@@ -116,7 +116,7 @@
             // ProductName
             // 
             this.ProductName.Location = new System.Drawing.Point(481, 276);
-            this.ProductName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ProductName.Margin = new System.Windows.Forms.Padding(2);
             this.ProductName.Name = "ProductName";
             this.ProductName.Size = new System.Drawing.Size(169, 23);
             this.ProductName.TabIndex = 8;
@@ -124,7 +124,7 @@
             // Price
             // 
             this.Price.Location = new System.Drawing.Point(666, 276);
-            this.Price.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Price.Margin = new System.Windows.Forms.Padding(2);
             this.Price.Name = "Price";
             this.Price.Size = new System.Drawing.Size(102, 23);
             this.Price.TabIndex = 8;
@@ -132,7 +132,7 @@
             // SaveData
             // 
             this.SaveData.Location = new System.Drawing.Point(481, 331);
-            this.SaveData.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SaveData.Margin = new System.Windows.Forms.Padding(2);
             this.SaveData.Name = "SaveData";
             this.SaveData.Size = new System.Drawing.Size(102, 38);
             this.SaveData.TabIndex = 9;
