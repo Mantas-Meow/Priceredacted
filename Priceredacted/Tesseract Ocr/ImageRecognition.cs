@@ -39,16 +39,15 @@ namespace Priceredacted.Tesseract_Ocr
             catch (Exception)
             {
                 return null;
-                //throw new System.InvalidOperationException("file doesn't exist");
             }
             return text;
         }
 
         private static void ProcessImage(Bitmap img, string imageSavePath)
         {
-            img = ResizeImage(img, img.Width * 2, img.Height * 2);
-            img = SetContrast(img, 128);
-            img = SetBlackWhite(img);
+            img = ResizeImage(img, img.Width * 3, img.Height * 2);
+            //img = SetContrast(img, 128);
+            //img = SetBlackWhite(img);
 
             img.Save(imageSavePath);
         }
@@ -74,7 +73,6 @@ namespace Priceredacted.Tesseract_Ocr
                     graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
                 }
             }
-
             return destImage;
         }
 
@@ -111,17 +109,6 @@ namespace Priceredacted.Tesseract_Ocr
                     {
                         color = 0;
                     }
-
-                    /*if (c.R < 100 && c.G < 100 && c.B < 100)
-                    {
-                        color = (byte)(((c.R + c.G + c.R) / 3) * 0.2f);
-                    }
-                    else
-                    {
-                        color = Byte.MaxValue;
-                    }*/
-                    //byte gray = (byte)(.299 * c.R + .587 * c.G + .114 * c.B);
-                    //byte gray = (byte)((c.R + c.G + c.R) / 3);
                     bmap.SetPixel(i, j, Color.FromArgb(color, color, color));
                 }
             }
