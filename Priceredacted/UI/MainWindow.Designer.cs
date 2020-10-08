@@ -28,14 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.ScanImage_button = new System.Windows.Forms.Button();
             this.SearchItems_button = new System.Windows.Forms.Button();
             this.Exit_button = new System.Windows.Forms.Button();
+            this.PriceRedactedImage = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.PriceRedactedImage)).BeginInit();
             this.SuspendLayout();
             // 
             // ScanImage_button
             // 
-            this.ScanImage_button.Location = new System.Drawing.Point(221, 72);
+            this.ScanImage_button.Location = new System.Drawing.Point(270, 72);
             this.ScanImage_button.Name = "ScanImage_button";
             this.ScanImage_button.Size = new System.Drawing.Size(175, 131);
             this.ScanImage_button.TabIndex = 0;
@@ -45,7 +48,7 @@
             // 
             // SearchItems_button
             // 
-            this.SearchItems_button.Location = new System.Drawing.Point(500, 72);
+            this.SearchItems_button.Location = new System.Drawing.Point(514, 72);
             this.SearchItems_button.Name = "SearchItems_button";
             this.SearchItems_button.Size = new System.Drawing.Size(175, 137);
             this.SearchItems_button.TabIndex = 1;
@@ -63,17 +66,31 @@
             this.Exit_button.UseVisualStyleBackColor = true;
             this.Exit_button.Click += new System.EventHandler(this.Exit_button_Click);
             // 
+            // PriceRedactedImage
+            // 
+            this.PriceRedactedImage.BackColor = System.Drawing.Color.Transparent;
+            this.PriceRedactedImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.PriceRedactedImage.Image = ((System.Drawing.Image)(resources.GetObject("PriceRedactedImage.Image")));
+            this.PriceRedactedImage.Location = new System.Drawing.Point(12, 12);
+            this.PriceRedactedImage.Name = "PriceRedactedImage";
+            this.PriceRedactedImage.Size = new System.Drawing.Size(169, 76);
+            this.PriceRedactedImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PriceRedactedImage.TabIndex = 3;
+            this.PriceRedactedImage.TabStop = false;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.PriceRedactedImage);
             this.Controls.Add(this.Exit_button);
             this.Controls.Add(this.SearchItems_button);
             this.Controls.Add(this.ScanImage_button);
             this.Name = "MainWindow";
             this.Text = "MainWindow";
             this.Load += new System.EventHandler(this.MainWindow_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.PriceRedactedImage)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -83,5 +100,6 @@
         private System.Windows.Forms.Button ScanImage_button;
         private System.Windows.Forms.Button SearchItems_button;
         private System.Windows.Forms.Button Exit_button;
+        private System.Windows.Forms.PictureBox PriceRedactedImage;
     }
 }
