@@ -99,7 +99,7 @@ namespace Priceredacted.Tesseract_Ocr
                 for (int j = 0; j < bmap.Height; j++)
                 {
                     c = bmap.GetPixel(i, j);
-                    int color = (int)(c.R * 0.299 + c.G * 0.578 + c.B * 0.114);
+                    int color = (int)(c.R + c.G  + c.B);
 
                     if (color > avgDarkness)
                     {
@@ -139,6 +139,32 @@ namespace Priceredacted.Tesseract_Ocr
                      new float[] {0, 0, F, 0, 0},
                      new float[] {0, 0, 0, 1, 0},
                      new float[] {q, q, q, 0, 1}
+               });
+
+            ImageAttributes attributes = new ImageAttributes();
+
+            attributes.SetColorMatrix(colorMatrix);
+
+            g.DrawImage(original, new Rectangle(0, 0, original.Width, original.Height),
+               0, 0, original.Width, original.Height, GraphicsUnit.Pixel, attributes);
+
+            g.Dispose();
+            return newBitmap;
+        }
+        private static Bitmap SetGrayscale(Bitmap original)
+        {
+            Bitmap newBitmap = new Bitmap(original.Width, original.Height);
+
+            Graphics g = Graphics.FromImage(newBitmap);
+
+            ColorMatrix colorMatrix = new ColorMatrix(
+               new float[][]
+               {
+                     new float[] { .3f,  .3f,  .3f, 0, 0},
+                     new float[] {.59f, .59f, .59f, 0, 0},
+                     new float[] {.11f, .11f, .11f, 0, 0},
+                     new float[] {   0,    0,    0, 1, 0},
+                     new float[] {   0,    0,    0, 0, 1}
                });
 
             ImageAttributes attributes = new ImageAttributes();
