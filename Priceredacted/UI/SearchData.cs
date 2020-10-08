@@ -36,7 +36,7 @@ namespace Priceredacted
 
         }
 
-        private void SaveData_Click(object sender, EventArgs e)
+        private void AddData_button_Click(object sender, EventArgs e)
         {
             try
             {
@@ -89,6 +89,16 @@ namespace Priceredacted
         }
 
         private void PriceRedacted_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ProductName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ShopList_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
