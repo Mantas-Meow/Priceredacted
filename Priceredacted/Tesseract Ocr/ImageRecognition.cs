@@ -47,8 +47,10 @@ namespace Priceredacted.Tesseract_Ocr
         {
             ImagePreProcessing proccessImage = new ImagePreProcessing();
             img = proccessImage.ResizeImage(img, img.Width * 3, img.Height * 2);
+            //img = proccessImage.InvertColors(img);
             //img = proccessImage.SetContrast(img, 128);
             //img = proccessImage.SetGrayscale(img);
+            //img = proccessImage.InvertColors(img);
             //img = proccessImage.SetBlackWhite(img);
 
             img.Save(imageSavePath);
