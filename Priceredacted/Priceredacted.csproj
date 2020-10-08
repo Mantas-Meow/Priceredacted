@@ -7,8 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DataBase\" />
-    <Folder Include="UI\" />
+    <Compile Remove="DataBase\**" />
+    <EmbeddedResource Remove="DataBase\**" />
+    <None Remove="DataBase\**" />
   </ItemGroup>
 
   <ItemGroup>
