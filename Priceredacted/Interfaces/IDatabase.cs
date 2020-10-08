@@ -4,7 +4,9 @@ using System.Text;
 
 namespace Priceredacted.Interfaces
 {
-    interface Interface1
+    interface IDatabase
     {
+        public void addData();
+        public void getData();
     }
 }
