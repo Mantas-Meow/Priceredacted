@@ -16,7 +16,7 @@ namespace Priceredacted
 {
     public partial class SearchData : Form
     {
-        string path = @"C:\Universitetas\Trecias_semestras\Programu_sistemu_inzinerija\Testing\Priceredacted\Priceredacted\DB\Products.json";
+        string path = "./DB/Products.json";
 
         public SearchData()
         {
