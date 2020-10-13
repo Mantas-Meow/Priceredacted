@@ -4,6 +4,10 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Text;
+using System.Windows.Forms;
+using Emgu.CV;
+using Emgu.CV.CvEnum;
+using Emgu.CV.Structure;
 
 namespace Priceredacted.Tesseract_Ocr
 {
@@ -31,6 +35,22 @@ namespace Priceredacted.Tesseract_Ocr
                 }
             }
             return destImage;
+        }
+
+        public Bitmap AdaptiveBinarization(string imageSavePath, int sizeOfNbPixels, int subFromMean)
+        {
+            Mat img = CvInvoke.Imread(imageSavePath, 0);
+
+            Mat output = new Mat();
+            CvInvoke.AdaptiveThreshold(img, output, 255,
+                AdaptiveThresholdType.GaussianC, ThresholdType.Binary, sizeOfNbPixels, subFromMean);
+
+            CvInvoke.Imshow("src", img);
+            CvInvoke.Imshow("Gaussian", output);
+
+            Bitmap newMap = output.ToBitmap();
+            newMap.Save("./Tesseract Ocr/testImage111.png");
+            return newMap;
         }
 
         public Bitmap SetBlackWhite(Bitmap img)

@@ -18,13 +18,14 @@ namespace Priceredacted.Tesseract_Ocr
                 Bitmap tempImage = new Bitmap(imagePath);
 
                 string imageSavePath = "./Tesseract Ocr/testImage11.png";
+                string imageSavePath2 = "./Tesseract Ocr/testImage111.png";
 
                 // improving image quality
                 ProcessImage(tempImage, imageSavePath);
 
 
 
-                var imga = Pix.LoadFromFile(imageSavePath);
+                var imga = Pix.LoadFromFile(imageSavePath2);
 
                 // read text from the image
                 TesseractEngine engine = new TesseractEngine("./Tesseract Ocr/tessdata", "lit", EngineMode.Default);
@@ -45,15 +46,18 @@ namespace Priceredacted.Tesseract_Ocr
 
         private static void ProcessImage(Bitmap img, string imageSavePath)
         {
+            string imageSavePath2 = "./Tesseract Ocr/testImage111.png";
             ImagePreProcessing proccessImage = new ImagePreProcessing();
-            img = proccessImage.ResizeImage(img, img.Width * 3, img.Height * 2);
+            img = proccessImage.ResizeImage(img, img.Width * 2, img.Height * 2);
             //img = proccessImage.InvertColors(img);
             //img = proccessImage.SetContrast(img, 128);
-            //img = proccessImage.SetGrayscale(img);
+            img = proccessImage.SetGrayscale(img);
             //img = proccessImage.InvertColors(img);
             //img = proccessImage.SetBlackWhite(img);
 
             img.Save(imageSavePath);
+            img = proccessImage.AdaptiveBinarization(imageSavePath, 11, 5);
+            img.Save(imageSavePath2);
         }
     }
 }
