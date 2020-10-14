@@ -1,32 +1,59 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.DirectoryServices;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using Tesseract;
 
 namespace Priceredacted.Tesseract_Ocr
 {
-    class ImageRecognition
+    static class ImageRecognition
     {
         public static string GetTextFromImage(string imagePath)
         {
-            string text = null;
+            string text;
             try
             {
-                var image = imagePath;
-                var img = Pix.LoadFromFile(image);
+                Bitmap tempImage = new Bitmap(imagePath);
 
+                string imageSavePath = "./Tesseract Ocr/testImage11.png";
+
+                // improving image quality
+                ProcessImage(tempImage, imageSavePath);
+
+
+
+                var imga = Pix.LoadFromFile(imageSavePath);
+
+                // read text from the image
                 TesseractEngine engine = new TesseractEngine("./Tesseract Ocr/tessdata", "lit", EngineMode.Default);
+                //engine.SetVariable("load_system_dawg", false);
+                //engine.SetVariable("load_freq_dawg", false);
 
 
-                Page page = engine.Process(img, PageSegMode.Auto);
+                Page page = engine.Process(imga, PageSegMode.Auto);
+                //File.Delete(imageSavePath);
                 text = page.GetText();
             }
             catch (Exception)
             {
-                text = null;
-                //throw new System.InvalidOperationException("file doesn't exist");
+                return null;
             }
             return text;
+        }
+
+        private static void ProcessImage(Bitmap img, string imageSavePath)
+        {
+            ImagePreProcessing proccessImage = new ImagePreProcessing();
+            img = proccessImage.ResizeImage(img, img.Width * 3, img.Height * 2);
+            //img = proccessImage.InvertColors(img);
+            //img = proccessImage.SetContrast(img, 128);
+            //img = proccessImage.SetGrayscale(img);
+            //img = proccessImage.InvertColors(img);
+            //img = proccessImage.SetBlackWhite(img);
+
+            img.Save(imageSavePath);
         }
     }
 }
