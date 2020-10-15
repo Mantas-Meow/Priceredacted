@@ -67,9 +67,9 @@ namespace Priceredacted.Tesseract_Ocr
             //------------ Adaptive Binarization ---------------
             Mat binImage = new Mat();
             CvInvoke.AdaptiveThreshold(mainImg, binImage, 255,
-                AdaptiveThresholdType.GaussianC, ThresholdType.Binary, 11, 5);
+                AdaptiveThresholdType.GaussianC, ThresholdType.Binary, 17, 5); //11, 5
 
-            binImage.Save(path + "AdaptBinImage.png");
+            binImage.Save(path + "1_AdaptBinImage.png");
 
 
             //------------ Gradient Image ---------------
@@ -84,21 +84,21 @@ namespace Priceredacted.Tesseract_Ocr
             Mat img;
             img = grad_x + grad_y; // combined gradient image
 
-            img.Save(path + "GradientImage.png");
+            img.Save(path + "2_GradientImage.png");
 
             //------------ Otsu Binarization ---------------
             Mat otsuImage = new Mat();
             CvInvoke.Threshold(img, otsuImage, 0, 255, ThresholdType.Binary | ThresholdType.Otsu);
 
-            otsuImage.Save(path + "OtsuImage.png");
+            otsuImage.Save(path + "3_OtsuImage.png");
 
             Mat dialImage = new Mat();
 
             Mat element = CvInvoke.GetStructuringElement(ElementShape.Rectangle, new Size(3, 3), new Point(-1, -1));
 
             CvInvoke.Dilate(otsuImage, dialImage, element, new Point(-1, -1),
-                5, BorderType.Default, new MCvScalar(255, 255, 255));
-            dialImage.Save(path + "DialationImage.png");
+                3, BorderType.Default, new MCvScalar(255, 255, 255));
+            dialImage.Save(path + "4_DialationImage.png");
             //CvInvoke.GaussianBlur(otsuImage, blurImage, new Size(3, 3), 0, 0, BorderType.Default);
 
 
@@ -131,8 +131,9 @@ namespace Priceredacted.Tesseract_Ocr
 
             //CvInvoke.GaussianBlur(mergedImage, mergedImage, new Size(3, 3), 0, 0, BorderType.Default);
             Bitmap contrast = SetContrast(mergedImage.ToBitmap(), 128);
+            //Bitmap contrast = ResizeImage(mergedImage.ToBitmap(), mergedImage.Width * 3, mergedImage.Height * 2);
             contrast.Save("./Tesseract Ocr/testImage11.png");
-            contrast.Save(path + "lastImage.png");
+            contrast.Save(path + "5_lastImage.png");
             //Bitmap invertedBitmap = InvertColors(mergedImage.ToBitmap());
 
             //invertedBitmap.Save(path + "OtsuImage.png");

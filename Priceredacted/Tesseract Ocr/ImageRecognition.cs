@@ -48,9 +48,9 @@ namespace Priceredacted.Tesseract_Ocr
         {
             //string imageSavePath2 = "./Tesseract Ocr/testImage111.png";
             ImagePreProcessing proccessImage = new ImagePreProcessing();
-            img = proccessImage.ResizeImage(img, img.Width * 2, img.Height * 2);
+            //img = proccessImage.ResizeImage(img, img.Width * 2, img.Height * 2);
             //img = proccessImage.InvertColors(img);
-            //img = proccessImage.SetContrast(img, 128);
+            //img = proccessImage.SetContrast(img, 100);
             //img = proccessImage.SetGrayscale(img);
             //img = proccessImage.InvertColors(img);
             //img = proccessImage.SetBlackWhite(img);
@@ -59,7 +59,6 @@ namespace Priceredacted.Tesseract_Ocr
             //img = proccessImage.AdaptiveBinarization(imageSavePath, 11, 5);
             //img.Save(imageSavePath2);
             proccessImage.ProcessImageWithEMGU(img);
-
         }
     }
 }
