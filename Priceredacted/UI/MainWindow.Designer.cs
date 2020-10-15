@@ -131,6 +131,7 @@
             // Home_button
             // 
             this.Home_button.BackColor = System.Drawing.SystemColors.Control;
+            this.Home_button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.Home_button.Location = new System.Drawing.Point(42, 130);
             this.Home_button.Name = "Home_button";
             this.Home_button.Size = new System.Drawing.Size(98, 50);
