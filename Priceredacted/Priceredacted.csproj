@@ -15,6 +15,7 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
     <PackageReference Include="Tesseract" Version="3.3.0" />
   </ItemGroup>
 
@@ -34,9 +35,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="DB\Products.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="Tesseract Ocr\tessdata\eng.cube.bigrams">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
