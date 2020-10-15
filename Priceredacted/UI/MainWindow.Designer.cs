@@ -36,7 +36,7 @@
             this.Home_panel = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Home_button = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.Search_panel = new System.Windows.Forms.Panel();
             this.SearchBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.SearchButton = new System.Windows.Forms.Button();
@@ -51,17 +51,17 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.SearchResults = new System.Windows.Forms.DataGridView();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.Scan_Button = new System.Windows.Forms.Button();
+            this.Scan_panel = new System.Windows.Forms.Panel();
+            this.ScanNewImage_Button = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.ScannedImage = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.PriceRedactedImage)).BeginInit();
             this.Home_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.Search_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SearchResults)).BeginInit();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.Scan_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ScannedImage)).BeginInit();
             this.SuspendLayout();
             // 
             // ScanImage_button
@@ -137,30 +137,29 @@
             this.Home_button.TabIndex = 0;
             this.Home_button.Text = "Home";
             this.Home_button.UseVisualStyleBackColor = false;
-            this.Home_button.Click += new System.EventHandler(this.ScanImage_button_Click);
+            this.Home_button.Click += new System.EventHandler(this.Home_button_Click);
             // 
-            // panel1
+            // Search_panel
             // 
-            this.panel1.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.panel1.Controls.Add(this.SearchBox);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.SearchButton);
-            this.panel1.Controls.Add(this.ProductName);
-            this.panel1.Controls.Add(this.Price);
-            this.panel1.Controls.Add(this.AddData_button);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.ShopList);
-            this.panel1.Controls.Add(this.PriceUnit);
-            this.panel1.Controls.Add(this.ItemGroup);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.SearchResults);
-            this.panel1.Location = new System.Drawing.Point(859, 47);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(620, 457);
-            this.panel1.TabIndex = 4;
-            this.panel1.Visible = false;
+            this.Search_panel.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.Search_panel.Controls.Add(this.SearchBox);
+            this.Search_panel.Controls.Add(this.label5);
+            this.Search_panel.Controls.Add(this.SearchButton);
+            this.Search_panel.Controls.Add(this.ProductName);
+            this.Search_panel.Controls.Add(this.Price);
+            this.Search_panel.Controls.Add(this.AddData_button);
+            this.Search_panel.Controls.Add(this.label4);
+            this.Search_panel.Controls.Add(this.label3);
+            this.Search_panel.Controls.Add(this.ShopList);
+            this.Search_panel.Controls.Add(this.PriceUnit);
+            this.Search_panel.Controls.Add(this.ItemGroup);
+            this.Search_panel.Controls.Add(this.label2);
+            this.Search_panel.Controls.Add(this.label1);
+            this.Search_panel.Controls.Add(this.SearchResults);
+            this.Search_panel.Location = new System.Drawing.Point(187, 0);
+            this.Search_panel.Name = "Search_panel";
+            this.Search_panel.Size = new System.Drawing.Size(620, 457);
+            this.Search_panel.TabIndex = 4;
             // 
             // SearchBox
             // 
@@ -324,27 +323,26 @@
             this.SearchResults.TabIndex = 6;
             this.SearchResults.Text = "dataGridView1";
             // 
-            // panel2
+            // Scan_panel
             // 
-            this.panel2.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.panel2.Controls.Add(this.Scan_Button);
-            this.panel2.Controls.Add(this.richTextBox1);
-            this.panel2.Controls.Add(this.pictureBox2);
-            this.panel2.Location = new System.Drawing.Point(121, 396);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(620, 457);
-            this.panel2.TabIndex = 4;
-            this.panel2.Visible = false;
+            this.Scan_panel.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.Scan_panel.Controls.Add(this.ScanNewImage_Button);
+            this.Scan_panel.Controls.Add(this.richTextBox1);
+            this.Scan_panel.Controls.Add(this.ScannedImage);
+            this.Scan_panel.Location = new System.Drawing.Point(187, 0);
+            this.Scan_panel.Name = "Scan_panel";
+            this.Scan_panel.Size = new System.Drawing.Size(620, 457);
+            this.Scan_panel.TabIndex = 4;
             // 
-            // Scan_Button
+            // ScanNewImage_Button
             // 
-            this.Scan_Button.Location = new System.Drawing.Point(269, 397);
-            this.Scan_Button.Name = "Scan_Button";
-            this.Scan_Button.Size = new System.Drawing.Size(132, 23);
-            this.Scan_Button.TabIndex = 3;
-            this.Scan_Button.Text = "Scan New Image";
-            this.Scan_Button.UseVisualStyleBackColor = true;
-            this.Scan_Button.Click += new System.EventHandler(this.Scan_Button_Click);
+            this.ScanNewImage_Button.Location = new System.Drawing.Point(269, 397);
+            this.ScanNewImage_Button.Name = "ScanNewImage_Button";
+            this.ScanNewImage_Button.Size = new System.Drawing.Size(132, 23);
+            this.ScanNewImage_Button.TabIndex = 3;
+            this.ScanNewImage_Button.Text = "Scan New Image";
+            this.ScanNewImage_Button.UseVisualStyleBackColor = true;
+            this.ScanNewImage_Button.Click += new System.EventHandler(this.ScanNewImage_Button_Click);
             // 
             // richTextBox1
             // 
@@ -354,41 +352,41 @@
             this.richTextBox1.TabIndex = 2;
             this.richTextBox1.Text = "";
             // 
-            // pictureBox2
+            // ScannedImage
             // 
-            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox2.Location = new System.Drawing.Point(8, 37);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(255, 354);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 0;
-            this.pictureBox2.TabStop = false;
+            this.ScannedImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ScannedImage.Location = new System.Drawing.Point(8, 37);
+            this.ScannedImage.Name = "ScannedImage";
+            this.ScannedImage.Size = new System.Drawing.Size(255, 354);
+            this.ScannedImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ScannedImage.TabIndex = 0;
+            this.ScannedImage.TabStop = false;
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SlateGray;
-            this.ClientSize = new System.Drawing.Size(1592, 859);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.ClientSize = new System.Drawing.Size(807, 457);
             this.Controls.Add(this.Home_button);
-            this.Controls.Add(this.Home_panel);
             this.Controls.Add(this.PriceRedactedImage);
             this.Controls.Add(this.Exit_button);
             this.Controls.Add(this.SearchItems_button);
             this.Controls.Add(this.ScanImage_button);
+            this.Controls.Add(this.Home_panel);
+            this.Controls.Add(this.Scan_panel);
+            this.Controls.Add(this.Search_panel);
             this.Name = "MainWindow";
             this.Text = "MainWindow";
             this.Load += new System.EventHandler(this.MainWindow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PriceRedactedImage)).EndInit();
             this.Home_panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.Search_panel.ResumeLayout(false);
+            this.Search_panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SearchResults)).EndInit();
-            this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.Scan_panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ScannedImage)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -402,7 +400,7 @@
         private System.Windows.Forms.Panel Home_panel;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button Home_button;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel Search_panel;
         private System.Windows.Forms.TextBox SearchBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button SearchButton;
@@ -417,9 +415,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView SearchResults;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button Scan_Button;
+        private System.Windows.Forms.Panel Scan_panel;
+        private System.Windows.Forms.Button ScanNewImage_Button;
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox ScannedImage;
     }
 }
