@@ -67,5 +67,20 @@ namespace Priceredacted
         {
             Application.Exit();
         }
+
+        private void AddData_button_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Scan_Button_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
