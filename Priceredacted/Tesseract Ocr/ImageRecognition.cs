@@ -25,7 +25,7 @@ namespace Priceredacted.Tesseract_Ocr
 
 
 
-                var imga = Pix.LoadFromFile(imageSavePath2);
+                var imga = Pix.LoadFromFile(imageSavePath);
 
                 // read text from the image
                 TesseractEngine engine = new TesseractEngine("./Tesseract Ocr/tessdata", "lit", EngineMode.Default);
@@ -37,27 +37,29 @@ namespace Priceredacted.Tesseract_Ocr
                 //File.Delete(imageSavePath);
                 text = page.GetText();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return null;
+                return e.ToString();
             }
             return text;
         }
 
         private static void ProcessImage(Bitmap img, string imageSavePath)
         {
-            string imageSavePath2 = "./Tesseract Ocr/testImage111.png";
+            //string imageSavePath2 = "./Tesseract Ocr/testImage111.png";
             ImagePreProcessing proccessImage = new ImagePreProcessing();
             img = proccessImage.ResizeImage(img, img.Width * 2, img.Height * 2);
             //img = proccessImage.InvertColors(img);
             //img = proccessImage.SetContrast(img, 128);
-            img = proccessImage.SetGrayscale(img);
+            //img = proccessImage.SetGrayscale(img);
             //img = proccessImage.InvertColors(img);
             //img = proccessImage.SetBlackWhite(img);
 
-            img.Save(imageSavePath);
-            img = proccessImage.AdaptiveBinarization(imageSavePath, 11, 5);
-            img.Save(imageSavePath2);
+            img.Save(imageSavePath); //save image for emgu cv
+            //img = proccessImage.AdaptiveBinarization(imageSavePath, 11, 5);
+            //img.Save(imageSavePath2);
+            proccessImage.ProcessImageWithEMGU(img);
+
         }
     }
 }

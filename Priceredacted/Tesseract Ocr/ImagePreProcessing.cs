@@ -53,6 +53,47 @@ namespace Priceredacted.Tesseract_Ocr
             return newMap;
         }
 
+        public void ProcessImageWithEMGU(Bitmap original)
+        {
+            string path = "D:/PhotosOfPreProcessing/";
+            //Image<Bgr, byte> img = new Image<Bgr, byte>(filename);
+
+            Mat mainImg;
+            Mat image = new Mat();
+
+
+            mainImg = CvInvoke.Imread("./Tesseract Ocr/testImage11.png", 0);
+
+            //------------ Gradient image ---------------
+            CvInvoke.GaussianBlur(mainImg, image, new Size(3, 3), 0, 0, BorderType.Default);
+
+            Mat grad_x = new Mat(), grad_y = new Mat();
+            
+            CvInvoke.Sobel(image, grad_x, DepthType.Cv8U, 1, 0, 3, 1, 0, BorderType.Default); //x - gradient image
+            CvInvoke.Sobel(image, grad_y, DepthType.Cv8U, 0, 1, 3, 1, 0, BorderType.Default); //y - gradient image
+            
+            Mat img;
+            img = grad_x + grad_y; // combined gradient image
+
+
+            Mat output = new Mat();
+
+            CvInvoke.AdaptiveThreshold(img, output, 255,
+                AdaptiveThresholdType.GaussianC, ThresholdType.Binary, 11, 5);
+
+            Bitmap invertedBitmap = InvertColors(output.ToBitmap());
+
+            //Bitmap to image
+            Image<Bgr, byte> newMat = invertedBitmap.ToImage<Bgr, byte>();
+            
+
+            
+
+            
+            Bitmap newImg = newMat.ToBitmap();
+            newImg.Save(path + 1 + "_test.png");
+        }
+
         public Bitmap SetBlackWhite(Bitmap img)
         {
 
