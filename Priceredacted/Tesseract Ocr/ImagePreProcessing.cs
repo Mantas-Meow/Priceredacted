@@ -58,13 +58,22 @@ namespace Priceredacted.Tesseract_Ocr
             string path = "D:/PhotosOfPreProcessing/";
             //Image<Bgr, byte> img = new Image<Bgr, byte>(filename);
 
+
+
             Mat mainImg;
-            Mat image = new Mat();
-
-
             mainImg = CvInvoke.Imread("./Tesseract Ocr/testImage11.png", 0);
 
-            //------------ Gradient image ---------------
+
+            //------------ Adaptive Binarization ---------------
+            Mat binImage = new Mat();
+            CvInvoke.AdaptiveThreshold(mainImg, binImage, 255,
+                AdaptiveThresholdType.GaussianC, ThresholdType.Binary, 11, 5);
+
+            binImage.Save(path + "AdaptBinImage.png");
+
+
+            //------------ Gradient Image ---------------
+            Mat image = new Mat();
             CvInvoke.GaussianBlur(mainImg, image, new Size(3, 3), 0, 0, BorderType.Default);
 
             Mat grad_x = new Mat(), grad_y = new Mat();
@@ -75,23 +84,77 @@ namespace Priceredacted.Tesseract_Ocr
             Mat img;
             img = grad_x + grad_y; // combined gradient image
 
+            img.Save(path + "GradientImage.png");
 
-            Mat output = new Mat();
+            //------------ Otsu Binarization ---------------
+            Mat otsuImage = new Mat();
+            CvInvoke.Threshold(img, otsuImage, 0, 255, ThresholdType.Binary | ThresholdType.Otsu);
 
-            CvInvoke.AdaptiveThreshold(img, output, 255,
-                AdaptiveThresholdType.GaussianC, ThresholdType.Binary, 11, 5);
+            otsuImage.Save(path + "OtsuImage.png");
 
-            Bitmap invertedBitmap = InvertColors(output.ToBitmap());
+            Mat dialImage = new Mat();
+
+            Mat element = CvInvoke.GetStructuringElement(ElementShape.Rectangle, new Size(3, 3), new Point(-1, -1));
+
+            CvInvoke.Dilate(otsuImage, dialImage, element, new Point(-1, -1),
+                5, BorderType.Default, new MCvScalar(255, 255, 255));
+            dialImage.Save(path + "DialationImage.png");
+            //CvInvoke.GaussianBlur(otsuImage, blurImage, new Size(3, 3), 0, 0, BorderType.Default);
+
+
+            //------------ Merge Images ---------------
+            Image<Bgr, byte> binImg = binImage.ToImage<Bgr, byte>();
+            Image<Bgr, byte> dialImg = dialImage.ToImage<Bgr, byte>();
+            Image<Bgr, byte> mergedImage = dialImage.ToImage<Bgr, byte>();
+
+            for (int v = 0; v < binImage.Height; v++)
+            {
+                for (int u = 0; u < binImage.Width; u++)
+                {
+                    int a0 = binImg.Data[v, u, 0]; //Get Pixel Color | fast way
+                    int a1 = binImg.Data[v, u, 1];
+                    int a2 = binImg.Data[v, u, 2];
+
+                    a0 = 255 - a0;
+                    a1 = 255 - a1;
+                    a2 = 255 - a2;
+
+                    int b0 = dialImg.Data[v, u, 0];
+                    int b1 = dialImg.Data[v, u, 1];
+                    int b2 = dialImg.Data[v, u, 2];
+
+                    mergedImage.Data[v, u, 0] = (byte)(255 - (a0 & b0));
+                    mergedImage.Data[v, u, 1] = (byte)(255 - (a1 & b1));
+                    mergedImage.Data[v, u, 2] = (byte)(255 - (a2 & b2));
+                }
+            }
+
+            //CvInvoke.GaussianBlur(mergedImage, mergedImage, new Size(3, 3), 0, 0, BorderType.Default);
+            Bitmap contrast = SetContrast(mergedImage.ToBitmap(), 128);
+            contrast.Save("./Tesseract Ocr/testImage11.png");
+            contrast.Save(path + "lastImage.png");
+            //Bitmap invertedBitmap = InvertColors(mergedImage.ToBitmap());
+
+            //invertedBitmap.Save(path + "OtsuImage.png");
+
+
+
+
+
+            //Mat output = new Mat();
+
+            //---------- Invert Colors
+            //Bitmap invertedBitmap = InvertColors(output.ToBitmap());
 
             //Bitmap to image
-            Image<Bgr, byte> newMat = invertedBitmap.ToImage<Bgr, byte>();
-            
+            //Image<Bgr, byte> newMat = invertedBitmap.ToImage<Bgr, byte>();
 
-            
 
-            
-            Bitmap newImg = newMat.ToBitmap();
-            newImg.Save(path + 1 + "_test.png");
+
+
+
+            //Bitmap newImg = newMat.ToBitmap();
+            //newImg.Save(path + 1 + "_test.png");
         }
 
         public Bitmap SetBlackWhite(Bitmap img)
