@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Windows.Forms;
 using Emgu.CV;
 using Emgu.CV.CvEnum;
 using Emgu.CV.Structure;
+using Emgu.CV.Util;
 
 namespace Priceredacted.Tesseract_Ocr
 {
@@ -86,18 +89,30 @@ namespace Priceredacted.Tesseract_Ocr
 
             img.Save(path + "2_GradientImage.png");
 
+            //--Canny--
+            /*using (var image = new Image<Bgr, byte>("C:/Projects/DocumentDetection/document.jpg"))
+            using (var grayScaleImage = image.Convert<Gray, byte>())
+            using (var blurredImage = grayScaleImage.SmoothGaussian(5, 5, 0, 0))
+            using (var cannyImage = new UMat())
+                CvInvoke.Canny(blurredImage, cannyImage, 50, 150);*/
+            //----
+
+
             //------------ Otsu Binarization ---------------
             Mat otsuImage = new Mat();
             CvInvoke.Threshold(img, otsuImage, 0, 255, ThresholdType.Binary | ThresholdType.Otsu);
-
             otsuImage.Save(path + "3_OtsuImage.png");
+
+           
+
+            
 
             Mat dialImage = new Mat();
 
             Mat element = CvInvoke.GetStructuringElement(ElementShape.Rectangle, new Size(3, 3), new Point(-1, -1));
 
             CvInvoke.Dilate(otsuImage, dialImage, element, new Point(-1, -1),
-                3, BorderType.Default, new MCvScalar(255, 255, 255));
+                4, BorderType.Default, new MCvScalar(255, 255, 255));
             dialImage.Save(path + "4_DialationImage.png");
             //CvInvoke.GaussianBlur(otsuImage, blurImage, new Size(3, 3), 0, 0, BorderType.Default);
 
@@ -132,8 +147,39 @@ namespace Priceredacted.Tesseract_Ocr
             //CvInvoke.GaussianBlur(mergedImage, mergedImage, new Size(3, 3), 0, 0, BorderType.Default);
             Bitmap contrast = SetContrast(mergedImage.ToBitmap(), 128);
             //Bitmap contrast = ResizeImage(mergedImage.ToBitmap(), mergedImage.Width * 3, mergedImage.Height * 2);
-            contrast.Save("./Tesseract Ocr/testImage11.png");
-            contrast.Save(path + "5_lastImage.png");
+
+            //CvInvoke.FindContours()
+            Mat cannyImage = new Mat();
+            //CvInvoke.Canny(image, cannyImage, 50, 150);
+            //cannyImage.Save(path + "6_.png");
+
+            //var contours = new VectorOfVectorOfPoint();
+            //CvInvoke.FindContours(cannyImage, contours, null, RetrType.Tree, ChainApproxMethod.ChainApproxSimple);
+
+            mergedImage.Save("./Tesseract Ocr/testImage11.png");
+            mergedImage.Save(path + "5_lastImage.png");
+
+            /*Mat dMat = new Mat();
+            mergedImage = InvertColors(mergedImage.ToBitmap()).ToImage<Bgr, Byte>();
+
+            CvInvoke.Dilate(mergedImage, dMat, element, new Point(-1, -1),
+                5, BorderType.Default, new MCvScalar(255, 255, 255));
+            dMat.Save(path + "afterDilation.png");
+
+            Mat diffMat = new Mat();
+            CvInvoke.CvtColor(dMat, diffMat, ColorConversion.Bgr2Gray);
+            diffMat.Save(path + "grey.png");
+            detectLetters(diffMat).Save(path + "hierarchy.png");*/
+            //System.IO.File.WriteAllText(path + "text.txt", detectLetters(diffMat).ToString());
+
+            //Image<Bgr, Byte> img = new Image<Bgr, Byte>("VfDfJ.png");
+            //List<Rectangle> rects = detectLetters(cannyImage.ToImage<Bgr, Byte>());
+            //detectLetters(dMat).Save(path + "6_contImage.png");
+
+            /* for (int i = 0; i < rects.Count; i++)
+                 cannyImage.ToImage<Bgr, Byte>().Draw(rects.ElementAt<Rectangle>(i), new Bgr(0, 255, 0), 3);*/
+
+
             //Bitmap invertedBitmap = InvertColors(mergedImage.ToBitmap());
 
             //invertedBitmap.Save(path + "OtsuImage.png");
@@ -158,13 +204,54 @@ namespace Priceredacted.Tesseract_Ocr
             //newImg.Save(path + 1 + "_test.png");
         }
 
+        public Mat detectLetters(Mat img)
+        {
+            List<Rectangle> rects = new List<Rectangle>();
+            //Image<Gray, Single> img_sobel;
+            //Image<Gray, Byte> img_gray, img_threshold;
+            //img_gray = img.Convert<Gray, Byte>();
+            //img_sobel = img_gray.Sobel(1, 0, 3);
+            //img_threshold = new Image<Gray, byte>(img_sobel.Size);
+            //CvInvoke.cvThreshold(img_sobel.Convert<Gray, Byte>(), img_threshold, 0, 255, Emgu.CV.CvEnum.THRESH.CV_THRESH_OTSU);
+            Mat newMat = new Mat();
+            Mat element = CvInvoke.GetStructuringElement(ElementShape.Rectangle,new Size(3, 17), new Point(1, 6));
+            CvInvoke.MorphologyEx(img, newMat, MorphOp.Close, element, new Point(-1, -1), 1, BorderType.Default, new MCvScalar());
+            //Mat cont = new Mat();
+            VectorOfVectorOfPoint cont = new VectorOfVectorOfPoint();
+            Mat hierarchy = new Mat();
+
+            CvInvoke.FindContours(newMat, cont, hierarchy, RetrType.Ccomp, ChainApproxMethod.ChainApproxSimple);
+
+            /*for (Contour<Point> contours = CvInvoke.FindContours(; contours != null; contours = contours.HNext)
+            {
+                if (contours.Area > 100)
+                {
+                    Contour<Point> contours_poly = contours.ApproxPoly(3);
+                    rects.Add(new Rectangle(contours_poly.BoundingRectangle.X, contours_poly.BoundingRectangle.Y, contours_poly.BoundingRectangle.Width, contours_poly.BoundingRectangle.Height));
+                }
+            }*/
+            /*int contCount = cont.Size;
+            for (int i = 0; i < contCount; i++)
+            {
+                using (VectorOfPoint contour = cont[i])
+                {
+                    segmentRectangles.Add(CvInvoke.BoundingRectangle(contour));
+                    if (debug)
+                    {
+                        finalCopy.Draw(CvInvoke.BoundingRectangle(contour), new Rgb(255, 0, 0), 5);
+                    }
+                }
+            }*/
+            return hierarchy;
+        }
+
         public Bitmap SetBlackWhite(Bitmap img)
         {
 
             Bitmap temp = (Bitmap)img;
             Bitmap bmap = (Bitmap)temp.Clone();
             Color c;
-            float avgDarkness = 100;
+            float avgDarkness = 110;
 
             /*for (int i = 0; i < bmap.Width; i++)
             {
