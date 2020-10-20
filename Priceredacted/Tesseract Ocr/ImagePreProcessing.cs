@@ -61,147 +61,88 @@ namespace Priceredacted.Tesseract_Ocr
             string path = "D:/PhotosOfPreProcessing/";
             //Image<Bgr, byte> img = new Image<Bgr, byte>(filename);
 
+            int x = 3, y = -5; //x = 3, 5, 7, 9
+                    Mat mainImg;
+                    mainImg = CvInvoke.Imread("./Tesseract Ocr/testImage11.png", 0);
 
 
-            Mat mainImg;
-            mainImg = CvInvoke.Imread("./Tesseract Ocr/testImage11.png", 0);
+                    //------------ Adaptive Binarization ---------------
+                    Mat binImage = new Mat();
+                    CvInvoke.AdaptiveThreshold(mainImg, binImage, 255,
+                        AdaptiveThresholdType.GaussianC, ThresholdType.Binary, 201,  11); //11, 5
+
+                    binImage.Save(path + "a" + x +"_AdaptBinImage.png");
 
 
-            //------------ Adaptive Binarization ---------------
-            Mat binImage = new Mat();
-            CvInvoke.AdaptiveThreshold(mainImg, binImage, 255,
-                AdaptiveThresholdType.GaussianC, ThresholdType.Binary, 17, 5); //11, 5
+                    //------------ Gradient Image ---------------
+                    Mat image = new Mat();
+                    CvInvoke.GaussianBlur(mainImg, image, new Size(3, 3), 0, 0, BorderType.Default);
 
-            binImage.Save(path + "1_AdaptBinImage.png");
+                    Mat grad_x = new Mat(), grad_y = new Mat();
 
+                    CvInvoke.Sobel(image, grad_x, DepthType.Cv8U, 1, 0, 3, 1, 0, BorderType.Default); //x - gradient image
+                    CvInvoke.Sobel(image, grad_y, DepthType.Cv8U, 0, 1, 3, 1, 0, BorderType.Default); //y - gradient image
 
-            //------------ Gradient Image ---------------
-            Mat image = new Mat();
-            CvInvoke.GaussianBlur(mainImg, image, new Size(3, 3), 0, 0, BorderType.Default);
+                    Mat img;
+                    img = grad_x + grad_y; // combined gradient image
 
-            Mat grad_x = new Mat(), grad_y = new Mat();
-            
-            CvInvoke.Sobel(image, grad_x, DepthType.Cv8U, 1, 0, 3, 1, 0, BorderType.Default); //x - gradient image
-            CvInvoke.Sobel(image, grad_y, DepthType.Cv8U, 0, 1, 3, 1, 0, BorderType.Default); //y - gradient image
-            
-            Mat img;
-            img = grad_x + grad_y; // combined gradient image
+                    img.Save(path + "2_GradientImage.png");
 
-            img.Save(path + "2_GradientImage.png");
+                    //------------ Otsu Binarization ---------------
+                    Mat otsuImage = new Mat();
+                    CvInvoke.Threshold(img, otsuImage, 0, 255, ThresholdType.Binary | ThresholdType.Otsu);
+                    otsuImage.Save(path + "3_OtsuImage.png");
 
-            //--Canny--
-            /*using (var image = new Image<Bgr, byte>("C:/Projects/DocumentDetection/document.jpg"))
-            using (var grayScaleImage = image.Convert<Gray, byte>())
-            using (var blurredImage = grayScaleImage.SmoothGaussian(5, 5, 0, 0))
-            using (var cannyImage = new UMat())
-                CvInvoke.Canny(blurredImage, cannyImage, 50, 150);*/
-            //----
+                    Mat dialImage = new Mat();
 
+                    Mat element = CvInvoke.GetStructuringElement(ElementShape.Rectangle, new Size(3, 3), new Point(-1, -1));
 
-            //------------ Otsu Binarization ---------------
-            Mat otsuImage = new Mat();
-            CvInvoke.Threshold(img, otsuImage, 0, 255, ThresholdType.Binary | ThresholdType.Otsu);
-            otsuImage.Save(path + "3_OtsuImage.png");
+                    CvInvoke.Dilate(otsuImage, dialImage, element, new Point(-1, -1),
+                        4, BorderType.Default, new MCvScalar(255, 255, 255));
+                    dialImage.Save(path + "4_DialationImage.png");
+                    //CvInvoke.GaussianBlur(otsuImage, blurImage, new Size(3, 3), 0, 0, BorderType.Default);
 
-           
+                    //------------ Merge Images ---------------
+                    Image<Bgr, byte> binImg = binImage.ToImage<Bgr, byte>();
+                    Image<Bgr, byte> dialImg = dialImage.ToImage<Bgr, byte>();
+                    Image<Bgr, byte> mergedImage = dialImage.ToImage<Bgr, byte>();
 
-            
+                    for (int v = 0; v < binImage.Height; v++)
+                    {
+                        for (int u = 0; u < binImage.Width; u++)
+                        {
+                            int a0 = binImg.Data[v, u, 0]; //Get Pixel Color | fast way
+                            int a1 = binImg.Data[v, u, 1];
+                            int a2 = binImg.Data[v, u, 2];
 
-            Mat dialImage = new Mat();
+                            a0 = 255 - a0;
+                            a1 = 255 - a1;
+                            a2 = 255 - a2;
 
-            Mat element = CvInvoke.GetStructuringElement(ElementShape.Rectangle, new Size(3, 3), new Point(-1, -1));
+                            int b0 = dialImg.Data[v, u, 0];
+                            int b1 = dialImg.Data[v, u, 1];
+                            int b2 = dialImg.Data[v, u, 2];
 
-            CvInvoke.Dilate(otsuImage, dialImage, element, new Point(-1, -1),
-                4, BorderType.Default, new MCvScalar(255, 255, 255));
-            dialImage.Save(path + "4_DialationImage.png");
-            //CvInvoke.GaussianBlur(otsuImage, blurImage, new Size(3, 3), 0, 0, BorderType.Default);
+                            mergedImage.Data[v, u, 0] = (byte)(255 - (a0 & b0));
+                            mergedImage.Data[v, u, 1] = (byte)(255 - (a1 & b1));
+                            mergedImage.Data[v, u, 2] = (byte)(255 - (a2 & b2));
+                        }
+                    }
 
+                    //CvInvoke.GaussianBlur(mergedImage, mergedImage, new Size(3, 3), 0, 0, BorderType.Default);
+                    Bitmap contrast = SetContrast(mergedImage.ToBitmap(), 128);
+                    //Bitmap contrast = ResizeImage(mergedImage.ToBitmap(), mergedImage.Width * 3, mergedImage.Height * 2);
 
-            //------------ Merge Images ---------------
-            Image<Bgr, byte> binImg = binImage.ToImage<Bgr, byte>();
-            Image<Bgr, byte> dialImg = dialImage.ToImage<Bgr, byte>();
-            Image<Bgr, byte> mergedImage = dialImage.ToImage<Bgr, byte>();
+                    //CvInvoke.FindContours()
+                    Mat cannyImage = new Mat();
+                    //CvInvoke.Canny(image, cannyImage, 50, 150);
+                    //cannyImage.Save(path + "6_.png");
 
-            for (int v = 0; v < binImage.Height; v++)
-            {
-                for (int u = 0; u < binImage.Width; u++)
-                {
-                    int a0 = binImg.Data[v, u, 0]; //Get Pixel Color | fast way
-                    int a1 = binImg.Data[v, u, 1];
-                    int a2 = binImg.Data[v, u, 2];
+                    //var contours = new VectorOfVectorOfPoint();
+                    //CvInvoke.FindContours(cannyImage, contours, null, RetrType.Tree, ChainApproxMethod.ChainApproxSimple);
 
-                    a0 = 255 - a0;
-                    a1 = 255 - a1;
-                    a2 = 255 - a2;
-
-                    int b0 = dialImg.Data[v, u, 0];
-                    int b1 = dialImg.Data[v, u, 1];
-                    int b2 = dialImg.Data[v, u, 2];
-
-                    mergedImage.Data[v, u, 0] = (byte)(255 - (a0 & b0));
-                    mergedImage.Data[v, u, 1] = (byte)(255 - (a1 & b1));
-                    mergedImage.Data[v, u, 2] = (byte)(255 - (a2 & b2));
-                }
-            }
-
-            //CvInvoke.GaussianBlur(mergedImage, mergedImage, new Size(3, 3), 0, 0, BorderType.Default);
-            Bitmap contrast = SetContrast(mergedImage.ToBitmap(), 128);
-            //Bitmap contrast = ResizeImage(mergedImage.ToBitmap(), mergedImage.Width * 3, mergedImage.Height * 2);
-
-            //CvInvoke.FindContours()
-            Mat cannyImage = new Mat();
-            //CvInvoke.Canny(image, cannyImage, 50, 150);
-            //cannyImage.Save(path + "6_.png");
-
-            //var contours = new VectorOfVectorOfPoint();
-            //CvInvoke.FindContours(cannyImage, contours, null, RetrType.Tree, ChainApproxMethod.ChainApproxSimple);
-
-            mergedImage.Save("./Tesseract Ocr/testImage11.png");
-            mergedImage.Save(path + "5_lastImage.png");
-
-            /*Mat dMat = new Mat();
-            mergedImage = InvertColors(mergedImage.ToBitmap()).ToImage<Bgr, Byte>();
-
-            CvInvoke.Dilate(mergedImage, dMat, element, new Point(-1, -1),
-                5, BorderType.Default, new MCvScalar(255, 255, 255));
-            dMat.Save(path + "afterDilation.png");
-
-            Mat diffMat = new Mat();
-            CvInvoke.CvtColor(dMat, diffMat, ColorConversion.Bgr2Gray);
-            diffMat.Save(path + "grey.png");
-            detectLetters(diffMat).Save(path + "hierarchy.png");*/
-            //System.IO.File.WriteAllText(path + "text.txt", detectLetters(diffMat).ToString());
-
-            //Image<Bgr, Byte> img = new Image<Bgr, Byte>("VfDfJ.png");
-            //List<Rectangle> rects = detectLetters(cannyImage.ToImage<Bgr, Byte>());
-            //detectLetters(dMat).Save(path + "6_contImage.png");
-
-            /* for (int i = 0; i < rects.Count; i++)
-                 cannyImage.ToImage<Bgr, Byte>().Draw(rects.ElementAt<Rectangle>(i), new Bgr(0, 255, 0), 3);*/
-
-
-            //Bitmap invertedBitmap = InvertColors(mergedImage.ToBitmap());
-
-            //invertedBitmap.Save(path + "OtsuImage.png");
-
-
-
-
-
-            //Mat output = new Mat();
-
-            //---------- Invert Colors
-            //Bitmap invertedBitmap = InvertColors(output.ToBitmap());
-
-            //Bitmap to image
-            //Image<Bgr, byte> newMat = invertedBitmap.ToImage<Bgr, byte>();
-
-
-
-
-
-            //Bitmap newImg = newMat.ToBitmap();
-            //newImg.Save(path + 1 + "_test.png");
+                    contrast.Save("./Tesseract Ocr/testImage11.png");
+                    contrast.Save(path + "b" + x + "_" + y + "_lastImage.png");
         }
 
         public Mat detectLetters(Mat img)
