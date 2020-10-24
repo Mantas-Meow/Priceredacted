@@ -16,6 +16,7 @@ namespace Priceredacted.Tesseract_Ocr
 {
     class ImagePreProcessing
     {
+
         public Bitmap ResizeImage(Bitmap image, int width, int height)
         {
             var destRect = new Rectangle(0, 0, width, height);
