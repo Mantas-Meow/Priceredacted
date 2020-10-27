@@ -3,15 +3,16 @@ using System.Linq;
 using Newtonsoft.Json;
 using System.Data;
 using Priceredacted.Search;
+using System.IO;
 
 namespace Priceredacted.Processors
 {
     class SearchAndFind
     {
 
-        public static string AddData(Product productToBeAdded)
+        public static string AddData(Product productToBeAdded, string path)
         {
-            List<Product> Products = JsonConvert.DeserializeObject<List<Product>>(System.IO.File.ReadAllText(MainWindow.path));
+            List<Product> Products = JsonConvert.DeserializeObject<List<Product>>(System.IO.File.ReadAllText(path));
             if (Products == null)
             {
                 Products = new List<Product>();
@@ -22,9 +23,9 @@ namespace Priceredacted.Processors
             //MessageBox.Show("Data saved!");
         }
 
-        public static IEnumerable<Product> SearchForProduct(string query)
+        public static IEnumerable<Product> SearchForProduct(string query, string path)
         {
-            IEnumerable<Product> UnfilteredProducts = JsonConvert.DeserializeObject<List<Product>>(System.IO.File.ReadAllText(MainWindow.path));
+            IEnumerable<Product> UnfilteredProducts = JsonConvert.DeserializeObject<List<Product>>(System.IO.File.ReadAllText(path));
             IEnumerable<Product> FilteredProducts = null;
             if (query == "")
             {
