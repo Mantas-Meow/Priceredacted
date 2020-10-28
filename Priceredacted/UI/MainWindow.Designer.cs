@@ -377,8 +377,10 @@
             this.Controls.Add(this.Home_panel);
             this.Controls.Add(this.Scan_panel);
             this.Controls.Add(this.Search_panel);
+            this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.Text = "MainWindow";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
             this.Load += new System.EventHandler(this.MainWindow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PriceRedactedImage)).EndInit();
             this.Home_panel.ResumeLayout(false);

@@ -89,13 +89,19 @@ namespace Priceredacted
             }
             else
             {
-                richTextBox1.Text = scannedText;
+                //richTextBox1.Text = scannedText;
+                richTextBox1.Text = TextFilter.Filter(scannedText);
             }
         }
 
         private void Home_button_Click(object sender, EventArgs e)
         {
             Home_panel.BringToFront();
+        }
+
+        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

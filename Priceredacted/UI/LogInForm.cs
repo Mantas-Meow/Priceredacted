@@ -20,7 +20,13 @@ namespace Priceredacted.UI
 
         private void LogIn_button_Click(object sender, EventArgs e)
         {
-
+            MainWindow MainWn = new MainWindow();
+            MainWn.Location = this.Location;
+            MainWn.StartPosition = FormStartPosition.Manual;
+            this.Hide();
+            //MainWn.FormClosing += delegate { this.Show(); };
+            MainWn.Show();
+            
         }
 
         private void Exit_button_Click(object sender, EventArgs e)
