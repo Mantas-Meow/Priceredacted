@@ -1,6 +1,1 @@
-[{"Shop":"Iki","Group":"Fruit","Name":"Bananai","PriceUnit":"Eur/unit","Price":"12.0"},
-{"Shop":"Maxima","Group":"Sweets","Name":"Milka","PriceUnit":"Eur/unit","Price":"7.0"},
-{"Shop":"Norfa","Group":"Alc. Drinks","Name":"Nol sekmė","PriceUnit":"Eur/unit","Price":"6.0"},
-{"Shop":"Rimi","Group":"Icecream","Name":"Dadu vaniliniai","PriceUnit":"Eur/unit","Price":"3.0"},
-{"Shop":"Rimi","Group":"Vegetable","Name":"Pomidorai","PriceUnit":"Eur/kg","Price":"8.0"},
-{"Shop":"Norfa","Group":"Soda","Name":"Coca Cola 1,5l","PriceUnit":"Eur/unit","Price":"5.0"}]
+[[{"Shop":"Norfa","Group":"Fruit","Name":"Ananasas","PriceUnit":"Eur/unit","Price":"1,43"},{"Shop":"Lidl","Group":"Cleaning","Name":"Antibakterinis skystis","PriceUnit":"Eur/unit","Price":"4,61"}],[{"Shop":"Norfa","Group":"Vegetable","Name":"Morkos","PriceUnit":"Eur/kg","Price":"2,54"},{"Shop":"Rimi","Group":"Sweets","Name":"Milka","PriceUnit":"Eur/unit","Price":"1,12"}],[{"Shop":"Lidl","Group":"Fruit","Name":"Bananai","PriceUnit":"Eur/kg","Price":"1,53"}],[{"Shop":"Iki","Group":"Alc. Drinks","Name":"Nol semkė","PriceUnit":"Eur/unit","Price":"0,53"}],[{"Shop":"Maxima","Group":"Icecream","Name":"Dadu vaniliniai","PriceUnit":"Eur/unit","Price":"0,64"}]]
