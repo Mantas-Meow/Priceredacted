@@ -36,12 +36,13 @@
             this.Pasword_textbox = new System.Windows.Forms.TextBox();
             this.Login_image = new System.Windows.Forms.PictureBox();
             this.ExitButton = new System.Windows.Forms.Button();
+            this.Register_button = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Login_image)).BeginInit();
             this.SuspendLayout();
             // 
             // LogIn_button
             // 
-            this.LogIn_button.Location = new System.Drawing.Point(157, 295);
+            this.LogIn_button.Location = new System.Drawing.Point(54, 295);
             this.LogIn_button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.LogIn_button.Name = "LogIn_button";
             this.LogIn_button.Size = new System.Drawing.Size(176, 53);
@@ -83,6 +84,7 @@
             this.Pasword_textbox.Location = new System.Drawing.Point(157, 218);
             this.Pasword_textbox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Pasword_textbox.Name = "Pasword_textbox";
+            this.Pasword_textbox.PasswordChar = '*';
             this.Pasword_textbox.Size = new System.Drawing.Size(450, 31);
             this.Pasword_textbox.TabIndex = 3;
             // 
@@ -108,12 +110,24 @@
             this.ExitButton.UseVisualStyleBackColor = true;
             this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
+            // Register_button
+            // 
+            this.Register_button.Location = new System.Drawing.Point(238, 295);
+            this.Register_button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Register_button.Name = "Register_button";
+            this.Register_button.Size = new System.Drawing.Size(185, 53);
+            this.Register_button.TabIndex = 0;
+            this.Register_button.Text = "Register";
+            this.Register_button.UseVisualStyleBackColor = true;
+            this.Register_button.Click += new System.EventHandler(this.Register_button_Click);
+            // 
             // LogInForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
             this.ClientSize = new System.Drawing.Size(660, 362);
+            this.Controls.Add(this.Register_button);
             this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.Login_image);
             this.Controls.Add(this.Pasword_textbox);
@@ -139,5 +153,6 @@
         private System.Windows.Forms.TextBox Pasword_textbox;
         private System.Windows.Forms.PictureBox Login_image;
         private System.Windows.Forms.Button ExitButton;
+        private System.Windows.Forms.Button Register_button;
     }
 }
