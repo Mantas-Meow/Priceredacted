@@ -53,10 +53,9 @@
             // 
             // SearchBox
             // 
-            this.SearchBox.Location = new System.Drawing.Point(11, 8);
-            this.SearchBox.Margin = new System.Windows.Forms.Padding(2);
+            this.SearchBox.Location = new System.Drawing.Point(16, 13);
             this.SearchBox.Name = "SearchBox";
-            this.SearchBox.Size = new System.Drawing.Size(170, 23);
+            this.SearchBox.Size = new System.Drawing.Size(241, 31);
             this.SearchBox.TabIndex = 4;
             this.SearchBox.TextChanged += new System.EventHandler(this.Search_TextChanged);
             // 
@@ -64,20 +63,18 @@
             // 
             this.SearchResults.AllowUserToDeleteRows = false;
             this.SearchResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.SearchResults.Location = new System.Drawing.Point(11, 49);
-            this.SearchResults.Margin = new System.Windows.Forms.Padding(2);
+            this.SearchResults.Location = new System.Drawing.Point(16, 82);
             this.SearchResults.Name = "SearchResults";
             this.SearchResults.RowHeadersWidth = 62;
-            this.SearchResults.Size = new System.Drawing.Size(779, 211);
+            this.SearchResults.Size = new System.Drawing.Size(1113, 352);
             this.SearchResults.TabIndex = 6;
             this.SearchResults.Text = "dataGridView1";
             // 
             // SearchButton
             // 
-            this.SearchButton.Location = new System.Drawing.Point(197, 8);
-            this.SearchButton.Margin = new System.Windows.Forms.Padding(2);
+            this.SearchButton.Location = new System.Drawing.Point(281, 13);
             this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(104, 23);
+            this.SearchButton.Size = new System.Drawing.Size(149, 38);
             this.SearchButton.TabIndex = 7;
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = true;
@@ -85,27 +82,24 @@
             // 
             // ProductName
             // 
-            this.ProductName.Location = new System.Drawing.Point(185, 276);
-            this.ProductName.Margin = new System.Windows.Forms.Padding(2);
+            this.ProductName.Location = new System.Drawing.Point(264, 460);
             this.ProductName.Name = "ProductName";
-            this.ProductName.Size = new System.Drawing.Size(169, 23);
+            this.ProductName.Size = new System.Drawing.Size(240, 31);
             this.ProductName.TabIndex = 8;
             this.ProductName.TextChanged += new System.EventHandler(this.ProductName_TextChanged);
             // 
             // Price
             // 
-            this.Price.Location = new System.Drawing.Point(422, 276);
-            this.Price.Margin = new System.Windows.Forms.Padding(2);
+            this.Price.Location = new System.Drawing.Point(603, 460);
             this.Price.Name = "Price";
-            this.Price.Size = new System.Drawing.Size(33, 23);
+            this.Price.Size = new System.Drawing.Size(45, 31);
             this.Price.TabIndex = 8;
             // 
             // AddData_button
             // 
-            this.AddData_button.Location = new System.Drawing.Point(11, 330);
-            this.AddData_button.Margin = new System.Windows.Forms.Padding(2);
+            this.AddData_button.Location = new System.Drawing.Point(16, 550);
             this.AddData_button.Name = "AddData_button";
-            this.AddData_button.Size = new System.Drawing.Size(102, 38);
+            this.AddData_button.Size = new System.Drawing.Size(146, 63);
             this.AddData_button.TabIndex = 9;
             this.AddData_button.Text = "Add Data";
             this.AddData_button.UseVisualStyleBackColor = true;
@@ -114,20 +108,18 @@
             // ProductLabel
             // 
             this.ProductLabel.AutoSize = true;
-            this.ProductLabel.Location = new System.Drawing.Point(185, 301);
-            this.ProductLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.ProductLabel.Location = new System.Drawing.Point(264, 502);
             this.ProductLabel.Name = "ProductLabel";
-            this.ProductLabel.Size = new System.Drawing.Size(49, 15);
+            this.ProductLabel.Size = new System.Drawing.Size(74, 25);
             this.ProductLabel.TabIndex = 10;
             this.ProductLabel.Text = "Product";
             // 
             // PriceLabel
             // 
             this.PriceLabel.AutoSize = true;
-            this.PriceLabel.Location = new System.Drawing.Point(422, 302);
-            this.PriceLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.PriceLabel.Location = new System.Drawing.Point(603, 503);
             this.PriceLabel.Name = "PriceLabel";
-            this.PriceLabel.Size = new System.Drawing.Size(33, 15);
+            this.PriceLabel.Size = new System.Drawing.Size(49, 25);
             this.PriceLabel.TabIndex = 11;
             this.PriceLabel.Text = "Price";
             // 
@@ -141,9 +133,10 @@
             "Maxima",
             "Norfa",
             "Rimi"});
-            this.ShopList.Location = new System.Drawing.Point(11, 276);
+            this.ShopList.Location = new System.Drawing.Point(16, 460);
+            this.ShopList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ShopList.Name = "ShopList";
-            this.ShopList.Size = new System.Drawing.Size(94, 23);
+            this.ShopList.Size = new System.Drawing.Size(133, 33);
             this.ShopList.TabIndex = 12;
             this.ShopList.SelectedIndexChanged += new System.EventHandler(this.ShopList_SelectedIndexChanged);
             // 
@@ -154,9 +147,10 @@
             this.PriceUnit.Items.AddRange(new object[] {
             "Eur/unit",
             "Eur/kg"});
-            this.PriceUnit.Location = new System.Drawing.Point(359, 276);
+            this.PriceUnit.Location = new System.Drawing.Point(513, 460);
+            this.PriceUnit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.PriceUnit.Name = "PriceUnit";
-            this.PriceUnit.Size = new System.Drawing.Size(58, 23);
+            this.PriceUnit.Size = new System.Drawing.Size(81, 33);
             this.PriceUnit.TabIndex = 13;
             // 
             // ItemGroup
@@ -181,46 +175,44 @@
             "Bathroom goods",
             "Cleaning",
             "Pets"});
-            this.ItemGroup.Location = new System.Drawing.Point(111, 275);
+            this.ItemGroup.Location = new System.Drawing.Point(159, 458);
+            this.ItemGroup.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ItemGroup.Name = "ItemGroup";
-            this.ItemGroup.Size = new System.Drawing.Size(69, 23);
+            this.ItemGroup.Size = new System.Drawing.Size(97, 33);
             this.ItemGroup.TabIndex = 14;
             // 
             // GroupLabel
             // 
             this.GroupLabel.AutoSize = true;
-            this.GroupLabel.Location = new System.Drawing.Point(110, 301);
-            this.GroupLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.GroupLabel.Location = new System.Drawing.Point(157, 502);
             this.GroupLabel.Name = "GroupLabel";
-            this.GroupLabel.Size = new System.Drawing.Size(40, 15);
+            this.GroupLabel.Size = new System.Drawing.Size(62, 25);
             this.GroupLabel.TabIndex = 10;
             this.GroupLabel.Text = "Group";
             // 
             // PriceUnitLabel
             // 
             this.PriceUnitLabel.AutoSize = true;
-            this.PriceUnitLabel.Location = new System.Drawing.Point(359, 302);
-            this.PriceUnitLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.PriceUnitLabel.Location = new System.Drawing.Point(513, 503);
             this.PriceUnitLabel.Name = "PriceUnitLabel";
-            this.PriceUnitLabel.Size = new System.Drawing.Size(58, 15);
+            this.PriceUnitLabel.Size = new System.Drawing.Size(86, 25);
             this.PriceUnitLabel.TabIndex = 10;
             this.PriceUnitLabel.Text = "Price Unit";
             // 
             // ShopLabel
             // 
             this.ShopLabel.AutoSize = true;
-            this.ShopLabel.Location = new System.Drawing.Point(11, 302);
-            this.ShopLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.ShopLabel.Location = new System.Drawing.Point(16, 503);
             this.ShopLabel.Name = "ShopLabel";
-            this.ShopLabel.Size = new System.Drawing.Size(34, 15);
+            this.ShopLabel.Size = new System.Drawing.Size(54, 25);
             this.ShopLabel.TabIndex = 10;
             this.ShopLabel.Text = "Shop";
             // 
             // SearchData
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1143, 750);
             this.Controls.Add(this.ShopLabel);
             this.Controls.Add(this.PriceUnitLabel);
             this.Controls.Add(this.GroupLabel);
@@ -235,6 +227,7 @@
             this.Controls.Add(this.SearchButton);
             this.Controls.Add(this.SearchResults);
             this.Controls.Add(this.SearchBox);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "SearchData";
             this.Text = "PriceRedacted";
             this.Load += new System.EventHandler(this.PriceRedacted_Load);
