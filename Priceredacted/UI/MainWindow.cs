@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using Priceredacted.Search;
 using Priceredacted.Processors;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Priceredacted
 {
@@ -17,8 +18,7 @@ namespace Priceredacted
     {
 
         public string selectedFile;
-        private Image TempImg;
-        public static string path = @"C:\Universitetas\Trecias_semestras\Programu_sistemu_inzinerija\Priceredacted\Priceredacted\DB\Products.json";
+        public static string path = System.IO.Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\DB\\Products.json";
 
         public MainWindow()
         {
@@ -48,30 +48,6 @@ namespace Priceredacted
 
         private void AddData_button_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    List<Product> Products = JsonConvert.DeserializeObject<List<Product>>(System.IO.File.ReadAllText(path));
-            //    if (Products == null)
-            //    {
-            //        Products = new List<Product>();
-            //    }
-            //    Products.Add(new Product()
-            //    {
-            //        Shop = ShopList.Text.Trim(),
-            //        Group = ItemGroup.Text.Trim(),
-            //        Name = ProductName.Text.Trim(),
-            //        PriceUnit = PriceUnit.Text.Trim(),
-            //        Price = Price.Text.Trim()
-            //    });
-            //    string json = JsonConvert.SerializeObject(Products.ToArray());
-            //    System.IO.File.WriteAllText(path, json);
-            //    MessageBox.Show("Data saved");
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "Error");
-            //}
-
             Product pr = new Product()
             {
                 Shop = ShopList.Text.Trim(),
@@ -87,29 +63,6 @@ namespace Priceredacted
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
-            //List<Product> UnfilteredProducts = JsonConvert.DeserializeObject<List<Product>>(System.IO.File.ReadAllText(path));
-            //string query = SearchBox.Text.Trim().ToLower();
-            //List<Product> FilteredProducts = new List<Product>();
-            //if (query == "")
-            //{
-            //    FilteredProducts = UnfilteredProducts;
-            //}
-            //else
-            //{
-            //    foreach (Product pr in UnfilteredProducts)
-            //    {
-            //        if (pr.Shop.ToLower() == query || pr.Group.ToLower() == query || pr.Name.ToLower() == query || pr.PriceUnit.ToLower() == query || pr.Price.ToLower() == query)
-            //        {
-            //            FilteredProducts.Add(pr);
-            //        }
-            //    }
-            //}
-            //if (FilteredProducts != null)
-            //{
-            //    SearchResults.DataSource = FilteredProducts;
-            //}
-            //else MessageBox.Show("No relevant data found");
-
             string query = SearchBox.Text.Trim().ToLower();
             IEnumerable<Product> Filtered = SearchAndFind.SearchForProduct(query);
             if (Filtered != null)
@@ -136,7 +89,8 @@ namespace Priceredacted
             }
             else
             {
-                richTextBox1.Text = scannedText;
+                //richTextBox1.Text = scannedText;
+                richTextBox1.Text = ScannedFilter.FilterProducts(scannedText);
             }
         }
 

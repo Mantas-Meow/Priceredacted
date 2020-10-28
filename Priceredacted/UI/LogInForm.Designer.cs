@@ -35,12 +35,29 @@
             this.Username_textbox = new System.Windows.Forms.TextBox();
             this.Pasword_textbox = new System.Windows.Forms.TextBox();
             this.Login_image = new System.Windows.Forms.PictureBox();
+            this.LogIn_panel = new System.Windows.Forms.Panel();
+            this.ToRegPanel_button = new System.Windows.Forms.Button();
+            this.Register_panel = new System.Windows.Forms.Panel();
+            this.ToLogInPanel_button = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.RegPassword_textbox = new System.Windows.Forms.TextBox();
+            this.RegUsername_textbox = new System.Windows.Forms.TextBox();
+            this.RegPassword_label = new System.Windows.Forms.Label();
+            this.RegUsername_label = new System.Windows.Forms.Label();
+            this.Register_button = new System.Windows.Forms.Button();
+            this.Email_label = new System.Windows.Forms.Label();
+            this.RegEmail_textbox = new System.Windows.Forms.TextBox();
+            this.RegRPassword_label = new System.Windows.Forms.Label();
+            this.RegRPassword_textbox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.Login_image)).BeginInit();
+            this.LogIn_panel.SuspendLayout();
+            this.Register_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // LogIn_button
             // 
-            this.LogIn_button.Location = new System.Drawing.Point(169, 173);
+            this.LogIn_button.Location = new System.Drawing.Point(108, 165);
             this.LogIn_button.Name = "LogIn_button";
             this.LogIn_button.Size = new System.Drawing.Size(123, 32);
             this.LogIn_button.TabIndex = 0;
@@ -50,7 +67,7 @@
             // Username_label
             // 
             this.Username_label.AutoSize = true;
-            this.Username_label.Location = new System.Drawing.Point(35, 89);
+            this.Username_label.Location = new System.Drawing.Point(33, 77);
             this.Username_label.Name = "Username_label";
             this.Username_label.Size = new System.Drawing.Size(60, 15);
             this.Username_label.TabIndex = 1;
@@ -59,7 +76,7 @@
             // Password_label
             // 
             this.Password_label.AutoSize = true;
-            this.Password_label.Location = new System.Drawing.Point(35, 134);
+            this.Password_label.Location = new System.Drawing.Point(33, 122);
             this.Password_label.Name = "Password_label";
             this.Password_label.Size = new System.Drawing.Size(57, 15);
             this.Password_label.TabIndex = 2;
@@ -67,14 +84,14 @@
             // 
             // Username_textbox
             // 
-            this.Username_textbox.Location = new System.Drawing.Point(110, 86);
+            this.Username_textbox.Location = new System.Drawing.Point(108, 74);
             this.Username_textbox.Name = "Username_textbox";
             this.Username_textbox.Size = new System.Drawing.Size(316, 23);
             this.Username_textbox.TabIndex = 3;
             // 
             // Pasword_textbox
             // 
-            this.Pasword_textbox.Location = new System.Drawing.Point(110, 131);
+            this.Pasword_textbox.Location = new System.Drawing.Point(108, 119);
             this.Pasword_textbox.Name = "Pasword_textbox";
             this.Pasword_textbox.Size = new System.Drawing.Size(316, 23);
             this.Pasword_textbox.TabIndex = 3;
@@ -82,30 +99,169 @@
             // Login_image
             // 
             this.Login_image.Image = ((System.Drawing.Image)(resources.GetObject("Login_image.Image")));
-            this.Login_image.Location = new System.Drawing.Point(2, 12);
+            this.Login_image.Location = new System.Drawing.Point(0, 0);
             this.Login_image.Name = "Login_image";
             this.Login_image.Size = new System.Drawing.Size(460, 60);
             this.Login_image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Login_image.TabIndex = 4;
             this.Login_image.TabStop = false;
             // 
+            // LogIn_panel
+            // 
+            this.LogIn_panel.Controls.Add(this.ToRegPanel_button);
+            this.LogIn_panel.Controls.Add(this.Login_image);
+            this.LogIn_panel.Controls.Add(this.LogIn_button);
+            this.LogIn_panel.Controls.Add(this.Pasword_textbox);
+            this.LogIn_panel.Controls.Add(this.Username_label);
+            this.LogIn_panel.Controls.Add(this.Username_textbox);
+            this.LogIn_panel.Controls.Add(this.Password_label);
+            this.LogIn_panel.Location = new System.Drawing.Point(12, 12);
+            this.LogIn_panel.Name = "LogIn_panel";
+            this.LogIn_panel.Size = new System.Drawing.Size(460, 213);
+            this.LogIn_panel.TabIndex = 5;
+            // 
+            // ToRegPanel_button
+            // 
+            this.ToRegPanel_button.Location = new System.Drawing.Point(301, 165);
+            this.ToRegPanel_button.Name = "ToRegPanel_button";
+            this.ToRegPanel_button.Size = new System.Drawing.Size(123, 32);
+            this.ToRegPanel_button.TabIndex = 0;
+            this.ToRegPanel_button.Text = "Register account";
+            this.ToRegPanel_button.UseVisualStyleBackColor = true;
+            this.ToRegPanel_button.Click += new System.EventHandler(this.ToRegPanel_button_Click);
+            // 
+            // Register_panel
+            // 
+            this.Register_panel.Controls.Add(this.ToLogInPanel_button);
+            this.Register_panel.Controls.Add(this.pictureBox1);
+            this.Register_panel.Controls.Add(this.RegPassword_textbox);
+            this.Register_panel.Controls.Add(this.RegUsername_textbox);
+            this.Register_panel.Controls.Add(this.RegPassword_label);
+            this.Register_panel.Controls.Add(this.RegUsername_label);
+            this.Register_panel.Controls.Add(this.Register_button);
+            this.Register_panel.Controls.Add(this.Email_label);
+            this.Register_panel.Controls.Add(this.RegEmail_textbox);
+            this.Register_panel.Controls.Add(this.RegRPassword_label);
+            this.Register_panel.Controls.Add(this.RegRPassword_textbox);
+            this.Register_panel.Location = new System.Drawing.Point(12, 12);
+            this.Register_panel.Name = "Register_panel";
+            this.Register_panel.Size = new System.Drawing.Size(460, 286);
+            this.Register_panel.TabIndex = 6;
+            this.Register_panel.Visible = false;
+            // 
+            // ToLogInPanel_button
+            // 
+            this.ToLogInPanel_button.Location = new System.Drawing.Point(301, 232);
+            this.ToLogInPanel_button.Name = "ToLogInPanel_button";
+            this.ToLogInPanel_button.Size = new System.Drawing.Size(123, 32);
+            this.ToLogInPanel_button.TabIndex = 0;
+            this.ToLogInPanel_button.Text = "Log In";
+            this.ToLogInPanel_button.UseVisualStyleBackColor = true;
+            this.ToLogInPanel_button.Click += new System.EventHandler(this.ToLogInPanel_button_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(460, 60);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
+            // RegPassword_textbox
+            // 
+            this.RegPassword_textbox.Location = new System.Drawing.Point(108, 148);
+            this.RegPassword_textbox.Name = "RegPassword_textbox";
+            this.RegPassword_textbox.Size = new System.Drawing.Size(316, 23);
+            this.RegPassword_textbox.TabIndex = 3;
+            // 
+            // RegUsername_textbox
+            // 
+            this.RegUsername_textbox.Location = new System.Drawing.Point(108, 78);
+            this.RegUsername_textbox.Name = "RegUsername_textbox";
+            this.RegUsername_textbox.Size = new System.Drawing.Size(316, 23);
+            this.RegUsername_textbox.TabIndex = 3;
+            // 
+            // RegPassword_label
+            // 
+            this.RegPassword_label.AutoSize = true;
+            this.RegPassword_label.Location = new System.Drawing.Point(33, 151);
+            this.RegPassword_label.Name = "RegPassword_label";
+            this.RegPassword_label.Size = new System.Drawing.Size(57, 15);
+            this.RegPassword_label.TabIndex = 2;
+            this.RegPassword_label.Text = "Password";
+            // 
+            // RegUsername_label
+            // 
+            this.RegUsername_label.AutoSize = true;
+            this.RegUsername_label.Location = new System.Drawing.Point(33, 81);
+            this.RegUsername_label.Name = "RegUsername_label";
+            this.RegUsername_label.Size = new System.Drawing.Size(60, 15);
+            this.RegUsername_label.TabIndex = 1;
+            this.RegUsername_label.Text = "Username";
+            // 
+            // Register_button
+            // 
+            this.Register_button.Location = new System.Drawing.Point(108, 232);
+            this.Register_button.Name = "Register_button";
+            this.Register_button.Size = new System.Drawing.Size(123, 32);
+            this.Register_button.TabIndex = 0;
+            this.Register_button.Text = "Register";
+            this.Register_button.UseVisualStyleBackColor = true;
+            // 
+            // Email_label
+            // 
+            this.Email_label.AutoSize = true;
+            this.Email_label.Location = new System.Drawing.Point(33, 120);
+            this.Email_label.Name = "Email_label";
+            this.Email_label.Size = new System.Drawing.Size(41, 15);
+            this.Email_label.TabIndex = 1;
+            this.Email_label.Text = "E-mail";
+            // 
+            // RegEmail_textbox
+            // 
+            this.RegEmail_textbox.Location = new System.Drawing.Point(108, 112);
+            this.RegEmail_textbox.Name = "RegEmail_textbox";
+            this.RegEmail_textbox.Size = new System.Drawing.Size(316, 23);
+            this.RegEmail_textbox.TabIndex = 3;
+            // 
+            // RegRPassword_label
+            // 
+            this.RegRPassword_label.AutoSize = true;
+            this.RegRPassword_label.Location = new System.Drawing.Point(33, 184);
+            this.RegRPassword_label.Name = "RegRPassword_label";
+            this.RegRPassword_label.Size = new System.Drawing.Size(57, 30);
+            this.RegRPassword_label.TabIndex = 2;
+            this.RegRPassword_label.Text = "Repeat\r\npassword";
+            // 
+            // RegRPassword_textbox
+            // 
+            this.RegRPassword_textbox.Location = new System.Drawing.Point(108, 191);
+            this.RegRPassword_textbox.Name = "RegRPassword_textbox";
+            this.RegRPassword_textbox.Size = new System.Drawing.Size(316, 23);
+            this.RegRPassword_textbox.TabIndex = 3;
+            // 
             // LogInForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.ClientSize = new System.Drawing.Size(462, 217);
-            this.Controls.Add(this.Login_image);
-            this.Controls.Add(this.Pasword_textbox);
-            this.Controls.Add(this.Username_textbox);
-            this.Controls.Add(this.Password_label);
-            this.Controls.Add(this.Username_label);
-            this.Controls.Add(this.LogIn_button);
+            this.ClientSize = new System.Drawing.Size(487, 317);
+            this.Controls.Add(this.LogIn_panel);
+            this.Controls.Add(this.Register_panel);
             this.Name = "LogInForm";
             this.Text = "LogInForm";
+            this.Load += new System.EventHandler(this.LogInForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Login_image)).EndInit();
+            this.LogIn_panel.ResumeLayout(false);
+            this.LogIn_panel.PerformLayout();
+            this.Register_panel.ResumeLayout(false);
+            this.Register_panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -117,5 +273,22 @@
         private System.Windows.Forms.TextBox Username_textbox;
         private System.Windows.Forms.TextBox Pasword_textbox;
         private System.Windows.Forms.PictureBox Login_image;
+        private System.Windows.Forms.Panel LogIn_panel;
+        private System.Windows.Forms.Panel Register_panel;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox RegUsername_textbox;
+        private System.Windows.Forms.Label RegPassword_label;
+        private System.Windows.Forms.Label RegUsername_label;
+        private System.Windows.Forms.Button Register_button;
+        private System.Windows.Forms.Label Email_label;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label RegRPassword_label;
+        private System.Windows.Forms.TextBox RegRPassword_textbox;
+        private System.Windows.Forms.TextBox Reg;
+        private System.Windows.Forms.TextBox RegEmail_textbox;
+        private System.Windows.Forms.TextBox RegPassword_textbox;
+        private System.Windows.Forms.Button ToRegPanel_button;
+        private System.Windows.Forms.Button ToLogInPanel_button;
     }
 }
