@@ -18,6 +18,8 @@ namespace Priceredacted
     {
 
         public string selectedFile;
+        private Image TempImg;
+
         public static string path = System.IO.Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\DB\\Products.json";
 
         public MainWindow()
