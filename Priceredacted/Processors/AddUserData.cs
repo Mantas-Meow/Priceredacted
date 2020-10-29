@@ -9,15 +9,31 @@ namespace Priceredacted.Processors
 {
     class AddUserData
     {
-        public static string AddData(Product productToBeAdded)
+        public static string AddUData(UserData dataToBeAdded)
         {
-            List<Product> Data = JsonConvert.DeserializeObject<List<Product>>(System.IO.File.ReadAllText(RegisterForm.path));
+            List<UserData> Data = JsonConvert.DeserializeObject<List<UserData>>(System.IO.File.ReadAllText(LogInForm.path));
             if (Data == null)
             {
-                Data = new List<Product>();
+                Data = new List<UserData>();
             }
-            Data.Add(productToBeAdded);
+            Data.Add(dataToBeAdded);
             return JsonConvert.SerializeObject(Data.ToArray());
+        }
+        public static bool CheckPasswords(string str1, string str2)
+        {
+            if (str1 == str2)
+                return true;
+            else return false;
+        }
+        public static bool Login(string str1, string str2)
+        {
+            List<UserData> Data = JsonConvert.DeserializeObject<List<UserData>>(System.IO.File.ReadAllText(LogInForm.path));
+            foreach(UserData ud in Data)
+            {
+                if (ud.Username == str1 && ud.Password == str2)
+                    return true;
+            }
+            return false;
         }
     }
 }
