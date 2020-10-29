@@ -82,7 +82,7 @@ namespace Priceredacted.Processors
             }
             else
             {
-                outputTextField.Text = scannedText;
+                outputTextField.Text = mainLogic.FilterText(scannedText);
             }
         }
     }
