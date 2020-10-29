@@ -41,10 +41,7 @@ namespace Priceredacted.Processors
             }
             else
             {
-                foreach (IEnumerable<Product> iepr in UnfilteredProducts)
-                {
-                    FilteredProducts = from pr in iepr where pr.Shop.ToLower().Contains(query) || pr.Group.ToLower().Contains(query) || pr.Name.ToLower().Contains(query) || pr.PriceUnit.ToLower().Contains(query) || pr.Price.ToLower().Contains(query) select pr;
-                }
+                    FilteredProducts = from iepr in UnfilteredProducts from pr in iepr where pr.Shop.ToLower().Contains(query) || pr.Group.ToLower().Contains(query) || pr.Name.ToLower().Contains(query) || pr.PriceUnit.ToLower().Contains(query) || pr.Price.ToLower().Contains(query) select pr;
             }
             return FilteredProducts;
         }
