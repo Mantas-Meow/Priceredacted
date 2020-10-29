@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Priceredacted.Search
 {
-    public class Product
+    struct Product
     {
         public string Shop { get; set; }
         public string Group { get; set; }
