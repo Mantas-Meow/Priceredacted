@@ -1,30 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using Priceredacted.Tesseract_Ocr;
-using Newtonsoft.Json;
-using Priceredacted.Search;
 using Priceredacted.Processors;
-using System.Linq;
 
 namespace Priceredacted
 {
     public partial class MainWindow : Form
     {
-
-        public string selectedFile;
-        private Image TempImg;
-        public static string path = System.IO.Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\DB\\Products.json";
+        MainWindowController mainController;
 
         public MainWindow()
         {
             InitializeComponent();
+            mainController = new MainWindowController();
+            mainController.homePanel = Home_panel;
+            mainController.scanPanel = Scan_panel;
+            mainController.searchPanel = Search_panel;
+            mainController.dataField = SearchResults;
+            mainController.outputTextField = richTextBox1;
         }
-
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
@@ -33,69 +27,52 @@ namespace Priceredacted
 
         private void ScanImage_button_Click(object sender, EventArgs e)
         {
-            Scan_panel.BringToFront();         
+            mainController.ActivateScanPanel();      
         }
 
         private void SearchItems_button_Click(object sender, EventArgs e)
         {
-            Search_panel.BringToFront();
+            mainController.ActivateSearchPanel();
         }
 
         private void Exit_button_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            mainController.ExitApplication();
         }
 
         private void AddData_button_Click(object sender, EventArgs e)
         {
-            Product pr = new Product()
-            {
-                Shop = ShopList.Text.Trim(),
-                Group = ItemGroup.Text.Trim(),
-                Name = ProductName.Text.Trim(),
-                PriceUnit = PriceUnit.Text.Trim(),
-                Price = Price.Text.Trim()
-            };
-            string json = SearchAndFind.AddData(pr);
-            System.IO.File.WriteAllText(path, json);
-            MessageBox.Show("Data added");
+            mainController.AddData(ShopList.Text.Trim(), ItemGroup.Text.Trim(),
+                    ProductName.Text.Trim(), PriceUnit.Text.Trim(), Price.Text.Trim());
         }
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
             string query = SearchBox.Text.Trim().ToLower();
-            IEnumerable<Product> Filtered = SearchAndFind.SearchForProduct(query);
-            if (Filtered != null)
-            {
-                SearchResults.DataSource = Filtered.ToList();
-            }
-            else MessageBox.Show("No relevant data found");
+            mainController.SearchData(query);
         }
 
         private void ScanNewImage_Button_Click(object sender, EventArgs e)
         {
             OpenFileDialog open = new OpenFileDialog();
+            string selectedFile;
             open.Filter = "Image Files(*.jpeg;*.bmp;*.png;*.jpg)|*.jpeg;*.bmp;*.png;*.jpg";
             if (open.ShowDialog() == DialogResult.OK)
             {
                 selectedFile = open.FileName;
                 ScannedImage.Image = new Bitmap(open.FileName);
-            }
-
-            string scannedText = ImageRecognition.GetTextFromImage(selectedFile);
-            if (scannedText == null)
-            {
-                MessageBox.Show("Image is not valid!");
-            }
-            else
-            {
-                richTextBox1.Text = scannedText;
+                mainController.ScanImage(selectedFile);
             }
         }
 
         private void Home_button_Click(object sender, EventArgs e)
         {
-            Home_panel.BringToFront();
+            mainController.ActivateHomePanel();
+        }
+
+        private void Home_panel_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

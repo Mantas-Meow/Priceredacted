@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -99,6 +99,9 @@ namespace Priceredacted.UI
             
         }
 
+        private void LogInForm_Load(object sender, EventArgs e)
+        {
 
+        }
     }
 }
