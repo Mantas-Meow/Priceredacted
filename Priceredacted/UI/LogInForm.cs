@@ -39,5 +39,10 @@ namespace Priceredacted.UI
             LogIn_panel.Show();
             Register_panel.Hide();
         }
+
+        private void LogInForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

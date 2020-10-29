@@ -115,6 +115,7 @@
             this.Home_panel.Name = "Home_panel";
             this.Home_panel.Size = new System.Drawing.Size(620, 457);
             this.Home_panel.TabIndex = 4;
+            this.Home_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.Home_panel_Paint);
             // 
             // pictureBox1
             // 

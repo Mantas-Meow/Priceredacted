@@ -255,6 +255,7 @@
             this.Controls.Add(this.Register_panel);
             this.Name = "LogInForm";
             this.Text = "LogInForm";
+            this.Load += new System.EventHandler(this.LogInForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Login_image)).EndInit();
             this.LogIn_panel.ResumeLayout(false);
             this.LogIn_panel.PerformLayout();

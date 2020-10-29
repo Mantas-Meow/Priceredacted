@@ -3,7 +3,6 @@ using Priceredacted.Search;
 using Priceredacted.Tesseract_Ocr;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Priceredacted.Processors
 {

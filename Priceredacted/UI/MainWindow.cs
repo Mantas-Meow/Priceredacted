@@ -69,5 +69,10 @@ namespace Priceredacted
         {
             mainController.ActivateHomePanel();
         }
+
+        private void Home_panel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
