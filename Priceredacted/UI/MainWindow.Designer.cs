@@ -52,6 +52,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.SearchResults = new System.Windows.Forms.DataGridView();
             this.Scan_panel = new System.Windows.Forms.Panel();
+            this.ScanText_button = new System.Windows.Forms.Button();
+            this.ManualReceipInput_richTextBox = new System.Windows.Forms.RichTextBox();
             this.ScanNewImage_Button = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.ScannedImage = new System.Windows.Forms.PictureBox();
@@ -328,6 +330,8 @@
             // Scan_panel
             // 
             this.Scan_panel.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.Scan_panel.Controls.Add(this.ScanText_button);
+            this.Scan_panel.Controls.Add(this.ManualReceipInput_richTextBox);
             this.Scan_panel.Controls.Add(this.ScanNewImage_Button);
             this.Scan_panel.Controls.Add(this.richTextBox1);
             this.Scan_panel.Controls.Add(this.ScannedImage);
@@ -335,6 +339,24 @@
             this.Scan_panel.Name = "Scan_panel";
             this.Scan_panel.Size = new System.Drawing.Size(620, 457);
             this.Scan_panel.TabIndex = 4;
+            // 
+            // ScanText_button
+            // 
+            this.ScanText_button.Location = new System.Drawing.Point(8, 398);
+            this.ScanText_button.Name = "ScanText_button";
+            this.ScanText_button.Size = new System.Drawing.Size(89, 23);
+            this.ScanText_button.TabIndex = 5;
+            this.ScanText_button.Text = "ScanText";
+            this.ScanText_button.UseVisualStyleBackColor = true;
+            this.ScanText_button.Click += new System.EventHandler(this.ScanText_button_Click);
+            // 
+            // ManualReceipInput_richTextBox
+            // 
+            this.ManualReceipInput_richTextBox.Location = new System.Drawing.Point(8, 317);
+            this.ManualReceipInput_richTextBox.Name = "ManualReceipInput_richTextBox";
+            this.ManualReceipInput_richTextBox.Size = new System.Drawing.Size(255, 74);
+            this.ManualReceipInput_richTextBox.TabIndex = 4;
+            this.ManualReceipInput_richTextBox.Text = "";
             // 
             // ScanNewImage_Button
             // 
@@ -350,6 +372,7 @@
             // 
             this.richTextBox1.Location = new System.Drawing.Point(269, 37);
             this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
             this.richTextBox1.Size = new System.Drawing.Size(333, 354);
             this.richTextBox1.TabIndex = 2;
             this.richTextBox1.Text = "";
@@ -359,10 +382,11 @@
             this.ScannedImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ScannedImage.Location = new System.Drawing.Point(8, 37);
             this.ScannedImage.Name = "ScannedImage";
-            this.ScannedImage.Size = new System.Drawing.Size(255, 354);
+            this.ScannedImage.Size = new System.Drawing.Size(255, 239);
             this.ScannedImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.ScannedImage.TabIndex = 0;
             this.ScannedImage.TabStop = false;
+            this.ScannedImage.Click += new System.EventHandler(this.ScannedImage_Click);
             // 
             // MainWindow
             // 
@@ -376,9 +400,9 @@
             this.Controls.Add(this.Exit_button);
             this.Controls.Add(this.SearchItems_button);
             this.Controls.Add(this.ScanImage_button);
-            this.Controls.Add(this.Home_panel);
             this.Controls.Add(this.Scan_panel);
             this.Controls.Add(this.Search_panel);
+            this.Controls.Add(this.Home_panel);
             this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.Text = "MainWindow";
@@ -424,5 +448,7 @@
         private System.Windows.Forms.Button ScanNewImage_Button;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.PictureBox ScannedImage;
+        private System.Windows.Forms.RichTextBox ManualReceipInput_richTextBox;
+        private System.Windows.Forms.Button ScanText_button;
     }
 }

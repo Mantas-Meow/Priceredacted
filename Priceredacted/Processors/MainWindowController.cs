@@ -85,5 +85,10 @@ namespace Priceredacted.Processors
                 outputTextField.Text = mainLogic.FilterText(scannedText);
             }
         }
+
+        public void ScanText(string Text)
+        {
+            outputTextField.Text = mainLogic.FilterText(Text);
+        }
     }
 }

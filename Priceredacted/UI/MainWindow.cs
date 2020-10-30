@@ -79,5 +79,15 @@ namespace Priceredacted
         {
             Application.Exit();
         }
+
+        private void ScannedImage_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ScanText_button_Click(object sender, EventArgs e)
+        {
+            mainController.ScanText(ManualReceipInput_richTextBox.Text);
+        }
     }
 }

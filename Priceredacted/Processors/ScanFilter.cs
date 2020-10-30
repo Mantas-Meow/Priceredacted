@@ -17,6 +17,7 @@ namespace Priceredacted.Processors
         {
             tempStr = null;
             resultStr = null;
+            
             tempStr = input.prepareText();
             selectShopAndFilter();
             //resultStr = tempStr.combineToString();
@@ -36,22 +37,27 @@ namespace Priceredacted.Processors
             switch (ShopResult)
             {
                 case "MAXIMA":
+                    tempStr[0] = "xxx";
                     scanMaxima();
                     break;
 
                 case "LIDL":
+                    tempStr[0] = "xxx";
                     scanLidl();
                     break;
 
                 case "IKI":
+                    tempStr[0] = "xxx";
                     scanIki();
                     break;
 
                 case "RIMI":
+                    tempStr[0] = "xxx";
                     scanRimi();
                     break;
 
                 case "NORFA":
+                    tempStr[0] = "xxx";
                     scanNorfa();
                     break;
 
@@ -62,7 +68,7 @@ namespace Priceredacted.Processors
         }
 
         private static void scanMaxima()
-        {          
+        {           
             resultStr = tempStr.pickProducts("Maxima");
             /*foreach (string line in tempStr)
             {
@@ -80,7 +86,17 @@ namespace Priceredacted.Processors
 
         private static void scanLidl()
         {
-
+            for (int i=0; i<tempStr.Length;i++)
+            {
+                if (tempStr[i].Length>18)
+                {
+                    //int index = tempStr[i].Length;
+                    string temp = tempStr[i];
+                    temp = temp.Remove(0,7);
+                    tempStr[i] = temp.Remove(temp.Length-8,7);
+                }
+            }
+            resultStr = tempStr.pickProducts("Lidl");
         }
 
         private static void scanNorfa()
