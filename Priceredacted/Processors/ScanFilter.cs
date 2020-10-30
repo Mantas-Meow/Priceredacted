@@ -20,15 +20,8 @@ namespace Priceredacted.Processors
             
             tempStr = input.prepareText();
             selectShopAndFilter();
-            //resultStr = tempStr.combineToString();
             return resultStr;
         } 
-
-        /*private static void fixText(string input)
-        {
-            string temp = Regex.Replace(input, @"[^0-9a-zA-Z. \nąčęėįšųūžĄČĘĖĮŠŲŪŽ]+", "");
-            tempStr = temp.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-        }*/
         
         private static void selectShopAndFilter()
         {
@@ -69,7 +62,7 @@ namespace Priceredacted.Processors
 
         private static void scanMaxima()
         {           
-            resultStr = tempStr.pickProducts("Maxima");
+            resultStr = tempStr.pickProducts("Maxima"); //  TO BE WORKED ON
             /*foreach (string line in tempStr)
             {
                 string query = line.ToLower();
@@ -90,7 +83,6 @@ namespace Priceredacted.Processors
             {
                 if (tempStr[i].Length>18)
                 {
-                    //int index = tempStr[i].Length;
                     string temp = tempStr[i];
                     temp = temp.Remove(0,7);
                     tempStr[i] = temp.Remove(temp.Length-8,7);

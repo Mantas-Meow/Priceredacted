@@ -11,7 +11,6 @@ namespace Priceredacted.Processors
         private static string[] tempStr;
         private static string resultStr;
 
-
         public static string comparePrices(string input)
         {
             tempStr = null;
@@ -23,9 +22,6 @@ namespace Priceredacted.Processors
 
         private static void priceDifference()
         {
-            //string shop = tempStr[0];//.Remove(tempStr[0].Length);
-            //resultStr = shop;
-            //tempStr[0] = ;
             bool n = false;
             foreach (string line in tempStr)
             {
@@ -33,7 +29,6 @@ namespace Priceredacted.Processors
                 {
                     resultStr += '\n' + line + '\t';
                 }
-
                 else
                 {
                     resultStr += line + '\t';
@@ -42,7 +37,7 @@ namespace Priceredacted.Processors
                     
                 string query = line.ToLower().Trim();
                 if (query.Length > 8)
-                query = query.Remove(query.IndexOf(":")-2);//, query.Length - query.IndexOf(":") - 1);
+                query = query.Remove(query.IndexOf(":")-2);
                 IEnumerable<Product> filtered = SearchAndFind.SearchForProduct(query, MainWindowLogic.path);
 
 
