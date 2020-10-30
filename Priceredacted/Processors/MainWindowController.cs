@@ -90,5 +90,10 @@ namespace Priceredacted.Processors
         {
             outputTextField.Text = mainLogic.FilterText(Text);
         }
+
+        public void ComparePrices(string Text)
+        {
+            outputTextField.Text = mainLogic.ComparePrices(Text);
+        }
     }
 }

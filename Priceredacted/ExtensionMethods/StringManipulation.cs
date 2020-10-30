@@ -12,7 +12,7 @@ namespace Priceredacted.ExtensionMethods
     {
         public static string[] prepareText (this string input)
         {
-            string temp = Regex.Replace(input, @"[^0-9a-zA-Z. \nąčęėįšųūžĄČĘĖĮŠŲŪŽ%]+", "");
+            string temp = Regex.Replace(input, @"[^0-9a-zA-Z., \nąčęėįšųūžĄČĘĖĮŠŲŪŽ%]+", "");
             return seperateToLines(temp);
         }
 
@@ -41,7 +41,7 @@ namespace Priceredacted.ExtensionMethods
                 foreach (Product pr in filtered)
                 {
                     if (pr.Shop == shop)
-                        resultStr += pr.Name + ' ' + pr.Price + '\n';
+                        resultStr += pr.Name + " :" + pr.Price + " €\n";
                 }
             }
             return resultStr;

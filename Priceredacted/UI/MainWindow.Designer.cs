@@ -52,10 +52,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.SearchResults = new System.Windows.Forms.DataGridView();
             this.Scan_panel = new System.Windows.Forms.Panel();
+            this.ComparePrices_button = new System.Windows.Forms.Button();
             this.ScanText_button = new System.Windows.Forms.Button();
             this.ManualReceipInput_richTextBox = new System.Windows.Forms.RichTextBox();
             this.ScanNewImage_Button = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.Main_richTextBox = new System.Windows.Forms.RichTextBox();
             this.ScannedImage = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.PriceRedactedImage)).BeginInit();
             this.Home_panel.SuspendLayout();
@@ -330,15 +331,26 @@
             // Scan_panel
             // 
             this.Scan_panel.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.Scan_panel.Controls.Add(this.ComparePrices_button);
             this.Scan_panel.Controls.Add(this.ScanText_button);
             this.Scan_panel.Controls.Add(this.ManualReceipInput_richTextBox);
             this.Scan_panel.Controls.Add(this.ScanNewImage_Button);
-            this.Scan_panel.Controls.Add(this.richTextBox1);
+            this.Scan_panel.Controls.Add(this.Main_richTextBox);
             this.Scan_panel.Controls.Add(this.ScannedImage);
             this.Scan_panel.Location = new System.Drawing.Point(187, 0);
             this.Scan_panel.Name = "Scan_panel";
             this.Scan_panel.Size = new System.Drawing.Size(620, 457);
             this.Scan_panel.TabIndex = 4;
+            // 
+            // ComparePrices_button
+            // 
+            this.ComparePrices_button.Location = new System.Drawing.Point(496, 398);
+            this.ComparePrices_button.Name = "ComparePrices_button";
+            this.ComparePrices_button.Size = new System.Drawing.Size(106, 23);
+            this.ComparePrices_button.TabIndex = 6;
+            this.ComparePrices_button.Text = "Compare prices";
+            this.ComparePrices_button.UseVisualStyleBackColor = true;
+            this.ComparePrices_button.Click += new System.EventHandler(this.ComparePrices_button_Click);
             // 
             // ScanText_button
             // 
@@ -368,14 +380,13 @@
             this.ScanNewImage_Button.UseVisualStyleBackColor = true;
             this.ScanNewImage_Button.Click += new System.EventHandler(this.ScanNewImage_Button_Click);
             // 
-            // richTextBox1
+            // Main_richTextBox
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(269, 37);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(333, 354);
-            this.richTextBox1.TabIndex = 2;
-            this.richTextBox1.Text = "";
+            this.Main_richTextBox.Location = new System.Drawing.Point(269, 37);
+            this.Main_richTextBox.Name = "Main_richTextBox";
+            this.Main_richTextBox.Size = new System.Drawing.Size(333, 354);
+            this.Main_richTextBox.TabIndex = 2;
+            this.Main_richTextBox.Text = "";
             // 
             // ScannedImage
             // 
@@ -400,9 +411,9 @@
             this.Controls.Add(this.Exit_button);
             this.Controls.Add(this.SearchItems_button);
             this.Controls.Add(this.ScanImage_button);
+            this.Controls.Add(this.Home_panel);
             this.Controls.Add(this.Scan_panel);
             this.Controls.Add(this.Search_panel);
-            this.Controls.Add(this.Home_panel);
             this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.Text = "MainWindow";
@@ -446,9 +457,10 @@
         private System.Windows.Forms.DataGridView SearchResults;
         private System.Windows.Forms.Panel Scan_panel;
         private System.Windows.Forms.Button ScanNewImage_Button;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox Main_richTextBox;
         private System.Windows.Forms.PictureBox ScannedImage;
         private System.Windows.Forms.RichTextBox ManualReceipInput_richTextBox;
         private System.Windows.Forms.Button ScanText_button;
+        private System.Windows.Forms.Button ComparePrices_button;
     }
 }
