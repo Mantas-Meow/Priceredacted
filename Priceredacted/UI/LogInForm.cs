@@ -28,7 +28,8 @@ namespace Priceredacted.UI
         private void LogIn_button_Click(object sender, EventArgs e)
         {
             loginController.LoginUser(Username_textbox.Text.Trim(),
-                    Pasword_textbox.Text.Trim());
+                    Pasword_textbox.Text.Trim(),
+                    this);
          }
           
 

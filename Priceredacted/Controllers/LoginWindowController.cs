@@ -44,11 +44,16 @@ namespace Priceredacted.Controllers
                 MessageBox.Show("Error while registering new user!");
             }
         }
-        public void LoginUser(string username, string pass)
+        public void LoginUser(string username, string pass, Form logInForm)
         {
             if (!loginLogic.LogInUser(username, pass))
             {
                 MessageBox.Show("Wrong username or passowrd!");
+            }
+            else
+            {
+                logInForm.Hide();
+                LoadMainWindow();
             }
         }
     }

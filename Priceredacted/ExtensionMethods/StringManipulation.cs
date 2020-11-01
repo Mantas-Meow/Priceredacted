@@ -31,13 +31,13 @@ namespace Priceredacted.ExtensionMethods
             return resultStr;
         }
 
-        public static string pickProducts(this string[] tempStr, string shop, string resultStr = null)
+        public static string pickProducts(this string[] tempStr, string shop, string path, string resultStr = null)
         {
             resultStr = shop + '\n';
             foreach (string line in tempStr)
             {
                 string query = line.ToLower().Trim();
-                IEnumerable<Product> filtered = SearchAndFind.SearchForProduct(query, MainWindowLogic.path);
+                IEnumerable<Product> filtered = SearchAndFind.SearchForProduct(query, path);
                 foreach (Product pr in filtered)
                 {
                     if (pr.Shop == shop)

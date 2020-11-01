@@ -31,12 +31,12 @@ namespace Priceredacted.Processors
 
         public string FilterText(string input)
         {
-            return ScanFilter.Filter(input);
+            return ScanFilter.Filter(input, Tools.Utils.ProductsPath);
         }
 
         public string ComparePrices(string input)
         {
-            return PriceComparer.comparePrices(input);
+            return PriceComparer.comparePrices(input, Tools.Utils.ProductsPath);
         }
 
         public void SaveData(string json)

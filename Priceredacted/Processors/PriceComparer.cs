@@ -11,16 +11,16 @@ namespace Priceredacted.Processors
         private static string[] tempStr;
         private static string resultStr;
 
-        public static string comparePrices(string input)
+        public static string comparePrices(string input, string path)
         {
             tempStr = null;
             resultStr = null;
             tempStr = input.seperateToLines();
-            priceDifference();
+            priceDifference(path);
             return resultStr;
         }
 
-        private static void priceDifference()
+        private static void priceDifference(string path)
         {
             bool n = false;
             foreach (string line in tempStr)
@@ -38,7 +38,7 @@ namespace Priceredacted.Processors
                 string query = line.ToLower().Trim();
                 if (query.Length > 8)
                 query = query.Remove(query.IndexOf(":")-2);
-                IEnumerable<Product> filtered = SearchAndFind.SearchForProduct(query, MainWindowLogic.path);
+                IEnumerable<Product> filtered = SearchAndFind.SearchForProduct(query, path);
 
 
                 foreach (Product pr in filtered)

@@ -13,17 +13,17 @@ namespace Priceredacted.Processors
         private static string[] tempStr;
         private static string resultStr;
 
-        public static string Filter (string input)
+        public static string Filter (string input, string path)
         {
             tempStr = null;
             resultStr = null;
             
             tempStr = input.prepareText();
-            selectShopAndFilter();
+            selectShopAndFilter(path);
             return resultStr;
         } 
         
-        private static void selectShopAndFilter()
+        private static void selectShopAndFilter(string path)
         {
             string[] Shops = new string[] { "MAXIMA", "LIDL", "IKI", "RIMI", "NORFA"};
             string ShopResult = Shops.FirstOrDefault<string>(s => tempStr[0].ToUpper().Contains(s));
@@ -31,12 +31,12 @@ namespace Priceredacted.Processors
             {
                 case "MAXIMA":
                     tempStr[0] = "xxx";
-                    scanMaxima();
+                    scanMaxima(path);
                     break;
 
                 case "LIDL":
                     tempStr[0] = "xxx";
-                    scanLidl();
+                    scanLidl(path);
                     break;
 
                 case "IKI":
@@ -60,9 +60,9 @@ namespace Priceredacted.Processors
             }
         }
 
-        private static void scanMaxima()
+        private static void scanMaxima(string path)
         {           
-            resultStr = tempStr.pickProducts("Maxima"); //  TO BE WORKED ON
+            resultStr = tempStr.pickProducts("Maxima", path); //  TO BE WORKED ON
             /*foreach (string line in tempStr)
             {
                 string query = line.ToLower();
@@ -77,7 +77,7 @@ namespace Priceredacted.Processors
 
         }
 
-        private static void scanLidl()
+        private static void scanLidl(string path)
         {
             for (int i=0; i<tempStr.Length;i++)
             {
@@ -88,7 +88,7 @@ namespace Priceredacted.Processors
                     tempStr[i] = temp.Remove(temp.Length-8,7);
                 }
             }
-            resultStr = tempStr.pickProducts("Lidl");
+            resultStr = tempStr.pickProducts("Lidl", path);
         }
 
         private static void scanNorfa()
