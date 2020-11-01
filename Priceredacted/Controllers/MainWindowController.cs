@@ -42,26 +42,22 @@ namespace Priceredacted.Processors
             string json = null;
             try
             {
-               json = mainLogic.AddProduct(mainLogic.CreateProduct(shop, group, name, priceUnit, price));
+                json = mainLogic.AddProduct(mainLogic.CreateProduct(shop, group, name, priceUnit, price));
             }
             catch (Exception e)
             {
                 MessageBox.Show("Product was not added!");
+                return;
             }
 
             try
             {
-                if (json != null)
-                {
-                    mainLogic.SaveData(json);
-                    MessageBox.Show("Data added");
-                    return;
-                }
-                MessageBox.Show("Product was not added!");
+                mainLogic.SaveData(json);
+                MessageBox.Show("Data added");
             }
             catch (Exception e)
             {
-                MessageBox.Show("Product was not created!");
+                MessageBox.Show("Product was not saved!");
             }
         }
         public void SearchData(string query)

@@ -8,7 +8,6 @@ namespace Priceredacted.Interfaces
     interface IMainWindowLogic
     {
         public static string selectedFile;
-        public static string path;
 
         public string ScanImage(string selectedFile);
         public IEnumerable<Product> SearchProducts(string query);

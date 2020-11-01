@@ -9,12 +9,10 @@ namespace Priceredacted.Processors
     class MainWindowLogic : IMainWindowLogic
     {
         public static string selectedFile;
-        public static string path = System.IO.Directory.GetParent(Environment.CurrentDirectory).
-            Parent.Parent.FullName + "\\DB\\Products.json";
 
         public string AddProduct(Product product)
         {
-            return SearchAndFind.AddData(product, path);
+            return SearchAndFind.AddData(product, Tools.Utils.ProductsPath);
         }
 
         public Product CreateProduct(string shop, string group,
@@ -33,17 +31,17 @@ namespace Priceredacted.Processors
 
         public string FilterText(string input)
         {
-            return ScanFilter.Filter(input);
+            return ScanFilter.Filter(input, Tools.Utils.ProductsPath);
         }
 
         public string ComparePrices(string input)
         {
-            return PriceComparer.comparePrices(input);
+            return PriceComparer.comparePrices(input, Tools.Utils.ProductsPath);
         }
 
         public void SaveData(string json)
         {
-            System.IO.File.WriteAllText(path, json);
+            System.IO.File.WriteAllText(Tools.Utils.ProductsPath, json);
         }
 
         public string ScanImage(string selectedFile)
@@ -53,7 +51,7 @@ namespace Priceredacted.Processors
 
         public IEnumerable<Product> SearchProducts(string query)
         {
-            return SearchAndFind.SearchForProduct(query, path);
+            return SearchAndFind.SearchForProduct(query, Tools.Utils.ProductsPath);
         }
     }
 }
