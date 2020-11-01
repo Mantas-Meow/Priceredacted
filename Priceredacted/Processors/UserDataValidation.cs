@@ -21,9 +21,7 @@ namespace Priceredacted.Processors
         }
         public static bool CheckPasswords(string str1, string str2)
         {
-            if (str1 == str2)
-                return true;
-            else return false;
+            return str1 == str2;
         }
         public static bool Login(string str1, string str2)
         {

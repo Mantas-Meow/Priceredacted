@@ -28,7 +28,7 @@ namespace Priceredacted.UI
             List<UserData> Usernames = JsonConvert.DeserializeObject<List<UserData>>(System.IO.File.ReadAllText(path));
             string queryU = Username_textbox.Text.Trim();
             string queryP = Pasword_textbox.Text.Trim();
-            if (AddUserData.Login(queryU, queryP))
+            if (UserDataValidation.Login(queryU, queryP))
             {
                 this.Hide();
                 MainWindow a = new MainWindow();
@@ -89,9 +89,9 @@ namespace Priceredacted.UI
                 Email = RegEmail_textbox.Text.Trim(),
                 Password = RegPassword_textbox.Text.Trim(),
             };
-            if (AddUserData.CheckPasswords(RegPassword_textbox.ToString(), RegRPassword_textbox.ToString()))
+            if (UserDataValidation.CheckPasswords(RegPassword_textbox.ToString(), RegRPassword_textbox.ToString()))
             {
-                string json = AddUserData.AddUData(ud);
+                string json = UserDataValidation.AddUData(ud);
                 System.IO.File.WriteAllText(path, json);
                 MessageBox.Show("User registered");
             }
