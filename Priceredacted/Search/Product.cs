@@ -1,5 +1,4 @@
-﻿using System;
-using static Priceredacted.Tools.Utils;
+﻿using static Priceredacted.Tools.Utils;
 
 namespace Priceredacted.Search
 {
