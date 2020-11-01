@@ -31,6 +31,16 @@ namespace Priceredacted.Processors
             return pr;
         }
 
+        public string FilterText(string input)
+        {
+            return ScanFilter.Filter(input);
+        }
+
+        public string ComparePrices(string input)
+        {
+            return PriceComparer.comparePrices(input);
+        }
+
         public void SaveData(string json)
         {
             System.IO.File.WriteAllText(path, json);
