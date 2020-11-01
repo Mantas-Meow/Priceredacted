@@ -1,10 +1,13 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.VisualBasic.CompilerServices;
+using Newtonsoft.Json;
 using Priceredacted.Interfaces;
 using Priceredacted.Processors;
 using Priceredacted.Search;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Priceredacted.Logics
 {
@@ -12,7 +15,7 @@ namespace Priceredacted.Logics
     {
         public string AddUser(UserData user)
         {
-            
+            return UserDataValidation.AddUData(user, Tools.Utils.UserDataPath);
         }
 
         public UserData CreateNewUser(string username, string email, string password)
@@ -32,27 +35,23 @@ namespace Priceredacted.Logics
 
         public bool LogInUser(string user, string pass)
         {
-            return UserDataValidation.Login(user, pass);
+            return UserDataValidation.Login(user, pass, Tools.Utils.UserDataPath);
         }
 
-        public bool LogInUser()
+        public bool RegisterUser(string pass1, string pass2, UserData user)
         {
-            throw new NotImplementedException();
-        }
-
-        public bool RegisterUser()
-        {
-            if (UserDataValidation.CheckPasswords(RegPassword_textbox.ToString(), RegRPassword_textbox.ToString()))
+            if (UserDataValidation.CheckPasswords(pass1, pass2))
             {
-                string json = UserDataValidation.AddUData(ud);
-                System.IO.File.WriteAllText(path, json);
-                MessageBox.Show("User registered");
+                SaveUser(user);
+                return true;
             }
+            return false;
         }
 
-        public void SaveUser(string json)
+        public void SaveUser(UserData user)
         {
-            throw new NotImplementedException();
+            string json = AddUser(user);
+            System.IO.File.WriteAllText(Tools.Utils.UserDataPath, json);
         }
     }
 }

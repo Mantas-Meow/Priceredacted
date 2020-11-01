@@ -9,9 +9,9 @@ namespace Priceredacted.Interfaces
     {
         public UserData CreateNewUser(string username, string email, string password);
         public string AddUser(UserData user);
-        public void SaveUser(string json);
+        public void SaveUser(UserData user);
         public List<UserData> LoadUsers(string path);
-        public bool RegisterUser();
-        public bool LogInUser();
+        public bool RegisterUser(string pass1, string pass2, UserData user);
+        public bool LogInUser(string user, string pass);
     }
 }

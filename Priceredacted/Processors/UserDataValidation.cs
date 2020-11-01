@@ -7,11 +7,11 @@ using Priceredacted.UI;
 
 namespace Priceredacted.Processors
 {
-    class AddUserData
+    class UserDataValidation
     {
-        public static string AddUData(UserData dataToBeAdded)
+        public static string AddUData(UserData dataToBeAdded, string path)
         {
-            List<UserData> Data = JsonConvert.DeserializeObject<List<UserData>>(System.IO.File.ReadAllText(LogInForm.path));
+            List<UserData> Data = JsonConvert.DeserializeObject<List<UserData>>(System.IO.File.ReadAllText(path));
             if (Data == null)
             {
                 Data = new List<UserData>();
@@ -23,9 +23,9 @@ namespace Priceredacted.Processors
         {
             return str1 == str2;
         }
-        public static bool Login(string str1, string str2)
+        public static bool Login(string str1, string str2, string path)
         {
-            List<UserData> Data = JsonConvert.DeserializeObject<List<UserData>>(System.IO.File.ReadAllText(LogInForm.path));
+            List<UserData> Data = JsonConvert.DeserializeObject<List<UserData>>(System.IO.File.ReadAllText(path));
             foreach(UserData ud in Data)
             {
                 if (ud.Username == str1 && ud.Password == str2)

@@ -10,31 +10,25 @@ using System.Linq;
 using Newtonsoft.Json;
 using Priceredacted.Search;
 using Priceredacted.Processors;
-
+using Priceredacted.Controllers;
 
 namespace Priceredacted.UI
 {
     public partial class LogInForm : Form
     {
-        public static string path = System.IO.Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\DB\\UserData.json";
+        private LoginWindowController loginController;
+
         public LogInForm()
         {
             InitializeComponent();
+            loginController = new LoginWindowController();
         }
 
 
         private void LogIn_button_Click(object sender, EventArgs e)
         {
-            List<UserData> Usernames = JsonConvert.DeserializeObject<List<UserData>>(System.IO.File.ReadAllText(path));
-            string queryU = Username_textbox.Text.Trim();
-            string queryP = Pasword_textbox.Text.Trim();
-            if (UserDataValidation.Login(queryU, queryP))
-            {
-                this.Hide();
-                MainWindow a = new MainWindow();
-                a.Show();
-            }
-            else MessageBox.Show("Wrong username or passowrd");
+            loginController.LoginUser(Username_textbox.Text.Trim(),
+                    Pasword_textbox.Text.Trim());
          }
           
 
@@ -57,6 +51,11 @@ namespace Priceredacted.UI
 
         private void Register_button_Click(object sender, EventArgs e)
         {
+            loginController.RegisterUser(RegUsername_textbox.Text.Trim(),
+                    RegEmail_textbox.Text.Trim(),
+                    RegPassword_textbox.Text.Trim(),
+                    RegRPassword_textbox.Text.Trim());
+
             /*try
             {
                 List<UserData> Data = JsonConvert.DeserializeObject<List<UserData>>(System.IO.File.ReadAllText(path));
@@ -82,26 +81,10 @@ namespace Priceredacted.UI
             {
                 MessageBox.Show(ex.Message, "Error");
             }*/
-
-            UserData ud = new UserData()
-            {
-                Username = RegUsername_textbox.Text.Trim(),
-                Email = RegEmail_textbox.Text.Trim(),
-                Password = RegPassword_textbox.Text.Trim(),
-            };
-            if (UserDataValidation.CheckPasswords(RegPassword_textbox.ToString(), RegRPassword_textbox.ToString()))
-            {
-                string json = UserDataValidation.AddUData(ud);
-                System.IO.File.WriteAllText(path, json);
-                MessageBox.Show("User registered");
-            }
-            else MessageBox.Show("Check passwords");
-            
         }
 
         private void LogInForm_Load(object sender, EventArgs e)
         {
-
         }
     }
 }
