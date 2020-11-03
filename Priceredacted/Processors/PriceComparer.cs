@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using Priceredacted.ExtensionMethods;
 using Priceredacted.Search;
+using static Priceredacted.Tools.Utils;
+
 
 namespace Priceredacted.Processors
 {
@@ -22,7 +24,7 @@ namespace Priceredacted.Processors
 
         private static void priceDifference(string path)
         {
-            bool n = false;
+            /*bool n = false;
             foreach (string line in tempStr)
             {
                 if (n)
@@ -50,7 +52,7 @@ namespace Priceredacted.Processors
                     }
 
                 }
-            }
+            }*/
         }
 
     }
