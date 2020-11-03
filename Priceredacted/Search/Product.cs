@@ -5,15 +5,16 @@ namespace Priceredacted.Search
     struct Product
     {
         private string _shop;
-        public string Shop
-        {
+        public Shops Shop { get; set; } 
+        /*{
             get
             {
                 return _shop;
             }
             set
             {
-                _shop = value;
+
+                /*_shop = value;
                 switch (value.ToLower())
                 {
                     case "maxima":
@@ -35,12 +36,12 @@ namespace Priceredacted.Search
                         ShopEnum = Shops.Default;
                         break;
                 }
-            }
-        }
+            }*/
+        
         public string Group { get; set; }
         public string Name { get; set; }
         public string PriceUnit { get; set; }
         public string Price { get; set; }
-        public Shops ShopEnum { get; set; }        
+        //public Shops ShopEnum { get; set; }        
     }
 }

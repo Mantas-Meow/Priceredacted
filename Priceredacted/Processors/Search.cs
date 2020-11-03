@@ -4,6 +4,8 @@ using Newtonsoft.Json;
 using System.Data;
 using Priceredacted.Search;
 using System.IO;
+using static Priceredacted.Tools.Utils;
+using System;
 
 namespace Priceredacted.Processors
 {
@@ -41,7 +43,14 @@ namespace Priceredacted.Processors
             }
             else
             {
-                FilteredProducts = from iepr in UnfilteredProducts from pr in iepr where pr.Shop.ToLower().Contains(query.ToString()) || pr.Group.ToLower().Contains(query.ToString()) || pr.Name.ToLower().Contains(query.ToString()) || pr.PriceUnit.ToLower().Contains(query.ToString()) || pr.Price.ToLower().Contains(query.ToString()) select pr;
+                    FilteredProducts = from iepr in UnfilteredProducts 
+                                            from pr in iepr 
+                                            where /*pr.Shop == ((Shops)Enum.Parse(typeof(Shops), query)) 
+                                            ||*/ pr.Group.ToLower().Contains(query.ToString()) 
+                                            || pr.Name.ToLower().Contains(query.ToString()) 
+                                            || pr.PriceUnit.ToLower().Contains(query.ToString()) 
+                                            || pr.Price.ToLower().Contains(query.ToString()) 
+                                       select pr;
             }
             return FilteredProducts;
         }

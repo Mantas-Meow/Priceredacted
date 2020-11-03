@@ -3,6 +3,8 @@ using Priceredacted.Search;
 using Priceredacted.Tesseract_Ocr;
 using System;
 using System.Collections.Generic;
+using static Priceredacted.Tools.Utils;
+
 
 namespace Priceredacted.Processors
 {
@@ -15,7 +17,7 @@ namespace Priceredacted.Processors
             return SearchAndFind.AddData(product, Tools.Utils.ProductsPath);
         }
 
-        public Product CreateProduct(string shop, string group,
+        public Product CreateProduct(Shops shop, string group,
                 string name, string priceUnit, string price)
         {
             Product pr = new Product()

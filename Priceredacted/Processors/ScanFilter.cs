@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using Priceredacted.ExtensionMethods;
+using static Priceredacted.Tools.Utils;
+
 
 namespace Priceredacted.Processors
 {
@@ -62,7 +64,7 @@ namespace Priceredacted.Processors
 
         private static void scanMaxima(string path)
         {           
-            resultStr = tempStr.pickProducts("Maxima", path); //  TO BE WORKED ON
+            resultStr = tempStr.PickProducts(shop: (Shops)1, path: path); //  TO BE WORKED ON
             /*foreach (string line in tempStr)
             {
                 string query = line.ToLower();
@@ -88,7 +90,7 @@ namespace Priceredacted.Processors
                     tempStr[i] = temp.Remove(temp.Length-8,7);
                 }
             }
-            resultStr = tempStr.pickProducts("Lidl", path);
+            resultStr = tempStr.PickProducts(shop: (Shops)2, path);
         }
 
         private static void scanNorfa()

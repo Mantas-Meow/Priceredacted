@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using static Priceredacted.Tools.Utils;
+
 
 namespace Priceredacted.Processors
 {
@@ -36,7 +38,7 @@ namespace Priceredacted.Processors
         {
             Application.Exit();
         }
-        public void AddData(string shop, string group,
+        public void AddData(Shops shop, string group,
                 string name, string priceUnit, string price)
         {
             string json = null;

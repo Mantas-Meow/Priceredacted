@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
+using static Priceredacted.Tools.Utils;
+
 
 
 namespace Priceredacted.ExtensionMethods
@@ -31,9 +33,9 @@ namespace Priceredacted.ExtensionMethods
             return resultStr;
         }
 
-        public static string pickProducts(this string[] tempStr, string shop, string path, string resultStr = null)
+        public static string PickProducts(this string[] tempStr, Shops shop, string path, string resultStr = null)
         {
-            resultStr = shop + '\n';
+            resultStr += shop + '\n';
             foreach (string line in tempStr)
             {
                 string query = line.ToLower().Trim();
