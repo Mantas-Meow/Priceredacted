@@ -32,12 +32,12 @@ namespace Priceredacted.Processors
             return JsonConvert.SerializeObject(Products.ToArray());
         }
 
-        public static IEnumerable<Product> SearchForProduct(string query, string path)
+        public static IEnumerable<Product> SearchForProduct<T>(T query, string path)
         {
             IEnumerable<IEnumerable<Product>> UnfilteredProducts = JsonConvert.DeserializeObject<List<List<Product>>>(System.IO.File.ReadAllText(path));
             IEnumerable<Product> FilteredProducts = new List<Product>();
 
-            if (query == "")
+            if (query == null)
             {
                 FilteredProducts = (from listpr in UnfilteredProducts from pr in listpr select pr).Distinct();
             }
@@ -46,10 +46,10 @@ namespace Priceredacted.Processors
                     FilteredProducts = from iepr in UnfilteredProducts 
                                             from pr in iepr 
                                             where /*pr.Shop == ((Shops)Enum.Parse(typeof(Shops), query)) 
-                                            ||*/ pr.Group.ToLower().Contains(query) 
-                                            || pr.Name.ToLower().Contains(query) 
-                                            || pr.PriceUnit.ToLower().Contains(query) 
-                                            || pr.Price.ToLower().Contains(query) 
+                                            ||*/ pr.Group.ToLower().Contains(query.ToString()) 
+                                            || pr.Name.ToLower().Contains(query.ToString()) 
+                                            || pr.PriceUnit.ToLower().Contains(query.ToString()) 
+                                            || pr.Price.ToLower().Contains(query.ToString()) 
                                        select pr;
             }
             return FilteredProducts;
