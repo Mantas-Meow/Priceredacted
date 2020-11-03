@@ -17,7 +17,7 @@ namespace Priceredacted
             mainController.scanPanel = Scan_panel;
             mainController.searchPanel = Search_panel;
             mainController.dataField = SearchResults;
-            mainController.outputTextField = richTextBox1;
+            mainController.outputTextField = Main_richTextBox;
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
@@ -73,6 +73,26 @@ namespace Priceredacted
         private void Home_panel_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void ScannedImage_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ScanText_button_Click(object sender, EventArgs e)
+        {
+            mainController.ScanText(ManualReceipInput_richTextBox.Text);
+        }
+
+        private void ComparePrices_button_Click(object sender, EventArgs e)
+        {
+            mainController.ComparePrices(Main_richTextBox.Text);
         }
     }
 }
