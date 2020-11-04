@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using Priceredacted.Interfaces;
 using Priceredacted.Processors;
-using Priceredacted.Search;
+using Priceredacted.Properties;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
