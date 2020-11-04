@@ -95,7 +95,7 @@ namespace Priceredacted
 
         private void ComparePrices_button_Click(object sender, EventArgs e)
         {
-            mainController.ComparePrices(Main_richTextBox.Text);
+            mainController.ComparePrices();
         }
     }
 }

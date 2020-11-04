@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Linq;
 using Newtonsoft.Json;
-using Priceredacted.Search;
+using Priceredacted.Properties;
 using Priceredacted.Processors;
 using Priceredacted.Controllers;
 
