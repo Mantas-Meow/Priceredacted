@@ -51,9 +51,9 @@ namespace Priceredacted.Processors
             return ImageRecognition.GetTextFromImage(selectedFile);
         }
 
-        public IEnumerable<Product> SearchProducts(string query)
+        public IEnumerable<Product> SearchProducts(string query, string preferredShop)
         {
-            return SearchAndFind.SearchForProduct(query, Tools.Utils.ProductsPath);
+            return SearchAndFind.SearchForProduct(query, Tools.Utils.ProductsPath, preferredShop);
         }
     }
 }

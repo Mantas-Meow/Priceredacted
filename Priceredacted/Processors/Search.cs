@@ -29,28 +29,72 @@ namespace Priceredacted.Processors
             List<Product> newList = new List<Product>();
             newList.Add(productToBeAdded);
             Products.Add(newList);
-            return JsonConvert.SerializeObject(Products.ToArray());
+            return JsonConvert.SerializeObject(Products.ToArray(), Formatting.Indented);
+        }
+
+        public static IEnumerable<Product> SearchForProduct<T>(T query, string path, string preferredShop)
+        {
+            IEnumerable<IEnumerable<Product>> UnfilteredProducts = JsonConvert.DeserializeObject<List<List<Product>>>(System.IO.File.ReadAllText(path));
+            IEnumerable<Product> FilteredProducts = new List<Product>();
+            if (preferredShop == "" || preferredShop == "Visos parduotuvės")
+            {
+                if (query == null)
+                {
+                    FilteredProducts = (from listpr in UnfilteredProducts from pr in listpr select pr).Distinct();
+                }
+                else
+                {
+                    FilteredProducts = from iepr in UnfilteredProducts
+                                       from pr in iepr
+                                       where /*pr.Shop == ((Shops)Enum.Parse(typeof(Shops), query)) 
+                                            ||*/ pr.Group.ToLower().Contains(query.ToString())
+                                       || pr.Name.ToLower().Contains(query.ToString())
+                                       || pr.PriceUnit.ToLower().Contains(query.ToString())
+                                       || pr.Price.ToLower().Contains(query.ToString())
+                                       select pr;
+                }
+            }
+            else
+            {
+                if (query == null)
+                {
+                    FilteredProducts = (from listpr in UnfilteredProducts from pr in listpr where pr.Shop.ToString() == preferredShop select pr).Distinct();
+                }
+                else
+                {
+                    FilteredProducts = from iepr in UnfilteredProducts 
+                                       from pr in iepr 
+                                       where /*pr.Shop == ((Shops)Enum.Parse(typeof(Shops), query)) 
+                                            ||*/ (pr.Group.ToLower().Contains(query.ToString()) 
+                                       || pr.Name.ToLower().Contains(query.ToString()) 
+                                       || pr.PriceUnit.ToLower().Contains(query.ToString()) 
+                                       || pr.Price.ToLower().Contains(query.ToString()))
+                                       && pr.Shop.ToString() == preferredShop
+                                       select pr;
+                }
+                
+            }
+            return FilteredProducts;
         }
 
         public static IEnumerable<Product> SearchForProduct<T>(T query, string path)
         {
             IEnumerable<IEnumerable<Product>> UnfilteredProducts = JsonConvert.DeserializeObject<List<List<Product>>>(System.IO.File.ReadAllText(path));
             IEnumerable<Product> FilteredProducts = new List<Product>();
-
             if (query == null)
             {
                 FilteredProducts = (from listpr in UnfilteredProducts from pr in listpr select pr).Distinct();
             }
             else
             {
-                    FilteredProducts = from iepr in UnfilteredProducts 
-                                            from pr in iepr 
-                                            where /*pr.Shop == ((Shops)Enum.Parse(typeof(Shops), query)) 
-                                            ||*/ pr.Group.ToLower().Contains(query.ToString()) 
-                                            || pr.Name.ToLower().Contains(query.ToString()) 
-                                            || pr.PriceUnit.ToLower().Contains(query.ToString()) 
-                                            || pr.Price.ToLower().Contains(query.ToString()) 
-                                       select pr;
+                FilteredProducts = from iepr in UnfilteredProducts
+                                   from pr in iepr
+                                   where /*pr.Shop == ((Shops)Enum.Parse(typeof(Shops), query)) 
+                                            ||*/ pr.Group.ToLower().Contains(query.ToString())
+                                   || pr.Name.ToLower().Contains(query.ToString())
+                                   || pr.PriceUnit.ToLower().Contains(query.ToString())
+                                   || pr.Price.ToLower().Contains(query.ToString())
+                                   select pr;
             }
             return FilteredProducts;
         }

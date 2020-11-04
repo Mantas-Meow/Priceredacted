@@ -37,6 +37,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Home_button = new System.Windows.Forms.Button();
             this.Search_panel = new System.Windows.Forms.Panel();
+            this.SearchShopList = new System.Windows.Forms.ComboBox();
             this.SearchBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.SearchButton = new System.Windows.Forms.Button();
@@ -147,6 +148,7 @@
             // Search_panel
             // 
             this.Search_panel.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.Search_panel.Controls.Add(this.SearchShopList);
             this.Search_panel.Controls.Add(this.SearchBox);
             this.Search_panel.Controls.Add(this.label5);
             this.Search_panel.Controls.Add(this.SearchButton);
@@ -165,6 +167,22 @@
             this.Search_panel.Name = "Search_panel";
             this.Search_panel.Size = new System.Drawing.Size(620, 457);
             this.Search_panel.TabIndex = 4;
+            // 
+            // SearchShopList
+            // 
+            this.SearchShopList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SearchShopList.FormattingEnabled = true;
+            this.SearchShopList.Items.AddRange(new object[] {
+            "Iki",
+            "Lidl",
+            "Maxima",
+            "Norfa",
+            "Rimi",
+            "Visos parduotuvės"});
+            this.SearchShopList.Location = new System.Drawing.Point(183, 47);
+            this.SearchShopList.Name = "SearchShopList";
+            this.SearchShopList.Size = new System.Drawing.Size(121, 23);
+            this.SearchShopList.TabIndex = 12;
             // 
             // SearchBox
             // 
@@ -186,7 +204,7 @@
             // 
             // SearchButton
             // 
-            this.SearchButton.Location = new System.Drawing.Point(194, 48);
+            this.SearchButton.Location = new System.Drawing.Point(309, 48);
             this.SearchButton.Margin = new System.Windows.Forms.Padding(2);
             this.SearchButton.Name = "SearchButton";
             this.SearchButton.Size = new System.Drawing.Size(104, 23);
@@ -462,5 +480,6 @@
         private System.Windows.Forms.RichTextBox ManualReceipInput_richTextBox;
         private System.Windows.Forms.Button ScanText_button;
         private System.Windows.Forms.Button ComparePrices_button;
+        private System.Windows.Forms.ComboBox SearchShopList;
     }
 }

@@ -12,7 +12,7 @@ namespace Priceredacted.Interfaces
         public static string selectedFile;
 
         public string ScanImage(string selectedFile);
-        public IEnumerable<Product> SearchProducts(string query);
+        public IEnumerable<Product> SearchProducts(string query, string preferredShop);
         public Product CreateProduct(Shops shop, string group,
                 string name, string priceUnit, string price);
         public string AddProduct(Product product);

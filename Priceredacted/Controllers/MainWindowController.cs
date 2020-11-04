@@ -62,9 +62,9 @@ namespace Priceredacted.Processors
                 MessageBox.Show("Product was not saved!");
             }
         }
-        public void SearchData(string query)
+        public void SearchData(string query, string preferredShop)
         {
-            IEnumerable<Search.Product> Filtered = mainLogic.SearchProducts(query);
+            IEnumerable<Search.Product> Filtered = mainLogic.SearchProducts(query, preferredShop);
             if (Filtered != null)
             {
                 dataField.DataSource = Filtered.ToList();

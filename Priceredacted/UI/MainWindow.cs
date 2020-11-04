@@ -51,7 +51,8 @@ namespace Priceredacted
         private void SearchButton_Click(object sender, EventArgs e)
         {
             string query = SearchBox.Text.Trim().ToLower();
-            mainController.SearchData(query);
+            string preferredShop = SearchShopList.Text;
+            mainController.SearchData(query, preferredShop);
         }
 
         private void ScanNewImage_Button_Click(object sender, EventArgs e)
