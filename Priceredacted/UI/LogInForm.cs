@@ -46,6 +46,10 @@ namespace Priceredacted.UI
 
         private void ToLogInPanel_button_Click(object sender, EventArgs e)
         {
+            RegUsername_textbox.Clear();
+            RegEmail_textbox.Clear();
+            RegPassword_textbox.Clear();
+            RegRPassword_textbox.Clear();
             LogIn_panel.Show();
             Register_panel.Hide();
         }
