@@ -38,9 +38,11 @@ namespace Priceredacted.Logics
             return UserDataValidation.Login(user, pass, Tools.Utils.UserDataPath);
         }
 
-        public bool RegisterUser(string pass1, string pass2, UserData user)
+        public bool RegisterUser(string username, string email, string pass1, string pass2, UserData user)
         {
-            if (UserDataValidation.CheckPasswords(pass1, pass2))
+            if (UserDataValidation.CheckPasswords(pass1, pass2) 
+                && UserDataValidation.EmailValidation(email) 
+                && UserDataValidation.UsernameAvailability(username, Tools.Utils.UserDataPath))
             {
                 SaveUser(user);
                 return true;

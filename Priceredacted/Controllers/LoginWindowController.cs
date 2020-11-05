@@ -33,11 +33,11 @@ namespace Priceredacted.Controllers
             }
             try
             {
-                if (loginLogic.RegisterUser(password1, password2, newUser))
+                if (loginLogic.RegisterUser(username, email, password1, password2, newUser))
                 {
                     MessageBox.Show("User registered!");
                 }
-                else MessageBox.Show("Check passwords");
+                else MessageBox.Show("Check passwords or email. Also username might be taken");
             }
             catch (Exception e)
             {
