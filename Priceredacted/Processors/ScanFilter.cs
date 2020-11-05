@@ -54,7 +54,7 @@ namespace Priceredacted.Processors
                     break;
 
                 default:
-                    resultStr = "Could not read the shop!";
+                    //resultStr = "Could not read the shop!";
                     break;
             }
         }

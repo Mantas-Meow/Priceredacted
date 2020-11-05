@@ -1,1 +1,47 @@
-[{"Username":"User1","Email":"user1@user1.com","Password":"pass","CPassword":null},{"Username":"User2","Email":"User2@user2.com","Password":"pass123","CPassword":null},{"Username":"admin","Email":"admin@admin.com","Password":"admin123","CPassword":null},{"Username":"user1234","Email":"user@user.com","Password":"pass","CPassword":null},{"Username":"benas","Email":"benas@benas.com","Password":"admin","CPassword":null},{"Username":"yeet","Email":"yeet@yeet.ru","Password":"yeet","CPassword":null},{"Username":"admin","Email":"admin@admin.com","Password":"admin","CPassword":null}]
+[
+    {
+        "Username": "User1",
+        "Email": "user1@user1.com",
+        "Password": "pass"
+    },
+    {
+        "Username": "User2",
+        "Email": "User2@user2.com",
+        "Password": "pass123"
+    },
+    {
+        "Username": "admin",
+        "Email": "admin@admin.com",
+        "Password": "admin123"
+    },
+    {
+        "Username": "user1234",
+        "Email": "user@user.com",
+        "Password": "pass"
+    },
+    {
+        "Username": "benas",
+        "Email": "benas@benas.com",
+        "Password": "admin"
+    },
+    {
+        "Username": "yeet",
+        "Email": "yeet@yeet.ru",
+        "Password": "yeet"
+    },
+    {
+        "Username": "admin",
+        "Email": "admin@admin.com",
+        "Password": "admin"
+    },
+    {
+        "Username": "Oh",
+        "Email": "No@gmail.com",
+        "Password": "a"
+    },
+    {
+        "Username": "Oh",
+        "Email": "No@gmail.com",
+        "Password": ""
+    }
+]

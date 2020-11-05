@@ -49,7 +49,7 @@ namespace Priceredacted.ExtensionMethods
                             Shop = pr.Shop,
                             Name = pr.Name,
                             PriceUnit = pr.PriceUnit,
-                            Price = pr.Price
+                            Price = Convert.ToDouble(pr.Price)
                         };
                         SProducts.Add(Spr);
                         //resultStr += pr.Name + " :" + pr.Price + " €\n";
