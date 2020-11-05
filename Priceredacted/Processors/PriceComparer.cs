@@ -14,6 +14,7 @@ namespace Priceredacted.Processors
         {
             foreach (ScannedProduct SPr in SProducts)
             {
+
                 IEnumerable<Product> filtered = SearchAndFind.SearchForProduct(SPr.Name.ToLower().Trim(), path);
                 foreach (Product pr in filtered)
                 {

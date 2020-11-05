@@ -10,7 +10,7 @@ namespace Priceredacted.Properties
         public Shops Shop { get; set; }
         public string Name { get; set; }
         public string PriceUnit { get; set; }
-        public string Price { get; set; }
+        public double Price { get; set; }
         public string Comapared { get; set; }
     }
 }

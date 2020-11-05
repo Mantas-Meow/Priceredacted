@@ -8,22 +8,27 @@ namespace Priceredacted.Processors
     class ProductEditor
     {
         static List<ScannedProduct> ScannedProducts = new List<ScannedProduct>();
+        private static string resultStr;
 
         public static string ComparePrices(string path)
         {
             PriceComparer.ComparePrices(path,ScannedProducts);
-            return SProductsToString(ScannedProducts);
+            resultStr = SProductsToString(ScannedProducts, resultStr);
+            return resultStr; 
         }
 
         public static string FilterScanned(string input, string path)
         {
+            ClearProducts();
             ScanFilter.Filter(input, path, ScannedProducts);
-            return SProductsToString(ScannedProducts);
+            resultStr = SProductsToString(ScannedProducts);
+            return resultStr;
         }
 
-        public static void ClearProducts()
+        private static void ClearProducts()
         {
             ScannedProducts.Clear();
+            resultStr = null;
         }
 
         private static string SProductsToString(List<ScannedProduct> SProducts, string resultStr = null)
