@@ -14,7 +14,7 @@ namespace Priceredacted.Processors
 
         public string AddProduct(Product product)
         {
-            return SearchAndFind.AddData(product, Tools.Utils.ProductsPath);
+            return SearchAndFind.AddData(path: Tools.Utils.ProductsPath, productToBeAdded: product);
         }
 
         public Product CreateProduct(Shops shop, string group,
@@ -48,7 +48,7 @@ namespace Priceredacted.Processors
 
         public string ScanImage(string selectedFile)
         {
-            return ImageRecognition.GetTextFromImage(selectedFile);
+            return ImageRecognition.GetTextFromImage(imagePath: selectedFile);
         }
 
         public IEnumerable<Product> SearchProducts(string query, string preferredShop)
