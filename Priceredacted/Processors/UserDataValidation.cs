@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System.Data;
 using Priceredacted.Search;
 using Priceredacted.UI;
+using System.Text.RegularExpressions;
 
 namespace Priceredacted.Processors
 {
@@ -32,6 +33,24 @@ namespace Priceredacted.Processors
                     return true;
             }
             return false;
+        }
+        public static bool EmailValidation(string str1)
+        {
+            string strRegex = @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$";
+            Regex re = new Regex(strRegex);
+            if (re.IsMatch(str1))
+                return true;
+            else return false;
+        }
+        public static bool UsernameAvailability(string str1, string path)
+        {
+            List<UserData> Data = JsonConvert.DeserializeObject<List<UserData>>(System.IO.File.ReadAllText(path));
+            foreach (UserData ud in Data)
+            {
+                if (ud.Username == str1)
+                return false;
+            }
+            return true;
         }
     }
 }

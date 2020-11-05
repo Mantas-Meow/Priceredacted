@@ -275,8 +275,8 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
             this.ClientSize = new System.Drawing.Size(697, 517);
-            this.Controls.Add(this.LogIn_panel);
             this.Controls.Add(this.Register_panel);
+            this.Controls.Add(this.LogIn_panel);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "LogInForm";
             this.Text = "LogInForm";
