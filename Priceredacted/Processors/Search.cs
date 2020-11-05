@@ -6,6 +6,7 @@ using Priceredacted.Search;
 using System.IO;
 using static Priceredacted.Tools.Utils;
 using System;
+using System.Text.RegularExpressions;
 
 namespace Priceredacted.Processors
 {
@@ -14,6 +15,7 @@ namespace Priceredacted.Processors
         public static string AddData(Product productToBeAdded, string path)
         {
             List<List<Product>> Products = JsonConvert.DeserializeObject<List<List<Product>>>(System.IO.File.ReadAllText(path));
+            productToBeAdded.Price = Regex.Replace(productToBeAdded.Price, @",+", ".");
             if (Products == null)
             {
                 Products = new List<List<Product>>();
@@ -23,7 +25,7 @@ namespace Priceredacted.Processors
                 if (li.First().Name[0] == productToBeAdded.Name[0])
                 {
                     li.Add(productToBeAdded);
-                    return JsonConvert.SerializeObject(Products.ToArray());
+                    return JsonConvert.SerializeObject(Products.ToArray(), Formatting.Indented);
                 }
             }
             List<Product> newList = new List<Product>();
@@ -31,7 +33,6 @@ namespace Priceredacted.Processors
             Products.Add(newList);
             return JsonConvert.SerializeObject(Products.ToArray(), Formatting.Indented);
         }
-
         public static IEnumerable<Product> SearchForProduct<T>(T query, string path, string preferredShop)
         {
             IEnumerable<IEnumerable<Product>> UnfilteredProducts = JsonConvert.DeserializeObject<List<List<Product>>>(System.IO.File.ReadAllText(path));
