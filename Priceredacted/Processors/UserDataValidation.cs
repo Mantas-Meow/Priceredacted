@@ -18,11 +18,15 @@ namespace Priceredacted.Processors
                 Data = new List<UserData>();
             }
             Data.Add(dataToBeAdded);
-            return JsonConvert.SerializeObject(Data.ToArray());
+            return JsonConvert.SerializeObject(Data.ToArray(), Formatting.Indented);
         }
         public static bool CheckPasswords(string str1, string str2)
         {
-            return str1 == str2;
+            string strRegex = @"^[^\s]{4,15}$";
+            Regex re = new Regex(strRegex);
+            if (str1 == str2 && re.IsMatch(str1))
+                return true;
+            else return false;
         }
         public static bool Login(string str1, string str2, string path)
         {
@@ -45,12 +49,19 @@ namespace Priceredacted.Processors
         public static bool UsernameAvailability(string str1, string path)
         {
             List<UserData> Data = JsonConvert.DeserializeObject<List<UserData>>(System.IO.File.ReadAllText(path));
-            foreach (UserData ud in Data)
+            string strRegex = @"^[^\s]{3,15}$";
+            Regex re = new Regex(strRegex);
+            if (re.IsMatch(str1))
             {
-                if (ud.Username == str1)
-                return false;
+                foreach (UserData ud in Data)
+                {
+                    if (ud.Username == str1)
+                        return false;
+                }
+                return true;
             }
-            return true;
+            else return false;
+               
         }
     }
 }
