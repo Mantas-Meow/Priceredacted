@@ -97,5 +97,10 @@ namespace Priceredacted
         {
             mainController.ComparePrices();
         }
+
+        private void Clear_button_Click(object sender, EventArgs e)
+        {
+            mainController.Clear();
+        }
     }
 }

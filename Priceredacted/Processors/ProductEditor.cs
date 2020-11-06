@@ -13,8 +13,7 @@ namespace Priceredacted.Processors
         public static string ComparePrices(string path)
         {
             PriceComparer.ComparePrices(path,ScannedProducts);
-            resultStr = SProductsToString(ScannedProducts, resultStr);
-            return resultStr; 
+            return SProductsToString(ScannedProducts); 
         }
 
         public static string FilterScanned(string input, string path)
@@ -25,7 +24,7 @@ namespace Priceredacted.Processors
             return resultStr;
         }
 
-        private static void ClearProducts()
+        public static void ClearProducts()
         {
             ScannedProducts.Clear();
             resultStr = null;

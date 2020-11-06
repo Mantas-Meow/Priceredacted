@@ -55,5 +55,10 @@ namespace Priceredacted.Processors
         {
             return SearchAndFind.SearchForProduct(query, Tools.Utils.ProductsPath, preferredShop);
         }
+
+        public void Clear()
+        {
+            ProductEditor.ClearProducts();
+        }
     }
 }
