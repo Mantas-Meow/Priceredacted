@@ -54,7 +54,7 @@ namespace Priceredacted.Processors
                     break;
 
                 default:
-                    //resultStr = "Could not read the shop!";
+                    //resultStr = "Could not read the shop!";           //Repair this
                     break;
             }
         }
@@ -62,16 +62,6 @@ namespace Priceredacted.Processors
         private static void ScanMaxima(string path, List<ScannedProduct> SProducts)
         {           
             tempStr.PickProducts((Shops)1,path,SProducts); //  TO BE WORKED ON
-            /*foreach (string line in tempStr)
-            {
-                string query = line.ToLower();
-                IEnumerable<Product> filtered = SearchAndFind.SearchForProduct(query,MainWindowLogic.path);
-                foreach(Product pr in filtered)
-                {
-                    if (pr.Shop == "Maxima")
-                    resultStr += pr.Name + ' ' + pr.Price + '\n';
-                }
-            }*/
             
 
         }
