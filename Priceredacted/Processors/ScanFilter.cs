@@ -30,7 +30,7 @@ namespace Priceredacted.Processors
             {
                 case "MAXIMA":
                     tempStr[0] = "xxx";
-                    ScanMaxima(path, SProducts);
+                    Scan(path, SProducts);
                     break;
 
                 case "LIDL":
@@ -40,17 +40,17 @@ namespace Priceredacted.Processors
 
                 case "IKI":
                     tempStr[0] = "xxx";
-                    ScanIki();
+                    Scan(path, SProducts);
                     break;
 
                 case "RIMI":
                     tempStr[0] = "xxx";
-                    ScanRimi();
+                    Scan(path, SProducts);
                     break;
 
                 case "NORFA":
                     tempStr[0] = "xxx";
-                    ScanNorfa();
+                    Scan(path, SProducts);
                     break;
 
                 default:
@@ -59,8 +59,15 @@ namespace Priceredacted.Processors
             }
         }
 
-        private static void ScanMaxima(string path, List<ScannedProduct> SProducts)
-        {           
+        private static void Scan(string path, List<ScannedProduct> SProducts)
+        {
+            for (int i = 0; i < tempStr.Length; i++)
+            {
+                if (tempStr[i].Length > 18)
+                {
+                    tempStr[i] = tempStr[i].Remove(tempStr[i].Length - 6, 6);
+                }
+            }
             tempStr.PickProducts((Shops)1,path,SProducts); //  TO BE WORKED ON
             
 
