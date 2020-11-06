@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Priceredacted.ExtensionMethods;
-using Priceredacted.Search;
+using Priceredacted.Properties;
 using static Priceredacted.Tools.Utils;
 
 
@@ -10,50 +10,20 @@ namespace Priceredacted.Processors
 {
     class PriceComparer
     {
-        private static string[] tempStr;
-        private static string resultStr;
-
-        public static string comparePrices(string input, string path)
+        public static void ComparePrices(string path, List<ScannedProduct> SProducts)
         {
-            tempStr = null;
-            resultStr = null;
-            tempStr = input.seperateToLines();
-            priceDifference(path);
-            return resultStr;
-        }
-
-        private static void priceDifference(string path)
-        {
-            /*bool n = false;
-            foreach (string line in tempStr)
+            foreach (ScannedProduct SPr in SProducts)
             {
-                if (n)
-                {
-                    resultStr += '\n' + line + '\t';
-                }
-                else
-                {
-                    resultStr += line + '\t';
-                    n = true;
-                }
-                    
-                string query = line.ToLower().Trim();
-                if (query.Length > 8)
-                query = query.Remove(query.IndexOf(":")-2);
-                IEnumerable<Product> filtered = SearchAndFind.SearchForProduct(query, path);
-
-
+                SPr.Comapared = null;
+                IEnumerable<Product> filtered = SearchAndFind.SearchForProduct(SPr.Name.ToLower().Trim(), path);
                 foreach (Product pr in filtered)
-                {                       
-                    
-                    if (pr.Shop != tempStr[0])
+                {
+                    if (pr.Shop != SPr.Shop)
                     {
-                        resultStr += pr.Shop + ' ' + pr.Price + "€ /";
+                        SPr.Comapared += Enum.GetName(typeof(Shops),pr.Shop) + ": " + pr.Price + "€ /";
                     }
-
                 }
-            }*/
+            }     
         }
-
     }
 }

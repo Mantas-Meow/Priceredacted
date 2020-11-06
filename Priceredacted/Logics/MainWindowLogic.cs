@@ -1,5 +1,5 @@
 ﻿using Priceredacted.Interfaces;
-using Priceredacted.Search;
+using Priceredacted.Properties;
 using Priceredacted.Tesseract_Ocr;
 using System;
 using System.Collections.Generic;
@@ -33,12 +33,12 @@ namespace Priceredacted.Processors
 
         public string FilterText(string input)
         {
-            return ScanFilter.Filter(input, Tools.Utils.ProductsPath);
+            return ProductEditor.FilterScanned(input, Tools.Utils.ProductsPath);
         }
 
-        public string ComparePrices(string input)
+        public string ComparePrices()
         {
-            return PriceComparer.comparePrices(input, Tools.Utils.ProductsPath);
+            return ProductEditor.ComparePrices(Tools.Utils.ProductsPath);
         }
 
         public void SaveData(string json)
@@ -54,6 +54,11 @@ namespace Priceredacted.Processors
         public IEnumerable<Product> SearchProducts(string query, string preferredShop)
         {
             return SearchAndFind.SearchForProduct(query, Tools.Utils.ProductsPath, preferredShop);
+        }
+
+        public void Clear()
+        {
+            ProductEditor.ClearProducts();
         }
     }
 }

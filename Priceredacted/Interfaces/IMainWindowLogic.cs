@@ -1,4 +1,4 @@
-﻿using Priceredacted.Search;
+﻿using Priceredacted.Properties;
 using System;
 using System.Collections.Generic;
 using System.Text;

@@ -64,7 +64,7 @@ namespace Priceredacted.Processors
         }
         public void SearchData(string query, string preferredShop)
         {
-            IEnumerable<Search.Product> Filtered = mainLogic.SearchProducts(query, preferredShop);
+            IEnumerable<Properties.Product> Filtered = mainLogic.SearchProducts(query, preferredShop);
             if (Filtered != null)
             {
                 dataField.DataSource = Filtered.ToList();
@@ -89,9 +89,14 @@ namespace Priceredacted.Processors
             outputTextField.Text = mainLogic.FilterText(Text);
         }
 
-        public void ComparePrices(string Text)
+        public void ComparePrices()
         {
-            outputTextField.Text = mainLogic.ComparePrices(Text);
+            outputTextField.Text = mainLogic.ComparePrices();
+        }
+        public void Clear()
+        {
+            outputTextField.Text = "";
+            mainLogic.Clear();
         }
     }
 }
