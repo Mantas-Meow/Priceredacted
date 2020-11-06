@@ -66,7 +66,6 @@ namespace Priceredacted
                 ScannedImage.Image = new Bitmap(open.FileName);
                 mainController.ScanImage(selectedFile);
             }
-            ComparePrices_button.Enabled = true;
         }
 
         private void Home_button_Click(object sender, EventArgs e)
@@ -92,14 +91,16 @@ namespace Priceredacted
         private void ScanText_button_Click(object sender, EventArgs e)
         {
             mainController.ScanText(ManualReceipInput_richTextBox.Text);
-            ComparePrices_button.Enabled = true;
         }
 
         private void ComparePrices_button_Click(object sender, EventArgs e)
         {
-            ComparePrices_button.Enabled = false;
-            mainController.ComparePrices(Main_richTextBox.Text);
-            
+               mainController.ComparePrices();
         }
+
+        private void Clear_button_Click(object sender, EventArgs e)
+        {
+            mainController.Clear();
+        }	        
     }
 }
