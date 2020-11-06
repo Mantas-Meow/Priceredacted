@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Priceredacted.Search
+namespace Priceredacted.Properties
 {
     public struct UserData
     {
