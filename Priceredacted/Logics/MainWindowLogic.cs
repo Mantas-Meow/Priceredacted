@@ -54,8 +54,8 @@ namespace Priceredacted.Processors
 
         public IEnumerable<Product> SearchProducts(string query, string preferredShop)
         {
-            //IEnumerable<IEnumerable<Product>> products = DataProcessor.LoadJson <IEnumerable<Product>>(Tools.Utils.ProductsPath);
-            return SearchAndFind.SearchForProduct(query, Tools.Utils.ProductsPath, null);
+            IEnumerable<IEnumerable<Product>> products = DataProcessor.LoadJson <IEnumerable<Product>>(Tools.Utils.ProductsPath);
+            return SearchAndFind.SearchForProduct(query, preferredShop, products);
         }
         public IEnumerable<T> LoadFromProductsJson<T>()
         {

@@ -33,11 +33,11 @@ namespace Priceredacted.Processors
             return products;
         }
         public static IEnumerable<Product> SearchForProduct(string query, string preferredShop,
-            IEnumerable<IEnumerable<Product>> unflteredProducts)
+            IEnumerable<IEnumerable<Product>> unfilteredProducts)
         {
-            //IEnumerable<IEnumerable<Product>> UnfilteredProducts = DataProcessor.LoadJson<IEnumerable<Product>>(path);
-            IEnumerable<IEnumerable<Product>> unfilteredProducts = DataProcessor.LoadJson<IEnumerable<Product>>(Tools.Utils.ProductsPath);
             IEnumerable<Product> filteredProducts = new List<Product>();
+            filteredProducts = (from listpr in unfilteredProducts from pr in listpr select pr);
+
             if (preferredShop == "" || preferredShop == "Visos parduotuvės")
             {
                 if (query == null)
