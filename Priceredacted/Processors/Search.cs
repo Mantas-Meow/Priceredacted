@@ -36,43 +36,34 @@ namespace Priceredacted.Processors
             IEnumerable<IEnumerable<Product>> unfilteredProducts)
         {
             IEnumerable<Product> filteredProducts = new List<Product>();
-            filteredProducts = (from listpr in unfilteredProducts from pr in listpr select pr);
 
             if (preferredShop == "" || preferredShop == "Visos parduotuvės")
             {
-                if (query == null)
+                if (query == "")
                 {
-                    filteredProducts = (from listpr in unfilteredProducts from pr in listpr select pr).Distinct();
+                    filteredProducts = unfilteredProducts.SelectMany(pr => pr);
                 }
                 else
                 {
-                    filteredProducts = from iepr in unfilteredProducts
-                                       from pr in iepr
-                                       where /*pr.Shop == ((Shops)Enum.Parse(typeof(Shops), query)) 
-                                            ||*/ pr.Group.ToLower().Contains(query)
+                    filteredProducts = unfilteredProducts.SelectMany(iepr => iepr.Where(pr => (pr.Group.ToLower().Contains(query)
                                        || pr.Name.ToLower().Contains(query)
                                        || pr.PriceUnit.ToLower().Contains(query)
-                                       || pr.Price.ToLower().Contains(query)
-                                       select pr;
+                                       || pr.Price.ToLower().Contains(query))));
                 }
             }
             else
             {
-                if (query == null)
+                if (query == "")
                 {
-                    filteredProducts = (from listpr in unfilteredProducts from pr in listpr where pr.Shop.ToString() == preferredShop select pr).Distinct();
+                    filteredProducts = unfilteredProducts.SelectMany(iepr => iepr.Where(pr => pr.Shop.ToString() == preferredShop));
                 }
                 else
                 {
-                    filteredProducts = from iepr in unfilteredProducts 
-                                       from pr in iepr 
-                                       where /*pr.Shop == ((Shops)Enum.Parse(typeof(Shops), query)) 
-                                            ||*/ (pr.Group.ToLower().Contains(query) 
-                                       || pr.Name.ToLower().Contains(query) 
-                                       || pr.PriceUnit.ToLower().Contains(query) 
+                    filteredProducts = unfilteredProducts.SelectMany(iepr => iepr.Where(pr => (pr.Group.ToLower().Contains(query)
+                                       || pr.Name.ToLower().Contains(query)
+                                       || pr.PriceUnit.ToLower().Contains(query)
                                        || pr.Price.ToLower().Contains(query))
-                                       && pr.Shop.ToString() == preferredShop
-                                       select pr;
+                                       && pr.Shop.ToString() == preferredShop));
                 }
             }
             return filteredProducts;
@@ -88,14 +79,10 @@ namespace Priceredacted.Processors
             }
             else
             {
-                filteredProducts = from iepr in unfilteredProducts
-                                   from pr in iepr
-                                   where /*pr.Shop == ((Shops)Enum.Parse(typeof(Shops), query)) 
-                                            ||*/ pr.Group.ToLower().Contains(query)
-                                   || pr.Name.ToLower().Contains(query)
-                                   || pr.PriceUnit.ToLower().Contains(query)
-                                   || pr.Price.ToLower().Contains(query)
-                                   select pr;
+                filteredProducts = unfilteredProducts.SelectMany(iepr => iepr.Where(pr => (pr.Group.ToLower().Contains(query)
+                                       || pr.Name.ToLower().Contains(query)
+                                       || pr.PriceUnit.ToLower().Contains(query)
+                                       || pr.Price.ToLower().Contains(query))));
             }
             return filteredProducts;
         }
