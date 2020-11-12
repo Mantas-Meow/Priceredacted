@@ -2,48 +2,89 @@
 using System.Linq;
 using Newtonsoft.Json;
 using System.Data;
-using Priceredacted.Search;
+using Priceredacted.Properties;
 using System.IO;
+using System;
+using System.Text.RegularExpressions;
 
 namespace Priceredacted.Processors
 {
     class SearchAndFind
     {
-        public static string AddData(Product productToBeAdded, string path)
+        public static List<List<Product>> AddData(Product productToBeAdded, string path, List<List<Product>> products)
         {
-            List<List<Product>> Products = JsonConvert.DeserializeObject<List<List<Product>>>(System.IO.File.ReadAllText(path));
-            if (Products == null)
+            //List<List<Product>> products = (List<List<Product>>) DataProcessor.LoadJson<List<Product>>(path);
+            productToBeAdded.Price = Regex.Replace(productToBeAdded.Price, @",+", ".");
+            if (products == null)
             {
-                Products = new List<List<Product>>();
+                products = new List<List<Product>>();
             }
-            foreach (List<Product> li in Products)
+            foreach (List<Product> li in products)
             {
                 if (li.First().Name[0] == productToBeAdded.Name[0])
-                {
+                { 
                     li.Add(productToBeAdded);
-                    return JsonConvert.SerializeObject(Products.ToArray());
+                    return products;
                 }
             }
             List<Product> newList = new List<Product>();
             newList.Add(productToBeAdded);
-            Products.Add(newList);
-            return JsonConvert.SerializeObject(Products.ToArray());
+            products.Add(newList);
+            return products;
         }
-
-        public static IEnumerable<Product> SearchForProduct(string query, string path)
+        public static IEnumerable<Product> SearchForProduct(string query, string preferredShop,
+            IEnumerable<IEnumerable<Product>> unfilteredProducts)
         {
-            IEnumerable<IEnumerable<Product>> UnfilteredProducts = JsonConvert.DeserializeObject<List<List<Product>>>(System.IO.File.ReadAllText(path));
-            IEnumerable<Product> FilteredProducts = new List<Product>();
+            IEnumerable<Product> filteredProducts = new List<Product>();
 
-            if (query == "")
+            if (preferredShop == "" || preferredShop == "Visos parduotuvės")
             {
-                FilteredProducts = (from listpr in UnfilteredProducts from pr in listpr select pr).Distinct();
+                if (query == "")
+                {
+                    filteredProducts = unfilteredProducts.SelectMany(pr => pr);
+                }
+                else
+                {
+                    filteredProducts = unfilteredProducts.SelectMany(iepr => iepr.Where(pr => (pr.Group.ToLower().Contains(query)
+                                       || pr.Name.ToLower().Contains(query)
+                                       || pr.PriceUnit.ToLower().Contains(query)
+                                       || pr.Price.ToLower().Contains(query))));
+                }
             }
             else
             {
-                    FilteredProducts = from iepr in UnfilteredProducts from pr in iepr where pr.Shop.ToLower().Contains(query) || pr.Group.ToLower().Contains(query) || pr.Name.ToLower().Contains(query) || pr.PriceUnit.ToLower().Contains(query) || pr.Price.ToLower().Contains(query) select pr;
+                if (query == "")
+                {
+                    filteredProducts = unfilteredProducts.SelectMany(iepr => iepr.Where(pr => pr.Shop.ToString() == preferredShop));
+                }
+                else
+                {
+                    filteredProducts = unfilteredProducts.SelectMany(iepr => iepr.Where(pr => (pr.Group.ToLower().Contains(query)
+                                       || pr.Name.ToLower().Contains(query)
+                                       || pr.PriceUnit.ToLower().Contains(query)
+                                       || pr.Price.ToLower().Contains(query))
+                                       && pr.Shop.ToString() == preferredShop));
+                }
             }
-            return FilteredProducts;
+            return filteredProducts;
+        }
+
+        public static IEnumerable<Product> SearchForProduct(string query, string path) /// need to separate data loading!
+        {
+            IEnumerable<IEnumerable<Product>> unfilteredProducts = DataProcessor.LoadJson<IEnumerable<Product>>(path);
+            IEnumerable<Product> filteredProducts = new List<Product>();
+            if (query == null)
+            {
+                filteredProducts = (from listpr in unfilteredProducts from pr in listpr select pr).Distinct();
+            }
+            else
+            {
+                filteredProducts = unfilteredProducts.SelectMany(iepr => iepr.Where(pr => (pr.Group.ToLower().Contains(query)
+                                       || pr.Name.ToLower().Contains(query)
+                                       || pr.PriceUnit.ToLower().Contains(query)
+                                       || pr.Price.ToLower().Contains(query))));
+            }
+            return filteredProducts;
         }
     }
 }

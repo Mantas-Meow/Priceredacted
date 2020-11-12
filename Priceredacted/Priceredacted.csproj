@@ -13,6 +13,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="UI\SearchData.cs" />
+    <Compile Remove="UI\SearchData.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="UI\SearchData.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Emgu.CV" Version="4.4.0.4099" />
     <PackageReference Include="Emgu.CV.Bitmap" Version="4.4.0.4099" />
     <PackageReference Include="Emgu.CV.runtime.windows" Version="4.4.0.4099" />

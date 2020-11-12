@@ -1,29 +1,28 @@
-﻿using Priceredacted.Search;
+﻿using Priceredacted.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using Priceredacted.ExtensionMethods;
+using static Priceredacted.Tools.Utils;
+
 
 namespace Priceredacted.Processors
 {
     class ScanFilter
     {
-        private static string[] tempStr;
-        private static string resultStr;
+        private static string[] tempStr;        //use struct, perkelti i struct
 
-        public static string Filter (string input, string path)
+        public static void Filter (string input, string path, List<ScannedProduct> SProducts)
         {
-            tempStr = null;
-            resultStr = null;
-            
+            tempStr = null;            
             tempStr = input.prepareText();
-            selectShopAndFilter(path);
-            return resultStr;
+            SelectShopAndFilter(path, SProducts);
+            //return resultStr;
         } 
         
-        private static void selectShopAndFilter(string path)
+        private static void SelectShopAndFilter(string path, List<ScannedProduct> SProducts)
         {
             string[] Shops = new string[] { "MAXIMA", "LIDL", "IKI", "RIMI", "NORFA"};
             string ShopResult = Shops.FirstOrDefault<string>(s => tempStr[0].ToUpper().Contains(s));
@@ -31,53 +30,50 @@ namespace Priceredacted.Processors
             {
                 case "MAXIMA":
                     tempStr[0] = "xxx";
-                    scanMaxima(path);
+                    Scan(path, SProducts);
                     break;
 
                 case "LIDL":
                     tempStr[0] = "xxx";
-                    scanLidl(path);
+                    ScanLidl(path, SProducts);
                     break;
 
                 case "IKI":
                     tempStr[0] = "xxx";
-                    scanIki();
+                    Scan(path, SProducts);
                     break;
 
                 case "RIMI":
                     tempStr[0] = "xxx";
-                    scanRimi();
+                    Scan(path, SProducts);
                     break;
 
                 case "NORFA":
                     tempStr[0] = "xxx";
-                    scanNorfa();
+                    Scan(path, SProducts);
                     break;
 
                 default:
-                    resultStr = "Could not read the shop!";
+                    //resultStr = "Could not read the shop!";           //Repair this
                     break;
             }
         }
 
-        private static void scanMaxima(string path)
-        {           
-            resultStr = tempStr.pickProducts("Maxima", path); //  TO BE WORKED ON
-            /*foreach (string line in tempStr)
+        private static void Scan(string path, List<ScannedProduct> SProducts)
+        {
+            for (int i = 0; i < tempStr.Length; i++)
             {
-                string query = line.ToLower();
-                IEnumerable<Product> filtered = SearchAndFind.SearchForProduct(query,MainWindowLogic.path);
-                foreach(Product pr in filtered)
+                if (tempStr[i].Length > 18)
                 {
-                    if (pr.Shop == "Maxima")
-                    resultStr += pr.Name + ' ' + pr.Price + '\n';
+                    tempStr[i] = tempStr[i].Remove(tempStr[i].Length - 6, 6);
                 }
-            }*/
+            }
+            tempStr.PickProducts((Shops)1,path,SProducts); //  TO BE WORKED ON
             
 
         }
 
-        private static void scanLidl(string path)
+        private static void ScanLidl(string path, List<ScannedProduct> SProducts)
         {
             for (int i=0; i<tempStr.Length;i++)
             {
@@ -88,20 +84,20 @@ namespace Priceredacted.Processors
                     tempStr[i] = temp.Remove(temp.Length-8,7);
                 }
             }
-            resultStr = tempStr.pickProducts("Lidl", path);
+            tempStr.PickProducts((Shops)2, path, SProducts);
         }
 
-        private static void scanNorfa()
+        private static void ScanNorfa()
         {
 
         }
 
-        private static void scanRimi()
+        private static void ScanRimi()
         {
 
         }
 
-        private static void scanIki()
+        private static void ScanIki()
         {
 
         }

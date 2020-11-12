@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using static Priceredacted.Tools.Utils;
+
 
 namespace Priceredacted.Processors
 {
@@ -36,33 +38,23 @@ namespace Priceredacted.Processors
         {
             Application.Exit();
         }
-        public void AddData(string shop, string group,
+        public void AddData(Shops shop, string group,
                 string name, string priceUnit, string price)
         {
-            string json = null;
             try
             {
-                json = mainLogic.AddProduct(mainLogic.CreateProduct(shop, group, name, priceUnit, price));
+                mainLogic.AddProduct(mainLogic.CreateProduct(shop, group, name, priceUnit, price));
             }
             catch (Exception e)
             {
                 MessageBox.Show("Product was not added!");
                 return;
             }
-
-            try
-            {
-                mainLogic.SaveData(json);
-                MessageBox.Show("Data added");
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Product was not saved!");
-            }
+            MessageBox.Show("Data added");
         }
-        public void SearchData(string query)
+        public void SearchData(string query, string preferredShop)
         {
-            IEnumerable<Search.Product> Filtered = mainLogic.SearchProducts(query);
+            IEnumerable<Properties.Product> Filtered = mainLogic.SearchProducts(query, preferredShop);
             if (Filtered != null)
             {
                 dataField.DataSource = Filtered.ToList();
@@ -87,9 +79,14 @@ namespace Priceredacted.Processors
             outputTextField.Text = mainLogic.FilterText(Text);
         }
 
-        public void ComparePrices(string Text)
+        public void ComparePrices()
         {
-            outputTextField.Text = mainLogic.ComparePrices(Text);
+            outputTextField.Text = mainLogic.ComparePrices();
+        }
+        public void Clear()
+        {
+            outputTextField.Text = "";
+            mainLogic.Clear();
         }
     }
 }

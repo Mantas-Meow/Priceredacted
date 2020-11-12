@@ -1,9 +1,11 @@
 ﻿using Priceredacted.Processors;
-using Priceredacted.Search;
+using Priceredacted.Properties;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
+using static Priceredacted.Tools.Utils;
+
 
 
 namespace Priceredacted.ExtensionMethods
@@ -31,9 +33,9 @@ namespace Priceredacted.ExtensionMethods
             return resultStr;
         }
 
-        public static string pickProducts(this string[] tempStr, string shop, string path, string resultStr = null)
+        public static void PickProducts(this string[] tempStr, Shops shop, string path, List<ScannedProduct> SProducts)
         {
-            resultStr = shop + '\n';
+            //resultStr += shop + '\n';
             foreach (string line in tempStr)
             {
                 string query = line.ToLower().Trim();
@@ -41,10 +43,21 @@ namespace Priceredacted.ExtensionMethods
                 foreach (Product pr in filtered)
                 {
                     if (pr.Shop == shop)
-                        resultStr += pr.Name + " :" + pr.Price + " €\n";
+                    {
+                        ScannedProduct Spr = new ScannedProduct()
+                        {
+                            Shop = pr.Shop,
+                            Name = pr.Name,
+                            PriceUnit = pr.PriceUnit,
+                            Price = Convert.ToDouble(pr.Price)
+                        };
+                        SProducts.Add(Spr);
+                        //resultStr += pr.Name + " :" + pr.Price + " €\n";
+                    }
+                        
                 }
             }
-            return resultStr;
+            //return resultStr;
         }
     }
 }

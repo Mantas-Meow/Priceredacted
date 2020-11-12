@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Priceredacted.Tools
 {
-    static class Utils
+    static public class Utils
     {
         public static string ProductsPath = System.IO.Directory.GetParent(Environment.CurrentDirectory).
             Parent.Parent.FullName + "\\DB\\Products.json";

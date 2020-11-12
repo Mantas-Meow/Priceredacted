@@ -2,6 +2,8 @@
 using System.Drawing;
 using System.Windows.Forms;
 using Priceredacted.Processors;
+using static Priceredacted.Tools.Utils;
+
 
 namespace Priceredacted
 {
@@ -42,14 +44,15 @@ namespace Priceredacted
 
         private void AddData_button_Click(object sender, EventArgs e)
         {
-            mainController.AddData(ShopList.Text.Trim(), ItemGroup.Text.Trim(),
-                    ProductName.Text.Trim(), PriceUnit.Text.Trim(), Price.Text.Trim());
+            mainController.AddData(((Shops)Enum.Parse(typeof(Shops), ShopList.Text)), ItemGroup.Text,             //(CategoryEnum)Enum.Parse(typeof(CategoryEnum), comboBox1.Text)
+                    ProductName.Text.Trim(), PriceUnit.Text, Price.Text.Trim());
         }
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
             string query = SearchBox.Text.Trim().ToLower();
-            mainController.SearchData(query);
+            string preferredShop = SearchShopList.Text;
+            mainController.SearchData(query, preferredShop);
         }
 
         private void ScanNewImage_Button_Click(object sender, EventArgs e)
@@ -92,7 +95,12 @@ namespace Priceredacted
 
         private void ComparePrices_button_Click(object sender, EventArgs e)
         {
-            mainController.ComparePrices(Main_richTextBox.Text);
+            mainController.ComparePrices();
+        }
+
+        private void Clear_button_Click(object sender, EventArgs e)
+        {
+            mainController.Clear();
         }
     }
 }

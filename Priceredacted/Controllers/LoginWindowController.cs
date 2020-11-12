@@ -1,6 +1,8 @@
+
 ﻿using Priceredacted.Exceptions;
-using Priceredacted.Logics;
 using Priceredacted.Search;
+﻿using Priceredacted.Logics;
+using Priceredacted.Properties;
 using System;
 using System.Collections.Generic;
 using System.Text;

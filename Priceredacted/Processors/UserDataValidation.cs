@@ -2,7 +2,7 @@
 using System.Linq;
 using Newtonsoft.Json;
 using System.Data;
-using Priceredacted.Search;
+using Priceredacted.Properties;
 using Priceredacted.UI;
 using System.Text.RegularExpressions;
 using System.ComponentModel.DataAnnotations;

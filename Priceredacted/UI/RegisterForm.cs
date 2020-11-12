@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Newtonsoft.Json;
-using Priceredacted.Search;
+using Priceredacted.Properties;
 
 namespace Priceredacted.UI
 {
