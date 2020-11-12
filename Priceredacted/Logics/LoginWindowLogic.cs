@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualBasic.CompilerServices;
 using Newtonsoft.Json;
+using Priceredacted.Exceptions;
 using Priceredacted.Interfaces;
 using Priceredacted.Processors;
 using Priceredacted.Search;
@@ -40,14 +41,17 @@ namespace Priceredacted.Logics
 
         public bool RegisterUser(string username, string email, string pass1, string pass2, UserData user)
         {
-            if (UserDataValidation.CheckPasswords(pass1, pass2) 
-                && UserDataValidation.EmailValidation(email) 
-                && UserDataValidation.UsernameAvailability(username, Tools.Utils.UserDataPath))
+            if (!UserDataValidation.CheckPasswords(pass1, pass2))
+                throw new PasswordValidationException();
+            else if (!UserDataValidation.UsernameAvailability(username, Tools.Utils.UserDataPath))
+                throw new UsernameValidationException();
+            else if (!UserDataValidation.EmailValidation(email))
+                throw new EmailValidationException();
+            else
             {
                 SaveUser(user);
                 return true;
             }
-            return false;
         }
 
         public void SaveUser(UserData user)

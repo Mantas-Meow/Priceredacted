@@ -40,6 +40,8 @@ namespace Priceredacted.UI
 
         private void ToRegisterPanel_button_Click(object sender, EventArgs e)
         {
+            Username_textbox.Clear();
+            Pasword_textbox.Clear();
             LogIn_panel.Hide();
             Register_panel.Show();
         }
@@ -60,6 +62,15 @@ namespace Priceredacted.UI
                     RegEmail_textbox.Text.Trim(),
                     RegPassword_textbox.Text.Trim(),
                     RegRPassword_textbox.Text.Trim());
+            if(loginController.i == 1)
+            {
+                RegUsername_textbox.Clear();
+                RegEmail_textbox.Clear();
+                RegPassword_textbox.Clear();
+                RegRPassword_textbox.Clear();
+                LogIn_panel.Show();
+                Register_panel.Hide();
+            }
 
         }
 
