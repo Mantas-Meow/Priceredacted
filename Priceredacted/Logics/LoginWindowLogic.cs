@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using Priceredacted.Interfaces;
 using Priceredacted.Processors;
 using Priceredacted.Properties;
+using Priceredacted.Tools;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -11,7 +12,7 @@ using System.Windows.Forms;
 
 namespace Priceredacted.Logics
 {
-    class LoginWindowLogic : ILoginWindowLogic
+    class LoginWindowLogic : ILoginWindowLogic ///need to change add user function
     {
         public string AddUser(UserData user)
         {
@@ -30,7 +31,8 @@ namespace Priceredacted.Logics
 
         public List<UserData> LoadUsers(string path)
         {
-            return JsonConvert.DeserializeObject<List<UserData>>(System.IO.File.ReadAllText(path));
+            return (List<UserData>) DataProcessor.LoadJson<UserData>(Tools.Utils.UserDataPath);
+            //return JsonConvert.DeserializeObject<List<UserData>>(System.IO.File.ReadAllText(path));
         }
 
         public bool LogInUser(string user, string pass)

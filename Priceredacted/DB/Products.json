@@ -149,41 +149,5 @@
       "PriceUnit": "Eur/kg",
       "Price": "1.2"
     }
-  ],
-  [
-    {
-      "Shop": 2,
-      "Group": "Dairy",
-      "Name": "test",
-      "PriceUnit": "Eur/kg",
-      "Price": "11"
-    }
-  ],
-  [
-    {
-      "Shop": 2,
-      "Group": "",
-      "Name": "asdsasd",
-      "PriceUnit": "",
-      "Price": "we"
-    }
-  ],
-  [
-    {
-      "Shop": 2,
-      "Group": "Dairy",
-      "Name": "lll",
-      "PriceUnit": "Eur/kg",
-      "Price": "15"
-    }
-  ],
-  [
-    {
-      "Shop": 2,
-      "Group": "Dairy",
-      "Name": "darzove",
-      "PriceUnit": "",
-      "Price": "555"
-    }
   ]
 ]
