@@ -41,26 +41,16 @@ namespace Priceredacted.Processors
         public void AddData(Shops shop, string group,
                 string name, string priceUnit, string price)
         {
-            string json = null;
             try
             {
-                json = mainLogic.AddProduct(mainLogic.CreateProduct(shop, group, name, priceUnit, price));
+                mainLogic.AddProduct(mainLogic.CreateProduct(shop, group, name, priceUnit, price));
             }
             catch (Exception e)
             {
                 MessageBox.Show("Product was not added!");
                 return;
             }
-
-            try
-            {
-                mainLogic.SaveData(json);
-                MessageBox.Show("Data added");
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Product was not saved!");
-            }
+            MessageBox.Show("Data added");
         }
         public void SearchData(string query, string preferredShop)
         {
