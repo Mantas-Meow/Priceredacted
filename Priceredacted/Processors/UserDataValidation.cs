@@ -5,6 +5,7 @@ using System.Data;
 using Priceredacted.Properties;
 using Priceredacted.UI;
 using System.Text.RegularExpressions;
+using System.ComponentModel.DataAnnotations;
 
 namespace Priceredacted.Processors
 {
@@ -26,7 +27,11 @@ namespace Priceredacted.Processors
             Regex re = new Regex(strRegex);
             if (str1 == str2 && re.IsMatch(str1))
                 return true;
-            else return false;
+            else
+            {
+                return false;
+                throw new ValidationException("Please check your passwords");
+            }
         }
         public static bool Login(string str1, string str2, string path)
         {
@@ -44,7 +49,10 @@ namespace Priceredacted.Processors
             Regex re = new Regex(strRegex);
             if (re.IsMatch(str1))
                 return true;
-            else return false;
+            else
+            {
+                return false;
+            } 
         }
         public static bool UsernameAvailability(string str1, string path)
         {
@@ -56,12 +64,18 @@ namespace Priceredacted.Processors
                 foreach (UserData ud in Data)
                 {
                     if (ud.Username == str1)
+                    {
                         return false;
+                    }
+                        
                 }
                 return true;
             }
-            else return false;
-               
+            else
+            {
+                return false;
+            }
+
         }
     }
 }
