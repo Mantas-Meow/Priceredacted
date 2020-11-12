@@ -1,3 +1,6 @@
+
+﻿using Priceredacted.Exceptions;
+using Priceredacted.Search;
 ﻿using Priceredacted.Logics;
 using Priceredacted.Properties;
 using System;
@@ -9,6 +12,7 @@ namespace Priceredacted.Controllers
 {
     class LoginWindowController
     {
+        public int i = 0;
         private LoginWindowLogic loginLogic;
         public LoginWindowController()
         {
@@ -36,12 +40,23 @@ namespace Priceredacted.Controllers
                 if (loginLogic.RegisterUser(username, email, password1, password2, newUser))
                 {
                     MessageBox.Show("User registered!");
+                    i = 1;
                 }
-                else MessageBox.Show("Check passwords or email. Also username might be taken");
             }
-            catch (Exception e)
+            catch (PasswordValidationException)
             {
-                MessageBox.Show("Error while registering new user!");
+                MessageBox.Show("Passwords do not match. Please check and try again.");
+                i = 0;
+            }
+            catch(EmailValidationException)
+            {
+                MessageBox.Show("The entered email is not valid.");
+                i = 0;
+            }
+            catch(UsernameValidationException)
+            {
+                MessageBox.Show("Username is taken or not valid. Username must be atleast 3 characters long.");
+                i = 0;
             }
         }
         public void LoginUser(string username, string pass, Form logInForm)
