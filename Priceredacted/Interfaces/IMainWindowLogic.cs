@@ -15,7 +15,8 @@ namespace Priceredacted.Interfaces
         public IEnumerable<Product> SearchProducts(string query, string preferredShop);
         public Product CreateProduct(Shops shop, string group,
                 string name, string priceUnit, string price);
-        public string AddProduct(Product product);
-        public void SaveData(string json);
+        public void AddProduct(Product product);
+        public void SaveToProductsJson<T>(IEnumerable<T> objects);
+        public IEnumerable<T> LoadFromProductsJson<T>();
     }
 }

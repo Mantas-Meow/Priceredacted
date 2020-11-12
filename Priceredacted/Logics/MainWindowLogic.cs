@@ -3,7 +3,6 @@ using Priceredacted.Properties;
 using Priceredacted.Tesseract_Ocr;
 using System;
 using System.Collections.Generic;
-using static Priceredacted.Tools.Utils;
 
 
 namespace Priceredacted.Processors
@@ -12,12 +11,14 @@ namespace Priceredacted.Processors
     {
         public static string selectedFile;
 
-        public string AddProduct(Product product)
+        public void AddProduct(Product product)
         {
-            return SearchAndFind.AddData(path: Tools.Utils.ProductsPath, productToBeAdded: product);
+            List<List<Product>> productsList = (List<List<Product>>) DataProcessor.LoadJson<List<Product>>(Tools.Utils.ProductsPath);
+            List<List<Product>> productsAll = SearchAndFind.AddData(product, Tools.Utils.ProductsPath, productsList);
+            DataProcessor.SaveJson(productsAll, Tools.Utils.ProductsPath);
         }
 
-        public Product CreateProduct(Shops shop, string group,
+        public Product CreateProduct(Tools.Utils.Shops shop, string group,
                 string name, string priceUnit, string price)
         {
             Product pr = new Product()
@@ -41,9 +42,9 @@ namespace Priceredacted.Processors
             return ProductEditor.ComparePrices(Tools.Utils.ProductsPath);
         }
 
-        public void SaveData(string json)
+        public void SaveToProductsJson<T>(IEnumerable<T> objects)
         {
-            System.IO.File.WriteAllText(Tools.Utils.ProductsPath, json);
+            DataProcessor.SaveJson<T>(objects, Tools.Utils.ProductsPath);
         }
 
         public string ScanImage(string selectedFile)
@@ -53,9 +54,13 @@ namespace Priceredacted.Processors
 
         public IEnumerable<Product> SearchProducts(string query, string preferredShop)
         {
-            return SearchAndFind.SearchForProduct(query, Tools.Utils.ProductsPath, preferredShop);
+            IEnumerable<IEnumerable<Product>> products = DataProcessor.LoadJson <IEnumerable<Product>>(Tools.Utils.ProductsPath);
+            return SearchAndFind.SearchForProduct(query, preferredShop, products);
         }
-
+        public IEnumerable<T> LoadFromProductsJson<T>()
+        {
+            return DataProcessor.LoadJson<T>(Tools.Utils.ProductsPath);
+        }
         public void Clear()
         {
             ProductEditor.ClearProducts();
