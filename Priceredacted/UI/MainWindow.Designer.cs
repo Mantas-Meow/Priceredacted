@@ -53,13 +53,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.SearchResults = new System.Windows.Forms.DataGridView();
             this.Scan_panel = new System.Windows.Forms.Panel();
+            this.AddProduct_button = new System.Windows.Forms.Button();
+            this.Clear_button = new System.Windows.Forms.Button();
             this.ComparePrices_button = new System.Windows.Forms.Button();
             this.ScanText_button = new System.Windows.Forms.Button();
             this.ManualReceipInput_richTextBox = new System.Windows.Forms.RichTextBox();
             this.ScanNewImage_Button = new System.Windows.Forms.Button();
             this.Main_richTextBox = new System.Windows.Forms.RichTextBox();
             this.ScannedImage = new System.Windows.Forms.PictureBox();
-            this.Clear_button = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PriceRedactedImage)).BeginInit();
             this.Home_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -237,7 +238,7 @@
             this.AddData_button.Name = "AddData_button";
             this.AddData_button.Size = new System.Drawing.Size(102, 38);
             this.AddData_button.TabIndex = 9;
-            this.AddData_button.Text = "Add Data";
+            this.AddData_button.Text = "Add Product";
             this.AddData_button.UseVisualStyleBackColor = true;
             this.AddData_button.Click += new System.EventHandler(this.AddData_button_Click);
             // 
@@ -350,6 +351,7 @@
             // Scan_panel
             // 
             this.Scan_panel.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.Scan_panel.Controls.Add(this.AddProduct_button);
             this.Scan_panel.Controls.Add(this.Clear_button);
             this.Scan_panel.Controls.Add(this.ComparePrices_button);
             this.Scan_panel.Controls.Add(this.ScanText_button);
@@ -361,6 +363,26 @@
             this.Scan_panel.Name = "Scan_panel";
             this.Scan_panel.Size = new System.Drawing.Size(620, 457);
             this.Scan_panel.TabIndex = 4;
+            // 
+            // AddProduct_button
+            // 
+            this.AddProduct_button.Location = new System.Drawing.Point(131, 398);
+            this.AddProduct_button.Name = "AddProduct_button";
+            this.AddProduct_button.Size = new System.Drawing.Size(132, 23);
+            this.AddProduct_button.TabIndex = 3;
+            this.AddProduct_button.Text = "Add Product";
+            this.AddProduct_button.UseVisualStyleBackColor = true;
+            this.AddProduct_button.Click += new System.EventHandler(this.AddProduct_Button_Click);
+            // 
+            // Clear_button
+            // 
+            this.Clear_button.Location = new System.Drawing.Point(496, 427);
+            this.Clear_button.Name = "Clear_button";
+            this.Clear_button.Size = new System.Drawing.Size(106, 23);
+            this.Clear_button.TabIndex = 6;
+            this.Clear_button.Text = "Clear Products";
+            this.Clear_button.UseVisualStyleBackColor = true;
+            this.Clear_button.Click += new System.EventHandler(this.Clear_button_Click);
             // 
             // ComparePrices_button
             // 
@@ -419,16 +441,6 @@
             this.ScannedImage.TabStop = false;
             this.ScannedImage.Click += new System.EventHandler(this.ScannedImage_Click);
             // 
-            // Clear_button
-            // 
-            this.Clear_button.Location = new System.Drawing.Point(496, 427);
-            this.Clear_button.Name = "Clear_button";
-            this.Clear_button.Size = new System.Drawing.Size(106, 23);
-            this.Clear_button.TabIndex = 6;
-            this.Clear_button.Text = "Clear Products";
-            this.Clear_button.UseVisualStyleBackColor = true;
-            this.Clear_button.Click += new System.EventHandler(this.Clear_button_Click);
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -441,9 +453,9 @@
             this.Controls.Add(this.Exit_button);
             this.Controls.Add(this.SearchItems_button);
             this.Controls.Add(this.ScanImage_button);
-            this.Controls.Add(this.Scan_panel);
             this.Controls.Add(this.Search_panel);
             this.Controls.Add(this.Home_panel);
+            this.Controls.Add(this.Scan_panel);
             this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.Text = "PriceRedacted";
@@ -494,5 +506,6 @@
         private System.Windows.Forms.Button ComparePrices_button;
         private System.Windows.Forms.ComboBox SearchShopList;
         private System.Windows.Forms.Button Clear_button;
+        private System.Windows.Forms.Button AddProduct_button;
     }
 }

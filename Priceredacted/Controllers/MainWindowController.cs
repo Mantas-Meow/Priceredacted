@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Priceredacted.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -87,6 +88,11 @@ namespace Priceredacted.Processors
         {
             outputTextField.Text = "";
             mainLogic.Clear();
+        }
+        public void LoadAddProductWindow()
+        {
+            AddProductWindow AddWin = new AddProductWindow();
+            AddWin.Show();
         }
     }
 }
