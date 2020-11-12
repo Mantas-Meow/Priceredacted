@@ -74,7 +74,6 @@ namespace Priceredacted.Processors
                                        && pr.Shop.ToString() == preferredShop
                                        select pr;
                 }
-                
             }
             return filteredProducts;
         }
