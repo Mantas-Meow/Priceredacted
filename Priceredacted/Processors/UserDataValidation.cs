@@ -1,42 +1,20 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using Newtonsoft.Json;
-using System.Data;
 using Priceredacted.Properties;
-using Priceredacted.UI;
 using System.Text.RegularExpressions;
-using System.ComponentModel.DataAnnotations;
 
 namespace Priceredacted.Processors
 {
     class UserDataValidation
     {
-        public static string AddUData(UserData dataToBeAdded, string path)
-        {
-            List<UserData> Data = JsonConvert.DeserializeObject<List<UserData>>(System.IO.File.ReadAllText(path));
-            if (Data == null)
-            {
-                Data = new List<UserData>();
-            }
-            Data.Add(dataToBeAdded);
-            return JsonConvert.SerializeObject(Data.ToArray(), Formatting.Indented);
-        }
         public static bool CheckPasswords(string str1, string str2)
         {
             string strRegex = @"^[^\s]{4,15}$";
             Regex re = new Regex(strRegex);
-            if (str1 == str2 && re.IsMatch(str1))
-                return true;
-            else
-            {
-                return false;
-                throw new ValidationException("Please check your passwords");
-            }
+            return (str1 == str2 && re.IsMatch(str1));
         }
-        public static bool Login(string str1, string str2, string path)
+        public static bool Login(string str1, string str2, List<UserData> allUsers)
         {
-            List<UserData> Data = JsonConvert.DeserializeObject<List<UserData>>(System.IO.File.ReadAllText(path));
-            foreach(UserData ud in Data)
+            foreach(UserData ud in allUsers)
             {
                 if (ud.Username == str1 && ud.Password == str2)
                     return true;
@@ -47,35 +25,24 @@ namespace Priceredacted.Processors
         {
             string strRegex = @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$";
             Regex re = new Regex(strRegex);
-            if (re.IsMatch(str1))
-                return true;
-            else
-            {
-                return false;
-            } 
+            return re.IsMatch(str1);
         }
-        public static bool UsernameAvailability(string str1, string path)
+        public static bool UsernameAvailability(string str1, List<UserData> allUsers)
         {
-            List<UserData> Data = JsonConvert.DeserializeObject<List<UserData>>(System.IO.File.ReadAllText(path));
             string strRegex = @"^[^\s]{3,15}$";
             Regex re = new Regex(strRegex);
             if (re.IsMatch(str1))
             {
-                foreach (UserData ud in Data)
+                foreach (UserData ud in allUsers)
                 {
                     if (ud.Username == str1)
                     {
                         return false;
                     }
-                        
                 }
                 return true;
             }
-            else
-            {
-                return false;
-            }
-
+            return false;
         }
     }
 }

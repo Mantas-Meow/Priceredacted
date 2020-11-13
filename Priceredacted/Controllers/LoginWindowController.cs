@@ -1,11 +1,7 @@
-
 ﻿using Priceredacted.Exceptions;
-using Priceredacted.Search;
-﻿using Priceredacted.Logics;
 using Priceredacted.Properties;
+﻿using Priceredacted.Logics;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Priceredacted.Controllers

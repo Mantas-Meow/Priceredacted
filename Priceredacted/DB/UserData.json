@@ -43,5 +43,10 @@
     "Username": "Oh",
     "Email": "No@gmail.com",
     "Password": ""
+  },
+  {
+    "Username": "admin1",
+    "Email": "test@gmail.com",
+    "Password": "123456"
   }
 ]
