@@ -20,6 +20,7 @@ namespace Priceredacted
             mainController.searchPanel = Search_panel;
             mainController.dataField = SearchResults;
             mainController.outputTextField = Main_richTextBox;
+            ManualReceipInput_richTextBox.Text = " ";
         }
 
         private void MainWindow_Load(object sender, EventArgs e)

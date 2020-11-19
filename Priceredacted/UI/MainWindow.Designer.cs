@@ -453,9 +453,9 @@
             this.Controls.Add(this.Exit_button);
             this.Controls.Add(this.SearchItems_button);
             this.Controls.Add(this.ScanImage_button);
-            this.Controls.Add(this.Search_panel);
             this.Controls.Add(this.Home_panel);
             this.Controls.Add(this.Scan_panel);
+            this.Controls.Add(this.Search_panel);
             this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.Text = "PriceRedacted";

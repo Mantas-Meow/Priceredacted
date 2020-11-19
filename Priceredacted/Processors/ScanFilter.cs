@@ -19,12 +19,11 @@ namespace Priceredacted.Processors
             tempStr = null;            
             tempStr = input.prepareText();
             SelectShopAndFilter(path, SProducts);
-            //return resultStr;
         } 
         
         private static void SelectShopAndFilter(string path, List<ScannedProduct> SProducts)
         {
-            string[] Shops = new string[] { "MAXIMA", "LIDL", "IKI", "RIMI", "NORFA"};
+            string[] Shops = new string[] { "MAXIMA", "LIDL", "PALINK", "RIMI", "NORFA"};
             string ShopResult = Shops.FirstOrDefault<string>(s => tempStr[0].ToUpper().Contains(s));
             switch (ShopResult)
             {
@@ -38,7 +37,7 @@ namespace Priceredacted.Processors
                     ScanLidl(path, SProducts);
                     break;
 
-                case "IKI":
+                case "PALINK":
                     tempStr[0] = "xxx";
                     Scan(path, SProducts);
                     break;
@@ -54,7 +53,8 @@ namespace Priceredacted.Processors
                     break;
 
                 default:
-                    //resultStr = "Could not read the shop!";           //Repair this
+                    ScannedProduct Spr = new ScannedProduct(){Name = "Could not detect Shop!"};
+                    SProducts.Add(Spr);
                     break;
             }
         }
@@ -65,12 +65,10 @@ namespace Priceredacted.Processors
             {
                 if (tempStr[i].Length > 18)
                 {
-                    tempStr[i] = tempStr[i].Remove(tempStr[i].Length - 6, 6);
+                    tempStr[i] = tempStr[i].Remove(tempStr[i].Length - 8, 8);
                 }
             }
-            tempStr.PickProducts((Shops)1,path,SProducts); //  TO BE WORKED ON
-            
-
+            tempStr.PickProducts((Shops)1,path,SProducts);          
         }
 
         private static void ScanLidl(string path, List<ScannedProduct> SProducts)
@@ -85,21 +83,6 @@ namespace Priceredacted.Processors
                 }
             }
             tempStr.PickProducts((Shops)2, path, SProducts);
-        }
-
-        private static void ScanNorfa()
-        {
-
-        }
-
-        private static void ScanRimi()
-        {
-
-        }
-
-        private static void ScanIki()
-        {
-
         }
     }
 }
