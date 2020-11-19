@@ -105,7 +105,7 @@ namespace Priceredacted
 
         private void AddProduct_Button_Click(object sender, EventArgs e)
         {
-            mainController.LoadAddProductWindow(); //Main_richTextBox perduoti pabandyt
+            mainController.LoadAddProductWindow(Main_richTextBox); //Main_richTextBox perduoti pabandyt
         }
     }
 }

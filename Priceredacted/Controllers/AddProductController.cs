@@ -13,11 +13,13 @@ namespace Priceredacted.Controllers
     {
         private AddProductLogic AddLogic;
         private MainWindowController Main;
+        RichTextBox output;
 
-        public AddProductController()
+        public AddProductController(RichTextBox outputTextField)
         {
             Main = new MainWindowController();
             AddLogic = new AddProductLogic();
+            output = outputTextField;
         }
 
         public void AddProducts(Shops shop, string group,
@@ -25,7 +27,7 @@ namespace Priceredacted.Controllers
         {
             Main.AddData(shop, group, name, priceUnit, price);
             AddLogic.AddProduct(shop, name, priceUnit, price);
-            //MainWindow.Main_richTextBox = ComparePrices();
+            output.Text = AddLogic.ComparePrices();
         }
 
     }

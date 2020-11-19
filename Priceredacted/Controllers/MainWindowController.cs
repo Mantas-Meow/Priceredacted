@@ -96,9 +96,9 @@ namespace Priceredacted.Processors
             outputTextField.Text = "";
             mainLogic.Clear();
         }
-        public void LoadAddProductWindow()
+        public void LoadAddProductWindow(RichTextBox Main_richTextBox)
         {
-            AddProductWindow AddWin = new AddProductWindow();
+            AddProductWindow AddWin = new AddProductWindow(outputTextField);
             AddWin.Show();
         }
     }
