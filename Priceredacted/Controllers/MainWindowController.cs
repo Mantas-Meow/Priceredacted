@@ -16,11 +16,11 @@ namespace Priceredacted.Processors
         public DataGridView dataField;
         public RichTextBox outputTextField;
 
-        private MainWindowLogic mainLogic;
+        private MainWindowLogic mainLogic = new MainWindowLogic();
 
         public MainWindowController()
         {
-            mainLogic = new MainWindowLogic();
+
         }
 
         public void ActivateScanPanel()
@@ -82,7 +82,14 @@ namespace Priceredacted.Processors
 
         public void ComparePrices()
         {
-            outputTextField.Text = mainLogic.ComparePrices();
+            if (outputTextField == null)
+            {
+                MessageBox.Show(mainLogic.ComparePrices().ToString());
+            }
+            else
+            {
+                outputTextField.Text = mainLogic.ComparePrices();
+            }
         }
         public void Clear()
         {

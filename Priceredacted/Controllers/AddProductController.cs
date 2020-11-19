@@ -25,6 +25,7 @@ namespace Priceredacted.Controllers
         {
             Main.AddData(shop, group, name, priceUnit, price);
             AddLogic.AddProduct(shop, name, priceUnit, price);
+            //MainWindow.Main_richTextBox = ComparePrices();
         }
 
     }

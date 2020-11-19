@@ -13,6 +13,13 @@
       "Name": "Antibakterinis skystis",
       "PriceUnit": "Eur/unit",
       "Price": "4.61"
+    },
+    {
+      "Shop": 2,
+      "Group": "Meat",
+      "Name": "ADD",
+      "PriceUnit": "Eur/kg",
+      "Price": "3"
     }
   ],
   [
@@ -50,6 +57,27 @@
       "Name": "Makaronai LAHULISANA spiralės",
       "PriceUnit": "Eur/unit",
       "Price": "1.59"
+    },
+    {
+      "Shop": 2,
+      "Group": "Dairy",
+      "Name": "Milk",
+      "PriceUnit": "Eur/unit",
+      "Price": "0.89"
+    },
+    {
+      "Shop": 2,
+      "Group": "Dairy",
+      "Name": "Milk",
+      "PriceUnit": "Eur/unit",
+      "Price": "0.89"
+    },
+    {
+      "Shop": 2,
+      "Group": "Dairy",
+      "Name": "Milk",
+      "PriceUnit": "Eur/unit",
+      "Price": "0.89"
     }
   ],
   [
@@ -80,6 +108,20 @@
       "Name": "Bananai",
       "PriceUnit": "Eur/kg",
       "Price": "0.43"
+    },
+    {
+      "Shop": 1,
+      "Group": "Meat",
+      "Name": "Bad",
+      "PriceUnit": "Eur/kg",
+      "Price": "5"
+    },
+    {
+      "Shop": 1,
+      "Group": "Baked goods",
+      "Name": "Bulka",
+      "PriceUnit": "Eur/unit",
+      "Price": "0.87"
     }
   ],
   [
@@ -148,6 +190,33 @@
       "Name": "Kiwi",
       "PriceUnit": "Eur/kg",
       "Price": "1.2"
+    }
+  ],
+  [
+    {
+      "Shop": 2,
+      "Group": "Meat",
+      "Name": "Gooid",
+      "PriceUnit": "Eur/kg",
+      "Price": "3"
+    }
+  ],
+  [
+    {
+      "Shop": 1,
+      "Group": "Baked goods",
+      "Name": "a",
+      "PriceUnit": "Eur/kg",
+      "Price": "5"
+    }
+  ],
+  [
+    {
+      "Shop": 1,
+      "Group": "Sweets",
+      "Name": "s",
+      "PriceUnit": "Eur/unit",
+      "Price": "5"
     }
   ]
 ]

@@ -12,11 +12,12 @@ namespace Priceredacted.UI
 {
     public partial class AddProductWindow : Form
     {
-        AddProductController AddController;
+        AddProductController AddController = new AddProductController();
 
         public AddProductWindow()
         {
             InitializeComponent();
+            AddController = new AddProductController();
         }
         private void button1_Click(object sender, EventArgs e)
         {

@@ -21,5 +21,6 @@ namespace Priceredacted.Logics
             };
             ProductEditor.AddProducts(pr);
         }
+
     }
 }
