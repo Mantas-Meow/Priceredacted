@@ -3,6 +3,7 @@ using Priceredacted.Interfaces;
 using Priceredacted.Processors;
 using Priceredacted.Properties;
 using System.Collections.Generic;
+using System;
 
 namespace Priceredacted.Logics
 {
@@ -19,13 +20,14 @@ namespace Priceredacted.Logics
             DataProcessor.SaveJson(allUsers, Tools.Utils.UserDataPath);
         }
 
-        public UserData CreateNewUser(string username, string email, string password)
+        public UserData CreateNewUser(string username, string email, string password, Guid Id)
         {
             return new UserData()
             {
                 Username = username,
                 Email = email,
-                Password = password
+                Password = password,
+                Id = Guid.NewGuid()
             };
         }
 
@@ -39,7 +41,7 @@ namespace Priceredacted.Logics
             return UserDataValidation.Login(user, pass, LoadUsers());
         }
 
-        public bool RegisterUser(string username, string email, string pass1, string pass2, UserData user)
+        public bool RegisterUser(string username, string email, string pass1, string pass2, UserData user, Guid Id)
         {
             if (!UserDataValidation.CheckPasswords(pass1, pass2))
                 throw new PasswordValidationException();

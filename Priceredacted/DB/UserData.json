@@ -2,51 +2,67 @@
   {
     "Username": "User1",
     "Email": "user1@user1.com",
-    "Password": "pass"
+    "Password": "pass",
+    "Id": "00000000-0000-0000-0000-000000000000"
   },
   {
     "Username": "User2",
     "Email": "User2@user2.com",
-    "Password": "pass123"
+    "Password": "pass123",
+    "Id": "00000000-0000-0000-0000-000000000000"
   },
   {
     "Username": "admin",
     "Email": "admin@admin.com",
-    "Password": "admin123"
+    "Password": "admin123",
+    "Id": "00000000-0000-0000-0000-000000000000"
   },
   {
     "Username": "user1234",
     "Email": "user@user.com",
-    "Password": "pass"
+    "Password": "pass",
+    "Id": "00000000-0000-0000-0000-000000000000"
   },
   {
     "Username": "benas",
     "Email": "benas@benas.com",
-    "Password": "admin"
+    "Password": "admin",
+    "Id": "00000000-0000-0000-0000-000000000000"
   },
   {
     "Username": "yeet",
     "Email": "yeet@yeet.ru",
-    "Password": "yeet"
+    "Password": "yeet",
+    "Id": "00000000-0000-0000-0000-000000000000"
   },
   {
     "Username": "admin",
     "Email": "admin@admin.com",
-    "Password": "admin"
+    "Password": "admin",
+    "Id": "00000000-0000-0000-0000-000000000000"
   },
   {
     "Username": "Oh",
     "Email": "No@gmail.com",
-    "Password": "a"
+    "Password": "a",
+    "Id": "00000000-0000-0000-0000-000000000000"
   },
   {
     "Username": "Oh",
     "Email": "No@gmail.com",
-    "Password": ""
+    "Password": "",
+    "Id": "00000000-0000-0000-0000-000000000000"
   },
   {
     "Username": "admin1",
     "Email": "test@gmail.com",
-    "Password": "123456"
+    "Password": "123456",
+    "Id": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "Username": "Jonas123",
+    "Email": "Jonas123@gmail.com",
+    "Password": "Jonas123",
+    "Id": "ce91fb04-d8ff-47f2-ae82-2247aede644d"
   }
 ]

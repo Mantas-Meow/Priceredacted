@@ -19,12 +19,12 @@ namespace Priceredacted.Controllers
             MainWindow main = new MainWindow();
             main.Show();
         }
-        public void RegisterUser(string username, string email, string password1, string password2)
+        public void RegisterUser(string username, string email, string password1, string password2, Guid Id)
         {
             UserData newUser;
             try
             {
-                newUser = loginLogic.CreateNewUser(username, email, password1);
+                newUser = loginLogic.CreateNewUser(username, email, password1, Id);
             }
             catch (Exception e)
             {
@@ -33,7 +33,7 @@ namespace Priceredacted.Controllers
             }
             try
             {
-                if (loginLogic.RegisterUser(username, email, password1, password2, newUser))
+                if (loginLogic.RegisterUser(username, email, password1, password2, newUser, Id))
                 {
                     MessageBox.Show("User registered!");
                     i = 1;

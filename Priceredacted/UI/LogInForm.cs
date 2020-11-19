@@ -61,7 +61,8 @@ namespace Priceredacted.UI
             loginController.RegisterUser(RegUsername_textbox.Text.Trim(),
                     RegEmail_textbox.Text.Trim(),
                     RegPassword_textbox.Text.Trim(),
-                    RegRPassword_textbox.Text.Trim());
+                    RegRPassword_textbox.Text.Trim(),
+                    Guid.NewGuid());
             if(loginController.i == 1)
             {
                 RegUsername_textbox.Clear();
