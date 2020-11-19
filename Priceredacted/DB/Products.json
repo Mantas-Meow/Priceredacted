@@ -20,6 +20,20 @@
       "Name": "ADD",
       "PriceUnit": "Eur/kg",
       "Price": "3"
+    },
+    {
+      "Shop": 5,
+      "Group": "Vegetable",
+      "Name": "Agurkai",
+      "PriceUnit": "Eur/kg",
+      "Price": "0.59"
+    },
+    {
+      "Shop": 5,
+      "Group": "Vegetable",
+      "Name": "Agurkai",
+      "PriceUnit": "Eur/kg",
+      "Price": "0.49"
     }
   ],
   [

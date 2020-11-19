@@ -18,6 +18,8 @@ namespace Priceredacted.UI
         {
             InitializeComponent();
             AddController = new AddProductController(outputTextField);
+            AddController.product = ProductName;
+            AddController.price = Price; 
         }
         private void button1_Click(object sender, EventArgs e)
         {

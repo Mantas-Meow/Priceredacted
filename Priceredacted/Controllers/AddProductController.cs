@@ -13,7 +13,9 @@ namespace Priceredacted.Controllers
     {
         private AddProductLogic AddLogic;
         private MainWindowController Main;
-        RichTextBox output;
+        public RichTextBox output;
+        public TextBox product;
+        public TextBox price;
 
         public AddProductController(RichTextBox outputTextField)
         {
@@ -28,6 +30,8 @@ namespace Priceredacted.Controllers
             Main.AddData(shop, group, name, priceUnit, price);
             AddLogic.AddProduct(shop, name, priceUnit, price);
             output.Text = AddLogic.ComparePrices();
+            product.Text = "";
+            this.price.Text = "";
         }
 
     }
