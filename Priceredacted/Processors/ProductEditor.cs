@@ -24,6 +24,11 @@ namespace Priceredacted.Processors
             return resultStr;
         }
 
+        public static void AddProducts(ScannedProduct pr)
+        {
+            ScannedProducts.Add(pr);
+        }
+
         public static void ClearProducts()
         {
             ScannedProducts.Clear();

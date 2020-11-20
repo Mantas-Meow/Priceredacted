@@ -35,7 +35,6 @@ namespace Priceredacted.ExtensionMethods
 
         public static void PickProducts(this string[] tempStr, Shops shop, string path, List<ScannedProduct> SProducts)
         {
-            //resultStr += shop + '\n';
             foreach (string line in tempStr)
             {
                 string query = line.ToLower().Trim();
@@ -52,12 +51,9 @@ namespace Priceredacted.ExtensionMethods
                             Price = Convert.ToDouble(pr.Price)
                         };
                         SProducts.Add(Spr);
-                        //resultStr += pr.Name + " :" + pr.Price + " €\n";
-                    }
-                        
+                    }                       
                 }
             }
-            //return resultStr;
         }
     }
 }

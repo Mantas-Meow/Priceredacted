@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Priceredacted.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -15,11 +16,11 @@ namespace Priceredacted.Processors
         public DataGridView dataField;
         public RichTextBox outputTextField;
 
-        private MainWindowLogic mainLogic;
+        private MainWindowLogic mainLogic = new MainWindowLogic();
 
         public MainWindowController()
         {
-            mainLogic = new MainWindowLogic();
+
         }
 
         public void ActivateScanPanel()
@@ -81,12 +82,24 @@ namespace Priceredacted.Processors
 
         public void ComparePrices()
         {
-            outputTextField.Text = mainLogic.ComparePrices();
+            if (outputTextField == null)
+            {
+                MessageBox.Show(mainLogic.ComparePrices().ToString());
+            }
+            else
+            {
+                outputTextField.Text = mainLogic.ComparePrices();
+            }
         }
         public void Clear()
         {
             outputTextField.Text = "";
             mainLogic.Clear();
+        }
+        public void LoadAddProductWindow(RichTextBox Main_richTextBox)
+        {
+            AddProductWindow AddWin = new AddProductWindow(outputTextField);
+            AddWin.Show();
         }
     }
 }

@@ -20,6 +20,7 @@ namespace Priceredacted
             mainController.searchPanel = Search_panel;
             mainController.dataField = SearchResults;
             mainController.outputTextField = Main_richTextBox;
+            ManualReceipInput_richTextBox.Text = " ";
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
@@ -55,19 +56,6 @@ namespace Priceredacted
             mainController.SearchData(query, preferredShop);
         }
 
-        private void ScanNewImage_Button_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog open = new OpenFileDialog();
-            string selectedFile;
-            open.Filter = "Image Files(*.jpeg;*.bmp;*.png;*.jpg)|*.jpeg;*.bmp;*.png;*.jpg";
-            if (open.ShowDialog() == DialogResult.OK)
-            {
-                selectedFile = open.FileName;
-                ScannedImage.Image = new Bitmap(open.FileName);
-                mainController.ScanImage(selectedFile);
-            }
-        }
-
         private void Home_button_Click(object sender, EventArgs e)
         {
             mainController.ActivateHomePanel();
@@ -88,6 +76,19 @@ namespace Priceredacted
 
         }
 
+        private void ScanNewImage_Button_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog open = new OpenFileDialog();
+            string selectedFile;
+            open.Filter = "Image Files(*.jpeg;*.bmp;*.png;*.jpg)|*.jpeg;*.bmp;*.png;*.jpg";
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+                selectedFile = open.FileName;
+                ScannedImage.Image = new Bitmap(open.FileName);
+                mainController.ScanImage(selectedFile);
+            }
+        }
+
         private void ScanText_button_Click(object sender, EventArgs e)
         {
             mainController.ScanText(ManualReceipInput_richTextBox.Text);
@@ -101,6 +102,11 @@ namespace Priceredacted
         private void Clear_button_Click(object sender, EventArgs e)
         {
             mainController.Clear();
+        }
+
+        private void AddProduct_Button_Click(object sender, EventArgs e)
+        {
+            mainController.LoadAddProductWindow(Main_richTextBox); //Main_richTextBox perduoti pabandyt
         }
     }
 }
