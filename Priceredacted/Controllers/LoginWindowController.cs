@@ -14,9 +14,9 @@ namespace Priceredacted.Controllers
         {
             loginLogic = new LoginWindowLogic();
         }
-        public void LoadMainWindow()
+        public void LoadMainWindow(UserData user)
         {
-            MainWindow main = new MainWindow();
+            MainWindow main = new MainWindow(user);
             main.Show();
         }
         public void RegisterUser(string username, string email, string password1, string password2, Guid Id)
@@ -57,14 +57,16 @@ namespace Priceredacted.Controllers
         }
         public void LoginUser(string username, string pass, Form logInForm)
         {
-            if (!loginLogic.LogInUser(username, pass))
+            UserData user = loginLogic.LogInUser(username, pass);
+            if (user == null)
             {
                 MessageBox.Show("Wrong username or passowrd!");
             }
             else
             {
+                user.Password = null;
                 logInForm.Hide();
-                LoadMainWindow();
+                LoadMainWindow(user);
             }
         }
     }

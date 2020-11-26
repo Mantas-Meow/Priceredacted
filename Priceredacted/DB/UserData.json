@@ -3,66 +3,72 @@
     "Username": "User1",
     "Email": "user1@user1.com",
     "Password": "pass",
-    "Id": "00000000-0000-0000-0000-000000000000"
+    "Id": "97dd0eeb-1c07-456c-9138-534690f97d8e"
   },
   {
     "Username": "User2",
     "Email": "User2@user2.com",
     "Password": "pass123",
-    "Id": "00000000-0000-0000-0000-000000000000"
+    "Id": "ed53c4d0-8a56-498a-8b64-d7e2627cb760"
   },
   {
     "Username": "admin",
     "Email": "admin@admin.com",
     "Password": "admin123",
-    "Id": "00000000-0000-0000-0000-000000000000"
+    "Id": "5e8365b7-1319-4d73-aa17-7cc3ec0a38e1"
   },
   {
     "Username": "user1234",
     "Email": "user@user.com",
     "Password": "pass",
-    "Id": "00000000-0000-0000-0000-000000000000"
+    "Id": "bf3a2cee-5299-4b23-b2ca-0e425da3a562"
   },
   {
     "Username": "benas",
     "Email": "benas@benas.com",
     "Password": "admin",
-    "Id": "00000000-0000-0000-0000-000000000000"
+    "Id": "6dd1a946-ae0f-40a5-90cd-4708f811ba10"
   },
   {
     "Username": "yeet",
     "Email": "yeet@yeet.ru",
     "Password": "yeet",
-    "Id": "00000000-0000-0000-0000-000000000000"
+    "Id": "000c7c79-23b1-43ea-bb35-6b5cc1e6b3b8"
   },
   {
     "Username": "admin",
     "Email": "admin@admin.com",
     "Password": "admin",
-    "Id": "00000000-0000-0000-0000-000000000000"
+    "Id": "0730f391-a72b-4917-92ab-ece5e88a96e1"
   },
   {
     "Username": "Oh",
     "Email": "No@gmail.com",
     "Password": "a",
-    "Id": "00000000-0000-0000-0000-000000000000"
+    "Id": "8241a44a-6d1e-4aac-a06f-8f99218b85dc"
   },
   {
     "Username": "Oh",
     "Email": "No@gmail.com",
     "Password": "",
-    "Id": "00000000-0000-0000-0000-000000000000"
+    "Id": "6d1bd715-37e7-4890-b937-233476ec099f"
   },
   {
     "Username": "admin1",
     "Email": "test@gmail.com",
     "Password": "123456",
-    "Id": "00000000-0000-0000-0000-000000000000"
+    "Id": "ece95d6b-e25f-4bec-8899-d2d89cb5fabf"
   },
   {
     "Username": "Jonas123",
     "Email": "Jonas123@gmail.com",
     "Password": "Jonas123",
-    "Id": "ce91fb04-d8ff-47f2-ae82-2247aede644d"
+    "Id": "abba3b86-78d1-4254-9de6-97949192141e"
+  },
+  {
+    "Username": "imNewUser",
+    "Email": "no@gmail.com",
+    "Password": "123123",
+    "Id": "7e0689db-8a1f-4768-8dcd-20b16a68a664"
   }
 ]
