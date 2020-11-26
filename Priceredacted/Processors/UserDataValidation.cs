@@ -12,14 +12,14 @@ namespace Priceredacted.Processors
             Regex re = new Regex(strRegex);
             return (str1 == str2 && re.IsMatch(str1));
         }
-        public static bool Login(string str1, string str2, List<UserData> allUsers)
+        public static UserData Login(string str1, string str2, List<UserData> allUsers)
         {
-            foreach(UserData ud in allUsers)
+            foreach (UserData ud in allUsers)
             {
                 if (ud.Username == str1 && ud.Password == str2)
-                    return true;
+                    return ud;
             }
-            return false;
+            return null;
         }
         public static bool EmailValidation(string str1)
         {
@@ -44,5 +44,6 @@ namespace Priceredacted.Processors
             }
             return false;
         }
+
     }
 }

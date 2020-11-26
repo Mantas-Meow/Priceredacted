@@ -36,7 +36,7 @@ namespace Priceredacted.Logics
             return (List<UserData>) DataProcessor.LoadJson<UserData>(Tools.Utils.UserDataPath);
         }
 
-        public bool LogInUser(string user, string pass)
+        public UserData LogInUser(string user, string pass)
         {
             return UserDataValidation.Login(user, pass, LoadUsers());
         }

@@ -3,13 +3,14 @@ using Priceredacted.Properties;
 using Priceredacted.Tesseract_Ocr;
 using System;
 using System.Collections.Generic;
-
+using System.Threading.Tasks;
 
 namespace Priceredacted.Processors
 {
     class MainWindowLogic : IMainWindowLogic
     {
         public static string selectedFile;
+        public UserData currentUser;
 
         public void AddProduct(Product product)
         {
@@ -32,14 +33,14 @@ namespace Priceredacted.Processors
             return pr;
         }
 
-        public string FilterText(string input)
+        public Task<string> FilterText(string input)
         {
-            return ProductEditor.FilterScanned(input, Tools.Utils.ProductsPath);
+            return Task.Run(() => ProductEditor.FilterScanned(input, Tools.Utils.ProductsPath));
         }
 
-        public string ComparePrices()
+        public Task<string> ComparePrices()
         {
-            return ProductEditor.ComparePrices(Tools.Utils.ProductsPath);
+            return Task.Run(() => ProductEditor.ComparePrices(Tools.Utils.ProductsPath));
         }
 
         public void SaveToProductsJson<T>(IEnumerable<T> objects)
@@ -47,9 +48,9 @@ namespace Priceredacted.Processors
             DataProcessor.SaveJson<T>(objects, Tools.Utils.ProductsPath);
         }
 
-        public string ScanImage(string selectedFile)
+        public Task<string> ScanImageAsync(string selectedFile)
         {
-            return ImageRecognition.GetTextFromImage(imagePath: selectedFile);
+            return Task.Run(() => ImageRecognition.GetTextFromImage(imagePath: selectedFile));
         }
 
         public IEnumerable<Product> SearchProducts(string query, string preferredShop)

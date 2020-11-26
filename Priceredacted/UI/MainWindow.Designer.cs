@@ -61,6 +61,7 @@
             this.ScanNewImage_Button = new System.Windows.Forms.Button();
             this.Main_richTextBox = new System.Windows.Forms.RichTextBox();
             this.ScannedImage = new System.Windows.Forms.PictureBox();
+            this.currentUser = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PriceRedactedImage)).BeginInit();
             this.Home_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -93,7 +94,7 @@
             // 
             // Exit_button
             // 
-            this.Exit_button.Location = new System.Drawing.Point(57, 396);
+            this.Exit_button.Location = new System.Drawing.Point(57, 368);
             this.Exit_button.Name = "Exit_button";
             this.Exit_button.Size = new System.Drawing.Size(58, 23);
             this.Exit_button.TabIndex = 2;
@@ -441,6 +442,17 @@
             this.ScannedImage.TabStop = false;
             this.ScannedImage.Click += new System.EventHandler(this.ScannedImage_Click);
             // 
+            // currentUser
+            // 
+            this.currentUser.AllowDrop = true;
+            this.currentUser.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.currentUser.Location = new System.Drawing.Point(12, 406);
+            this.currentUser.Name = "currentUser";
+            this.currentUser.Size = new System.Drawing.Size(160, 42);
+            this.currentUser.TabIndex = 5;
+            this.currentUser.Text = "Current user: admin";
+            this.currentUser.Click += new System.EventHandler(this.currentUser_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -448,6 +460,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.SlateGray;
             this.ClientSize = new System.Drawing.Size(807, 457);
+            this.Controls.Add(this.currentUser);
             this.Controls.Add(this.Home_button);
             this.Controls.Add(this.PriceRedactedImage);
             this.Controls.Add(this.Exit_button);
@@ -507,5 +520,6 @@
         private System.Windows.Forms.ComboBox SearchShopList;
         private System.Windows.Forms.Button Clear_button;
         private System.Windows.Forms.Button AddProduct_button;
+        private System.Windows.Forms.Label currentUser;
     }
 }
