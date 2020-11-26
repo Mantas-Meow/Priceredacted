@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using Priceredacted.Processors;
+using Priceredacted.Properties;
 using static Priceredacted.Tools.Utils;
 
 
@@ -11,7 +12,7 @@ namespace Priceredacted
     {
         MainWindowController mainController;
 
-        public MainWindow()
+        public MainWindow(UserData user)
         {
             InitializeComponent();
             mainController = new MainWindowController();
@@ -20,6 +21,9 @@ namespace Priceredacted
             mainController.searchPanel = Search_panel;
             mainController.dataField = SearchResults;
             mainController.outputTextField = Main_richTextBox;
+            ManualReceipInput_richTextBox.Text = " ";
+            mainController.userText = currentUser;
+            mainController.SetCurrentUser(user);
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
@@ -55,19 +59,6 @@ namespace Priceredacted
             mainController.SearchData(query, preferredShop);
         }
 
-        private void ScanNewImage_Button_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog open = new OpenFileDialog();
-            string selectedFile;
-            open.Filter = "Image Files(*.jpeg;*.bmp;*.png;*.jpg)|*.jpeg;*.bmp;*.png;*.jpg";
-            if (open.ShowDialog() == DialogResult.OK)
-            {
-                selectedFile = open.FileName;
-                ScannedImage.Image = new Bitmap(open.FileName);
-                mainController.ScanImage(selectedFile);
-            }
-        }
-
         private void Home_button_Click(object sender, EventArgs e)
         {
             mainController.ActivateHomePanel();
@@ -88,19 +79,42 @@ namespace Priceredacted
 
         }
 
-        private void ScanText_button_Click(object sender, EventArgs e)
+        private async void ScanNewImage_Button_Click(object sender, EventArgs e)
         {
-            mainController.ScanText(ManualReceipInput_richTextBox.Text);
+            OpenFileDialog open = new OpenFileDialog();
+            string selectedFile;
+            open.Filter = "Image Files(*.jpeg;*.bmp;*.png;*.jpg)|*.jpeg;*.bmp;*.png;*.jpg";
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+                selectedFile = open.FileName;
+                ScannedImage.Image = new Bitmap(open.FileName);
+                await mainController.ScanImage(selectedFile);
+            }
         }
 
-        private void ComparePrices_button_Click(object sender, EventArgs e)
+        private async void ScanText_button_Click(object sender, EventArgs e)
         {
-            mainController.ComparePrices();
+            await mainController.ScanText(ManualReceipInput_richTextBox.Text);
+        }
+
+        private async void ComparePrices_button_Click(object sender, EventArgs e)
+        {
+            await mainController.ComparePrices();
         }
 
         private void Clear_button_Click(object sender, EventArgs e)
         {
             mainController.Clear();
+        }
+
+        private void AddProduct_Button_Click(object sender, EventArgs e)
+        {
+            mainController.LoadAddProductWindow(Main_richTextBox); //Main_richTextBox perduoti pabandyt
+        }
+
+        private void currentUser_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

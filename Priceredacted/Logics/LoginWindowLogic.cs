@@ -1,65 +1,59 @@
-﻿using Microsoft.VisualBasic.CompilerServices;
-using Newtonsoft.Json;
-using Priceredacted.Exceptions;
+﻿using Priceredacted.Exceptions;
 using Priceredacted.Interfaces;
 using Priceredacted.Processors;
 using Priceredacted.Properties;
-using Priceredacted.Tools;
-using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Text;
-using System.Windows.Forms;
+using System;
 
 namespace Priceredacted.Logics
 {
-    class LoginWindowLogic : ILoginWindowLogic ///need to change add user function
+    class LoginWindowLogic : ILoginWindowLogic
     {
-        public string AddUser(UserData user)
+        public void AddUser(UserData user)
         {
-            return UserDataValidation.AddUData(user, Tools.Utils.UserDataPath);
+            List<UserData> allUsers = LoadUsers();
+            if (allUsers == null)
+            {
+                allUsers = new List<UserData>();
+            }
+            allUsers.Add(user);
+            DataProcessor.SaveJson(allUsers, Tools.Utils.UserDataPath);
         }
 
-        public UserData CreateNewUser(string username, string email, string password)
+        public UserData CreateNewUser(string username, string email, string password, Guid Id)
         {
             return new UserData()
             {
                 Username = username,
                 Email = email,
-                Password = password
+                Password = password,
+                Id = Guid.NewGuid()
             };
         }
 
-        public List<UserData> LoadUsers(string path)
+        public List<UserData> LoadUsers()
         {
             return (List<UserData>) DataProcessor.LoadJson<UserData>(Tools.Utils.UserDataPath);
-            //return JsonConvert.DeserializeObject<List<UserData>>(System.IO.File.ReadAllText(path));
         }
 
-        public bool LogInUser(string user, string pass)
+        public UserData LogInUser(string user, string pass)
         {
-            return UserDataValidation.Login(user, pass, Tools.Utils.UserDataPath);
+            return UserDataValidation.Login(user, pass, LoadUsers());
         }
 
-        public bool RegisterUser(string username, string email, string pass1, string pass2, UserData user)
+        public bool RegisterUser(string username, string email, string pass1, string pass2, UserData user, Guid Id)
         {
             if (!UserDataValidation.CheckPasswords(pass1, pass2))
                 throw new PasswordValidationException();
-            else if (!UserDataValidation.UsernameAvailability(username, Tools.Utils.UserDataPath))
+            else if (!UserDataValidation.UsernameAvailability(username, LoadUsers()))
                 throw new UsernameValidationException();
             else if (!UserDataValidation.EmailValidation(email))
                 throw new EmailValidationException();
             else
             {
-                SaveUser(user);
+                AddUser(user);
                 return true;
             }
-        }
-
-        public void SaveUser(UserData user)
-        {
-            string json = AddUser(user);
-            System.IO.File.WriteAllText(Tools.Utils.UserDataPath, json);
         }
     }
 }

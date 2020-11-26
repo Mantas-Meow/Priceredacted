@@ -1,11 +1,7 @@
-
 ﻿using Priceredacted.Exceptions;
-using Priceredacted.Search;
-﻿using Priceredacted.Logics;
 using Priceredacted.Properties;
+﻿using Priceredacted.Logics;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Priceredacted.Controllers
@@ -18,17 +14,17 @@ namespace Priceredacted.Controllers
         {
             loginLogic = new LoginWindowLogic();
         }
-        public void LoadMainWindow()
+        public void LoadMainWindow(UserData user)
         {
-            MainWindow main = new MainWindow();
+            MainWindow main = new MainWindow(user);
             main.Show();
         }
-        public void RegisterUser(string username, string email, string password1, string password2)
+        public void RegisterUser(string username, string email, string password1, string password2, Guid Id)
         {
             UserData newUser;
             try
             {
-                newUser = loginLogic.CreateNewUser(username, email, password1);
+                newUser = loginLogic.CreateNewUser(username, email, password1, Id);
             }
             catch (Exception e)
             {
@@ -37,7 +33,7 @@ namespace Priceredacted.Controllers
             }
             try
             {
-                if (loginLogic.RegisterUser(username, email, password1, password2, newUser))
+                if (loginLogic.RegisterUser(username, email, password1, password2, newUser, Id))
                 {
                     MessageBox.Show("User registered!");
                     i = 1;
@@ -61,14 +57,16 @@ namespace Priceredacted.Controllers
         }
         public void LoginUser(string username, string pass, Form logInForm)
         {
-            if (!loginLogic.LogInUser(username, pass))
+            UserData user = loginLogic.LogInUser(username, pass);
+            if (user == null)
             {
                 MessageBox.Show("Wrong username or passowrd!");
             }
             else
             {
+                user.Password = null;
                 logInForm.Hide();
-                LoadMainWindow();
+                LoadMainWindow(user);
             }
         }
     }

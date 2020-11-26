@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Priceredacted.Properties;
+using Priceredacted.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Priceredacted.Tools.Utils;
 
@@ -14,12 +17,12 @@ namespace Priceredacted.Processors
         public Panel searchPanel;
         public DataGridView dataField;
         public RichTextBox outputTextField;
-
-        private MainWindowLogic mainLogic;
+        public Label userText;
+        private MainWindowLogic mainLogic = new MainWindowLogic();
 
         public MainWindowController()
         {
-            mainLogic = new MainWindowLogic();
+
         }
 
         public void ActivateScanPanel()
@@ -30,6 +33,14 @@ namespace Priceredacted.Processors
         {
             searchPanel.BringToFront();
         }
+
+        public void SetCurrentUser(UserData user)
+        {
+            mainLogic.currentUser = user;
+            if (mainLogic.currentUser == null) return;
+            userText.Text ="Current user: " + mainLogic.currentUser.Username + "\n" + mainLogic.currentUser.Id;
+        }
+
         public void ActivateHomePanel()
         {
             homePanel.BringToFront();
@@ -61,32 +72,44 @@ namespace Priceredacted.Processors
             }
             else MessageBox.Show("No relevant data found");
         }
-        public void ScanImage(string selectedFile)
+        public async Task ScanImage(string selectedFile)
         {
-            string scannedText = mainLogic.ScanImage(selectedFile);
+            string scannedText = await mainLogic.ScanImageAsync(selectedFile);
             if (scannedText == null)
             {
                 MessageBox.Show("Image is not valid!");
             }
             else
             {
-                outputTextField.Text = mainLogic.FilterText(scannedText);
+                outputTextField.Text = await mainLogic.FilterText(scannedText);
             }
         }
 
-        public void ScanText(string Text)
+        public async Task ScanText(string Text)
         {
-            outputTextField.Text = mainLogic.FilterText(Text);
+            outputTextField.Text = await mainLogic.FilterText(Text);
         }
 
-        public void ComparePrices()
+        public async Task ComparePrices()
         {
-            outputTextField.Text = mainLogic.ComparePrices();
+            if (outputTextField == null)
+            {
+                MessageBox.Show(mainLogic.ComparePrices().ToString());
+            }
+            else
+            {
+                outputTextField.Text = await mainLogic.ComparePrices();
+            }
         }
         public void Clear()
         {
             outputTextField.Text = "";
             mainLogic.Clear();
+        }
+        public void LoadAddProductWindow(RichTextBox Main_richTextBox)
+        {
+            AddProductWindow AddWin = new AddProductWindow(outputTextField);
+            AddWin.Show();
         }
     }
 }
