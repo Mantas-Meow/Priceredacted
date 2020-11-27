@@ -116,5 +116,10 @@ namespace Priceredacted
         {
 
         }
+
+        private void SaveReceipt_button_Click(object sender, EventArgs e)
+        {
+            mainController.SaveReceipt();
+        }
     }
 }
