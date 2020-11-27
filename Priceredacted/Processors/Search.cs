@@ -11,7 +11,7 @@ namespace Priceredacted.Processors
 {
     class SearchAndFind
     {
-        public static List<List<Product>> AddData(Product productToBeAdded, string path, List<List<Product>> products)
+        public static List<List<Product>> AddData(Product productToBeAdded, List<List<Product>> products)
         {
             //List<List<Product>> products = (List<List<Product>>) DataProcessor.LoadJson<List<Product>>(path);
             productToBeAdded.Price = Regex.Replace(productToBeAdded.Price, @",+", ".");
@@ -33,7 +33,7 @@ namespace Priceredacted.Processors
                 }
             }
             List<Product> newList = new List<Product>();
-            productToBeAdded = ProductValidation.AddProductID(productToBeAdded);
+            productToBeAdded = ProductValidation.AddProductID(newList, productToBeAdded);
             newList.Add(productToBeAdded);
             products.Add(newList);
             return products;

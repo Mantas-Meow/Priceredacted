@@ -12,7 +12,7 @@ namespace Priceredacted.Processors
 {
     class ScanFilter
     {
-        private static string[] tempStr;        //use struct, perkelti i struct
+        private static string[] tempStr;       
 
         public static void Filter (string input, string path, List<ScannedProduct> SProducts)
         {

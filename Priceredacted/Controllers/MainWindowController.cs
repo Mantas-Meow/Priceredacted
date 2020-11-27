@@ -3,6 +3,7 @@ using Priceredacted.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Priceredacted.Tools.Utils;
@@ -56,7 +57,7 @@ namespace Priceredacted.Processors
             {
                 mainLogic.AddProduct(mainLogic.CreateProduct(shop, group, name, priceUnit, price));
             }
-            catch (Exception e)
+            catch (SecurityException)
             {
                 MessageBox.Show("Product was not added!");
                 return;
@@ -110,6 +111,11 @@ namespace Priceredacted.Processors
         {
             AddProductWindow AddWin = new AddProductWindow(outputTextField);
             AddWin.Show();
+        }
+
+        public void SaveReceipt()
+        {
+            mainLogic.SaveReceipt();
         }
     }
 }

@@ -1,7 +1,7 @@
 [
   [
     {
-      "id": 100001,
+      "Id": 100001,
       "Shop": 1,
       "Category": "Baked goods",
       "Name": "Duona",
@@ -9,17 +9,41 @@
       "Price": "0.89"
     },
     {
-      "id": 100002,
+      "Id": 100002,
       "Shop": 1,
       "Category": "Dairy",
       "Name": "Pienas",
       "PriceUnit": "Eur/unit",
       "Price": "1.39"
+    },
+    {
+      "Id": 100003,
+      "Shop": 1,
+      "Category": "Baked goods",
+      "Name": "Spurga",
+      "PriceUnit": "Eur/unit",
+      "Price": "0.39"
+    },
+    {
+      "Id": 100004,
+      "Shop": 1,
+      "Category": "Fruit",
+      "Name": "Bananas",
+      "PriceUnit": "Eur/kg",
+      "Price": "0.69"
+    },
+    {
+      "Id": 100005,
+      "Shop": 1,
+      "Category": "Baked goods",
+      "Name": "Batonas",
+      "PriceUnit": "Eur/unit",
+      "Price": "0.59"
     }
   ],
   [
     {
-      "id": 300001,
+      "Id": 300001,
       "Shop": 3,
       "Category": "Dairy",
       "Name": "Pienas",
