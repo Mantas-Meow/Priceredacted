@@ -19,13 +19,13 @@ namespace Priceredacted.Processors
             DataProcessor.SaveJson(productsAll, Tools.Utils.ProductsPath);
         }
 
-        public Product CreateProduct(Tools.Utils.Shops shop, string group,
+        public Product CreateProduct(Tools.Utils.Shops shop, string category,
                 string name, string priceUnit, string price)
         {
             Product pr = new Product()
             {
                 Shop = shop,
-                Group = group,
+                Category = category,
                 Name = name,
                 PriceUnit = priceUnit,
                 Price = price
