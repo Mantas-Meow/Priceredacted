@@ -1,4 +1,5 @@
-﻿using Priceredacted.Properties;
+﻿using Priceredacted.Interfaces;
+using Priceredacted.Properties;
 using Priceredacted.UI;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using static Priceredacted.Tools.Utils;
 
 namespace Priceredacted.Processors
 {
-    class MainWindowController
+    class MainWindowController: IMainWindowController
     {
         public Panel homePanel;
         public Panel scanPanel;
@@ -106,10 +107,10 @@ namespace Priceredacted.Processors
             outputTextField.Text = "";
             mainLogic.Clear();
         }
-        public void LoadAddProductWindow(RichTextBox Main_richTextBox)
+        /*public void LoadAddProductWindow(RichTextBox Main_richTextBox)
         {
-            AddProductWindow AddWin = new AddProductWindow(outputTextField);
+            AddProductWindow AddWin = new AddProductWindow(outputTextField, this);
             AddWin.Show();
-        }
+        }*/
     }
 }

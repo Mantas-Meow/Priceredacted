@@ -1,4 +1,6 @@
 ﻿using Priceredacted.Controllers;
+using Priceredacted.Interfaces;
+using Priceredacted.Processors;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,10 +16,10 @@ namespace Priceredacted.UI
     {
         AddProductController AddController;
 
-        public AddProductWindow(RichTextBox outputTextField)
+        public AddProductWindow(RichTextBox outputTextField, object main)
         {
             InitializeComponent();
-            AddController = new AddProductController(outputTextField);
+            AddController = new AddProductController(outputTextField, main as IMainWindowController);
             AddController.product = ProductName;
             AddController.price = Price; 
         }

@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Priceredacted.Processors;
 using Priceredacted.Properties;
+using Priceredacted.UI;
 using static Priceredacted.Tools.Utils;
 
 
@@ -109,7 +110,9 @@ namespace Priceredacted
 
         private void AddProduct_Button_Click(object sender, EventArgs e)
         {
-            mainController.LoadAddProductWindow(Main_richTextBox); //Main_richTextBox perduoti pabandyt
+            AddProductWindow AddWin = new AddProductWindow(Main_richTextBox, mainController);
+            AddWin.Show();
+            //mainController.LoadAddProductWindow(Main_richTextBox); //Main_richTextBox perduoti pabandyt
         }
 
         private void currentUser_Click(object sender, EventArgs e)

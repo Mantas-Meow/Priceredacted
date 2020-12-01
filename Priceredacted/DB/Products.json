@@ -271,6 +271,13 @@
       "Name": "a",
       "PriceUnit": "Eur/kg",
       "Price": "5"
+    },
+    {
+      "Shop": 2,
+      "Group": "Dairy",
+      "Name": "asd",
+      "PriceUnit": "Eur/kg",
+      "Price": "12"
     }
   ],
   [
