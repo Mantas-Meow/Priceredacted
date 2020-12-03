@@ -1,292 +1,54 @@
 [
   [
     {
-      "Shop": 5,
-      "Group": "Fruit",
-      "Name": "Ananasas",
-      "PriceUnit": "Eur/unit",
-      "Price": "1.43"
-    },
-    {
-      "Shop": 2,
-      "Group": "Cleaning",
-      "Name": "Antibakterinis skystis",
-      "PriceUnit": "Eur/unit",
-      "Price": "4.61"
-    },
-    {
-      "Shop": 2,
-      "Group": "Meat",
-      "Name": "ADD",
-      "PriceUnit": "Eur/kg",
-      "Price": "3"
-    },
-    {
-      "Shop": 5,
-      "Group": "Vegetable",
-      "Name": "Agurkai",
-      "PriceUnit": "Eur/kg",
-      "Price": "0.59"
-    },
-    {
-      "Shop": 5,
-      "Group": "Vegetable",
-      "Name": "Agurkai",
-      "PriceUnit": "Eur/kg",
-      "Price": "0.49"
-    }
-  ],
-  [
-    {
-      "Shop": 5,
-      "Group": "Vegetable",
-      "Name": "Morkos",
-      "PriceUnit": "Eur/kg",
-      "Price": "2.54"
-    },
-    {
-      "Shop": 4,
-      "Group": "Sweets",
-      "Name": "Milka",
-      "PriceUnit": "Eur/unit",
-      "Price": "1.12"
-    },
-    {
+      "Id": 100001,
       "Shop": 1,
-      "Group": "Pasta",
-      "Name": "Makaronai LAHULISANA spiralės",
-      "PriceUnit": "Eur/unit",
-      "Price": "1.44"
-    },
-    {
-      "Shop": 1,
-      "Group": "Pasta",
-      "Name": "Makaronai LA HOLISANA PENNE RIGATE Nr. 20 vamzdeliai",
-      "PriceUnit": "Eur/unit",
-      "Price": "1.28"
-    },
-    {
-      "Shop": 5,
-      "Group": "Pasta",
-      "Name": "Makaronai LAHULISANA spiralės",
-      "PriceUnit": "Eur/unit",
-      "Price": "1.59"
-    },
-    {
-      "Shop": 2,
-      "Group": "Dairy",
-      "Name": "Milk",
+      "Category": "Baked goods",
+      "Name": "Duona",
       "PriceUnit": "Eur/unit",
       "Price": "0.89"
     },
     {
-      "Shop": 2,
-      "Group": "Dairy",
-      "Name": "Milk",
-      "PriceUnit": "Eur/unit",
-      "Price": "0.89"
-    },
-    {
-      "Shop": 2,
-      "Group": "Dairy",
-      "Name": "Milk",
-      "PriceUnit": "Eur/unit",
-      "Price": "0.89"
-    }
-  ],
-  [
-    {
-      "Shop": 2,
-      "Group": "Fruit",
-      "Name": "Bananai",
-      "PriceUnit": "Eur/kg",
-      "Price": "1.53"
-    },
-    {
+      "Id": 100002,
       "Shop": 1,
-      "Group": "Fruit",
-      "Name": "Bananai",
-      "PriceUnit": "Eur/kg",
-      "Price": "0.65"
-    },
-    {
-      "Shop": 2,
-      "Group": "Vegetable",
-      "Name": "Baltieji pievagr.",
-      "PriceUnit": "Eur/unit",
-      "Price": "0.89"
-    },
-    {
-      "Shop": 5,
-      "Group": "Fruit",
-      "Name": "Bananai",
-      "PriceUnit": "Eur/kg",
-      "Price": "0.43"
-    },
-    {
-      "Shop": 1,
-      "Group": "Meat",
-      "Name": "Bad",
-      "PriceUnit": "Eur/kg",
-      "Price": "5"
-    },
-    {
-      "Shop": 1,
-      "Group": "Baked goods",
-      "Name": "Bulka",
-      "PriceUnit": "Eur/unit",
-      "Price": "0.87"
-    }
-  ],
-  [
-    {
-      "Shop": 3,
-      "Group": "Alc. Drinks",
-      "Name": "Nol semkė",
-      "PriceUnit": "Eur/unit",
-      "Price": "0.53"
-    }
-  ],
-  [
-    {
-      "Shop": 1,
-      "Group": "Icecream",
-      "Name": "Dadu vaniliniai",
-      "PriceUnit": "Eur/unit",
-      "Price": "0.64"
-    },
-    {
-      "Shop": 1,
-      "Group": "Baked goods",
-      "Name": "Douna",
-      "PriceUnit": "Eur/unit",
-      "Price": "1.21"
-    },
-    {
-      "Shop": 1,
-      "Group": "Baked goods",
-      "Name": "Douna",
-      "PriceUnit": "Eur/unit",
-      "Price": "1.21"
-    },
-    {
-      "Shop": 1,
-      "Group": "Baked goods",
-      "Name": "Douna",
-      "PriceUnit": "Eur/unit",
-      "Price": "1.21"
-    },
-    {
-      "Shop": 1,
-      "Group": "Baked goods",
-      "Name": "Douna",
-      "PriceUnit": "Eur/unit",
-      "Price": "1.21"
-    },
-    {
-      "Shop": 1,
-      "Group": "Baked goods",
-      "Name": "Douna",
-      "PriceUnit": "Eur/unit",
-      "Price": "54"
-    },
-    {
-      "Shop": 1,
-      "Group": "Baked goods",
-      "Name": "Douna",
-      "PriceUnit": "Eur/unit",
-      "Price": "54"
-    },
-    {
-      "Shop": 2,
-      "Group": "Baked goods",
-      "Name": "Douna",
-      "PriceUnit": "Eur/unit",
-      "Price": "54"
-    }
-  ],
-  [
-    {
-      "Shop": 1,
-      "Group": "Pasta",
-      "Name": "Visu grūdo daliu makaronai LA HOLISANA spagečiai",
+      "Category": "Dairy",
+      "Name": "Pienas",
       "PriceUnit": "Eur/unit",
       "Price": "1.39"
-    }
-  ],
-  [
-    {
-      "Shop": 2,
-      "Group": "Pasta",
-      "Name": "Plikyti ryžiai",
-      "PriceUnit": "Eur/unit",
-      "Price": "0.58"
     },
     {
+      "Id": 100003,
       "Shop": 1,
-      "Group": "Pasta",
-      "Name": "Plikyti ryžiai",
+      "Category": "Baked goods",
+      "Name": "Spurga",
       "PriceUnit": "Eur/unit",
-      "Price": "0.68"
+      "Price": "0.39"
     },
     {
-      "Shop": 4,
-      "Group": "Vegetable",
-      "Name": "Pomidorai",
+      "Id": 100004,
+      "Shop": 1,
+      "Category": "Fruit",
+      "Name": "Bananas",
       "PriceUnit": "Eur/kg",
-      "Price": "1.65"
-    }
-  ],
-  [
+      "Price": "0.69"
+    },
     {
-      "Shop": 2,
-      "Group": "Pasta",
-      "Name": "Šiukšlių maišai",
+      "Id": 100005,
+      "Shop": 1,
+      "Category": "Baked goods",
+      "Name": "Batonas",
       "PriceUnit": "Eur/unit",
       "Price": "0.59"
     }
   ],
   [
     {
+      "Id": 300001,
       "Shop": 3,
-      "Group": "Fruit",
-      "Name": "Kiwi",
-      "PriceUnit": "Eur/kg",
-      "Price": "1.2"
-    }
-  ],
-  [
-    {
-      "Shop": 2,
-      "Group": "Meat",
-      "Name": "Gooid",
-      "PriceUnit": "Eur/kg",
-      "Price": "3"
-    }
-  ],
-  [
-    {
-      "Shop": 1,
-      "Group": "Baked goods",
-      "Name": "a",
-      "PriceUnit": "Eur/kg",
-      "Price": "5"
-    },
-    {
-      "Shop": 2,
-      "Group": "Dairy",
-      "Name": "asd",
-      "PriceUnit": "Eur/kg",
-      "Price": "12"
-    }
-  ],
-  [
-    {
-      "Shop": 1,
-      "Group": "Sweets",
-      "Name": "s",
+      "Category": "Dairy",
+      "Name": "Pienas",
       "PriceUnit": "Eur/unit",
-      "Price": "5"
+      "Price": "1.24"
     }
   ]
 ]

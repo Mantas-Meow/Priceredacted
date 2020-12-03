@@ -1,4 +1,5 @@
 ﻿using Priceredacted.Interfaces;
+using Priceredacted.Models;
 using Priceredacted.Properties;
 using Priceredacted.Tesseract_Ocr;
 using System;
@@ -9,23 +10,22 @@ namespace Priceredacted.Processors
 {
     class MainWindowLogic : IMainWindowLogic
     {
-        public static string selectedFile;
         public UserData currentUser;
 
         public void AddProduct(Product product)
         {
             List<List<Product>> productsList = (List<List<Product>>) DataProcessor.LoadJson<List<Product>>(Tools.Utils.ProductsPath);
-            List<List<Product>> productsAll = SearchAndFind.AddData(product, Tools.Utils.ProductsPath, productsList);
+            List<List<Product>> productsAll = SearchAndFind.AddData(product, productsList);
             DataProcessor.SaveJson(productsAll, Tools.Utils.ProductsPath);
         }
 
-        public Product CreateProduct(Tools.Utils.Shops shop, string group,
+        public Product CreateProduct(Tools.Utils.Shops shop, string category,
                 string name, string priceUnit, string price)
         {
             Product pr = new Product()
             {
                 Shop = shop,
-                Group = group,
+                Category = category,
                 Name = name,
                 PriceUnit = priceUnit,
                 Price = price
@@ -65,6 +65,13 @@ namespace Priceredacted.Processors
         public void Clear()
         {
             ProductEditor.ClearProducts();
+        }
+
+        public void SaveReceipt()
+        {
+            List<List<Receipt>> ReceiptsList = (List<List<Receipt>>)DataProcessor.LoadJson<List<Receipt>>(Tools.Utils.ReceiptsPath);
+            List<List<Receipt>> ReceiptsAll = ProductEditor.SaveReceipt(ReceiptsList, currentUser);
+            DataProcessor.SaveJson(ReceiptsAll, Tools.Utils.ReceiptsPath);
         }
     }
 }

@@ -62,6 +62,7 @@
             this.Main_richTextBox = new System.Windows.Forms.RichTextBox();
             this.ScannedImage = new System.Windows.Forms.PictureBox();
             this.currentUser = new System.Windows.Forms.Label();
+            this.SaveReceipt_button = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PriceRedactedImage)).BeginInit();
             this.Home_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -352,6 +353,7 @@
             // Scan_panel
             // 
             this.Scan_panel.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.Scan_panel.Controls.Add(this.SaveReceipt_button);
             this.Scan_panel.Controls.Add(this.AddProduct_button);
             this.Scan_panel.Controls.Add(this.Clear_button);
             this.Scan_panel.Controls.Add(this.ComparePrices_button);
@@ -453,6 +455,16 @@
             this.currentUser.Text = "Current user: admin";
             this.currentUser.Click += new System.EventHandler(this.currentUser_Click);
             // 
+            // SaveReceipt_button
+            // 
+            this.SaveReceipt_button.Location = new System.Drawing.Point(269, 427);
+            this.SaveReceipt_button.Name = "SaveReceipt_button";
+            this.SaveReceipt_button.Size = new System.Drawing.Size(132, 23);
+            this.SaveReceipt_button.TabIndex = 7;
+            this.SaveReceipt_button.Text = "Save Receipt";
+            this.SaveReceipt_button.UseVisualStyleBackColor = true;
+            this.SaveReceipt_button.Click += new System.EventHandler(this.SaveReceipt_button_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -466,9 +478,9 @@
             this.Controls.Add(this.Exit_button);
             this.Controls.Add(this.SearchItems_button);
             this.Controls.Add(this.ScanImage_button);
-            this.Controls.Add(this.Home_panel);
             this.Controls.Add(this.Scan_panel);
             this.Controls.Add(this.Search_panel);
+            this.Controls.Add(this.Home_panel);
             this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.Text = "PriceRedacted";
@@ -521,5 +533,6 @@
         private System.Windows.Forms.Button Clear_button;
         private System.Windows.Forms.Button AddProduct_button;
         private System.Windows.Forms.Label currentUser;
+        private System.Windows.Forms.Button SaveReceipt_button;
     }
 }
