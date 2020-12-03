@@ -34,25 +34,19 @@ namespace Priceredacted.Processors
         {
             DataProcessor.SaveJson<T>(objects, Tools.Utils.ProductsPath);
         }
-
-        public Task<string> ScanImageAsync(string selectedFile)
-        {
-            return Task.Run(() => ImageRecognition.GetTextFromImage(imagePath: selectedFile));
-        }
-
         public IEnumerable<Product> SearchProducts(string query, string preferredShop)
         {
             IEnumerable<IEnumerable<Product>> products = DataProcessor.LoadJson <IEnumerable<Product>>(Tools.Utils.ProductsPath);
             return SearchAndFind.SearchForProduct(query, preferredShop, products);
         }
-        public IEnumerable<T> LoadFromProductsJson<T>()
-        {
-            return DataProcessor.LoadJson<T>(Tools.Utils.ProductsPath);
-        }
-        public void Clear()
-        {
-            ProductEditor.ClearProducts();
-        }
+
+        public Task<string> ScanImageAsync(string selectedFile) => 
+            Task.Run(() => ImageRecognition.GetTextFromImage(imagePath: selectedFile));
+
+        public IEnumerable<T> LoadFromProductsJson<T>() => 
+            DataProcessor.LoadJson<T>(Tools.Utils.ProductsPath);
+
+        public void Clear() => ProductEditor.ClearProducts();
 
         public void SaveReceipt()
         {

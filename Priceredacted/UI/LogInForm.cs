@@ -1,15 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Linq;
-using Newtonsoft.Json;
-using Priceredacted.Properties;
-using Priceredacted.Processors;
 using Priceredacted.Controllers;
 
 namespace Priceredacted.UI
