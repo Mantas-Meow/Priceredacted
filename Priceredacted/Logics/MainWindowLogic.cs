@@ -55,8 +55,8 @@ namespace Priceredacted.Processors
 
         public void SaveReceipt()
         {
-            List<List<Receipt>> ReceiptsList = (List<List<Receipt>>)DataProcessor.LoadJson<List<Receipt>>(Tools.Utils.ReceiptsPath);
-            List<List<Receipt>> ReceiptsAll = ProductEditor.SaveReceipt(ReceiptsList, currentUser);
+            List<Receipt> ReceiptsList = (List<Receipt>)DataProcessor.LoadJson<Receipt>(Tools.Utils.ReceiptsPath);
+            List<Receipt> ReceiptsAll = ProductEditor.SaveReceipt(ReceiptsList, currentUser);
             DataProcessor.SaveJson(ReceiptsAll, Tools.Utils.ReceiptsPath);
         }
     }
