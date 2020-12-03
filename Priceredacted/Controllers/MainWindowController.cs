@@ -21,10 +21,11 @@ namespace Priceredacted.Processors
         public RichTextBox outputTextField;
         public Label userText;
         private MainWindowLogic mainLogic = new MainWindowLogic();
+        Lazy<AddProductWindow> addProductWin;
 
         public MainWindowController()
         {
-
+            addProductWin = new Lazy<AddProductWindow>(() => new AddProductWindow(outputTextField, this));
         }
 
         public void ActivateScanPanel()
@@ -107,10 +108,9 @@ namespace Priceredacted.Processors
             outputTextField.Text = "";
             mainLogic.Clear();
         }
-        public void LoadAddProductWindow(RichTextBox Main_richTextBox)
+        public void LoadAddProductWindow()
         {
-            AddProductWindow AddWin = new AddProductWindow(outputTextField, this);
-            AddWin.Show();
+            addProductWin.Value.Show();
         }
         
         public void SaveReceipt()
