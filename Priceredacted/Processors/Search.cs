@@ -11,10 +11,25 @@ namespace Priceredacted.Processors
 {
     class SearchAndFind
     {
+        private delegate Product AddProductID (List<Product> Products, Product ToAdd);
+
         public static List<List<Product>> AddData(Product productToBeAdded, List<List<Product>> products)
         {
-            //List<List<Product>> products = (List<List<Product>>) DataProcessor.LoadJson<List<Product>>(path);
+            AddProductID makeProductId = delegate(List<Product> Products, Product ToAdd)
+            {
+                if (Products.Count == 0)
+                {
+                    ToAdd.Id = ((int)ToAdd.Shop * 100000) + 1;
+                }
+                else
+                {
+                    ToAdd.Id = Products.Last().Id + 1;
+                }
+                return ToAdd;
+            };
+
             productToBeAdded.Price = Regex.Replace(productToBeAdded.Price, @",+", ".");
+
             if (products == null)
             {
                 products = new List<List<Product>>();
@@ -25,7 +40,7 @@ namespace Priceredacted.Processors
                 { 
                     if (ProductValidation.ValidateProduct(li, productToBeAdded))
                     {
-                        productToBeAdded = ProductValidation.AddProductID(li, productToBeAdded);
+                        productToBeAdded = makeProductId(li, productToBeAdded);
                         li.Add(productToBeAdded);
                         return products;
                     }
@@ -33,7 +48,7 @@ namespace Priceredacted.Processors
                 }
             }
             List<Product> newList = new List<Product>();
-            productToBeAdded = ProductValidation.AddProductID(newList, productToBeAdded);
+            productToBeAdded = makeProductId(newList, productToBeAdded);
             newList.Add(productToBeAdded);
             products.Add(newList);
             return products;
