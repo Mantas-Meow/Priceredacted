@@ -75,6 +75,46 @@
       "Name": "Plikyti ryžiai",
       "PriceUnit": "Eur/unit",
       "Price": "0.58"
+    },
+    {
+      "Id": 200002,
+      "Shop": 2,
+      "Category": "Dairy",
+      "Name": "Milk",
+      "PriceUnit": "Eur/unit",
+      "Price": "1.09"
+    },
+    {
+      "Id": 200003,
+      "Shop": 2,
+      "Category": "Fruit",
+      "Name": "Kiwi",
+      "PriceUnit": "Eur/kg",
+      "Price": "0.69"
+    },
+    {
+      "Id": 200004,
+      "Shop": 2,
+      "Category": "Dairy",
+      "Name": "Milk",
+      "PriceUnit": "Eur/kg",
+      "Price": "1.09"
+    },
+    {
+      "Id": 200005,
+      "Shop": 2,
+      "Category": "Pets",
+      "Name": "Pet food",
+      "PriceUnit": "Eur/unit",
+      "Price": "5.49"
+    },
+    {
+      "Id": 200006,
+      "Shop": 2,
+      "Category": "Soda",
+      "Name": "Pepsi 1l",
+      "PriceUnit": "Eur/unit",
+      "Price": "1.09"
     }
   ]
 ]

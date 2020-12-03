@@ -46,29 +46,34 @@ namespace Priceredacted.Processors
             return resultStr;
         }
 
-        public static List<Receipt> SaveReceipt(List<Receipt> Receipts, UserData CurrentUser)
+        public static (List<Receipt>, List<ItemsInReceipt>) SaveReceipt(List<Receipt> Receipts, UserData CurrentUser, List<ItemsInReceipt> InRec)
         {
             if (Receipts == null)
             {
                 Receipts = new List<Receipt>();
             }
-            Receipt newRec = AddNewReceipt(CurrentUser);
+            if (InRec == null)
+            {
+                InRec = new List<ItemsInReceipt>();
+            }
+            (Receipt newRec, List<ItemsInReceipt> NewInRec) = AddNewReceipt(CurrentUser, InRec);
             Receipts.Add(newRec);
-            return Receipts;
+            return (Receipts, NewInRec);
         }
 
-        private static Receipt AddNewReceipt(UserData CurrentUser)
+        private static (Receipt, List<ItemsInReceipt>) AddNewReceipt(UserData CurrentUser, List<ItemsInReceipt> InRec)
         {
             Receipt newRec = new Receipt();
 
-            newRec.Date = DateTime.Now;
+            newRec.Date = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
             newRec.UserId = CurrentUser.Id;
+            newRec.ReceiptId = Guid.NewGuid();
             foreach (ScannedProduct Pr in ScannedProducts)
             {
-                newRec.ProductId.Add(Pr.Id);
+                InRec.Add(new ItemsInReceipt { ReceiptId = newRec.ReceiptId, ProductId = Pr.Id });
                 newRec.Sum += Pr.Price;
             }
-            return newRec;
+            return (newRec,InRec);
         }
     }
 }

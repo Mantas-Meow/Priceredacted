@@ -115,7 +115,17 @@ namespace Priceredacted.Processors
         
         public void SaveReceipt()
         {
-            mainLogic.SaveReceipt();
+            try
+            {
+                mainLogic.SaveReceipt();
+            }
+            catch (SecurityException)
+            {
+                MessageBox.Show("Receipt was not saved!");
+                return;
+            }
+            MessageBox.Show("Receipt saved");
+            Clear();
         }
     }
 }

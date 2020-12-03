@@ -17,6 +17,7 @@ namespace Priceredacted.Processors
             List<List<Product>> productsList = (List<List<Product>>) DataProcessor.LoadJson<List<Product>>(Tools.Utils.ProductsPath);
             List<List<Product>> productsAll = SearchAndFind.AddData(product, productsList);
             DataProcessor.SaveJson(productsAll, Tools.Utils.ProductsPath);
+            product.Id = 5;
         }
 
         public Task<string> FilterText(string input)
@@ -50,8 +51,10 @@ namespace Priceredacted.Processors
         public void SaveReceipt()
         {
             List<Receipt> ReceiptsList = (List<Receipt>)DataProcessor.LoadJson<Receipt>(Tools.Utils.ReceiptsPath);
-            List<Receipt> ReceiptsAll = ProductEditor.SaveReceipt(ReceiptsList, currentUser);
+            List<ItemsInReceipt> InRec = (List<ItemsInReceipt>)DataProcessor.LoadJson<ItemsInReceipt>(Tools.Utils.ItemsInReceiptPath);
+            (List<Receipt> ReceiptsAll, List<ItemsInReceipt> InRecAll) = ProductEditor.SaveReceipt(ReceiptsList, currentUser,InRec);
             DataProcessor.SaveJson(ReceiptsAll, Tools.Utils.ReceiptsPath);
+            DataProcessor.SaveJson(InRecAll, Tools.Utils.ItemsInReceiptPath);
         }
     }
 }
