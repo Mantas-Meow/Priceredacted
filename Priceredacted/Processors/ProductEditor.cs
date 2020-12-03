@@ -46,58 +46,29 @@ namespace Priceredacted.Processors
             return resultStr;
         }
 
-        public static List<List<Receipt>> SaveReceipt(List<List<Receipt>> Receipts, UserData CurrentUser)
+        public static List<Receipt> SaveReceipt(List<Receipt> Receipts, UserData CurrentUser)
         {
             if (Receipts == null)
             {
-                Receipts = new List<List<Receipt>>();
+                Receipts = new List<Receipt>();
             }
-            foreach (List<Receipt> rec in Receipts)
-            {
-                if (rec.First().UserId == CurrentUser.Id)
-                {
-                    Receipt newRec = AddNewReceipt(CurrentUser);
-                    rec.Add(newRec);
-                    return Receipts;
-                }
-
-            }
-            List<Receipt> newList = new List<Receipt>();
-            Receipt newRec1 = AddNewReceipt(CurrentUser);
-            newList.Add(newRec1);
-            Receipts.Add(newList);
+            Receipt newRec = AddNewReceipt(CurrentUser);
+            Receipts.Add(newRec);
             return Receipts;
         }
 
         private static Receipt AddNewReceipt(UserData CurrentUser)
         {
             Receipt newRec = new Receipt();
-            DateTime CurrentTime = DateTime.Now;
-            List<List<Product>> productsList = (List<List<Product>>)DataProcessor.LoadJson<List<Product>>(Tools.Utils.ProductsPath);
+
+            newRec.Date = DateTime.Now;
+            newRec.UserId = CurrentUser.Id;
             foreach (ScannedProduct Pr in ScannedProducts)
             {
-                newRec.Date = CurrentTime;
-                newRec.UserId = CurrentUser.Id;
-                newRec.ProductId = GetID(Pr, productsList);//Add(GetID(Pr, productsList)); 
+                newRec.ProductId.Add(Pr.Id);
                 newRec.Sum += Pr.Price;
             }
             return newRec;
-        }
-
-        private static int GetID (ScannedProduct Pr, List<List<Product>> ProductsList)
-        {
-            foreach (List<Product> list in ProductsList)
-            {
-                if (list.First().Shop == Pr.Shop)
-                {
-                    foreach (Product PrId in list)
-                    {
-                        if (PrId.Name == Pr.Name) return PrId.Id;
-
-                    }
-                }
-            }
-            return 1;
         }
     }
 }

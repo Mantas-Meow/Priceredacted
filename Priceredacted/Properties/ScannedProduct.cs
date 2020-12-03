@@ -12,6 +12,6 @@ namespace Priceredacted.Properties
         public string PriceUnit { get; set; }
         public double Price { get; set; }
         public string Comapared { get; set; }
-        public int id { get; set; }
+        public int Id { get; set; }
     }
 }

@@ -52,12 +52,11 @@ namespace Priceredacted.Processors
         {
             Application.Exit();
         }
-        public void AddData(Shops shop, string group,
-                string name, string priceUnit, string price)
+        public void AddData(Product Pr)
         {
             try
             {
-                mainLogic.AddProduct(mainLogic.CreateProduct(shop, group, name, priceUnit, price));
+                mainLogic.AddProduct(Pr);
             }
             catch (SecurityException)
             {

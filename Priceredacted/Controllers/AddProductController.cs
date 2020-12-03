@@ -25,11 +25,10 @@ namespace Priceredacted.Controllers
             output = outputTextField;
         }
 
-        public void AddProducts(Shops shop, string group,
-                string name, string priceUnit, string price)
+        public void AddProducts(Product Pr)
         {
-            Main.AddData(shop, group, name, priceUnit, price);
-            AddLogic.AddProduct(shop, name, priceUnit, price);
+            Main.AddData(Pr);
+            AddLogic.AddProduct(Pr);
             output.Text = AddLogic.ComparePrices();
             product.Text = "";
             this.price.Text = "";

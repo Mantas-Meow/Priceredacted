@@ -19,20 +19,6 @@ namespace Priceredacted.Processors
             DataProcessor.SaveJson(productsAll, Tools.Utils.ProductsPath);
         }
 
-        public Product CreateProduct(Tools.Utils.Shops shop, string category,
-                string name, string priceUnit, string price)
-        {
-            Product pr = new Product()
-            {
-                Shop = shop,
-                Category = category,
-                Name = name,
-                PriceUnit = priceUnit,
-                Price = price
-            };
-            return pr;
-        }
-
         public Task<string> FilterText(string input)
         {
             return Task.Run(() => ProductEditor.FilterScanned(input, Tools.Utils.ProductsPath));
@@ -63,8 +49,8 @@ namespace Priceredacted.Processors
 
         public void SaveReceipt()
         {
-            List<List<Receipt>> ReceiptsList = (List<List<Receipt>>)DataProcessor.LoadJson<List<Receipt>>(Tools.Utils.ReceiptsPath);
-            List<List<Receipt>> ReceiptsAll = ProductEditor.SaveReceipt(ReceiptsList, currentUser);
+            List<Receipt> ReceiptsList = (List<Receipt>)DataProcessor.LoadJson<Receipt>(Tools.Utils.ReceiptsPath);
+            List<Receipt> ReceiptsAll = ProductEditor.SaveReceipt(ReceiptsList, currentUser);
             DataProcessor.SaveJson(ReceiptsAll, Tools.Utils.ReceiptsPath);
         }
     }

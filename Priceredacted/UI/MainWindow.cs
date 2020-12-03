@@ -49,8 +49,15 @@ namespace Priceredacted
 
         private void AddData_button_Click(object sender, EventArgs e)
         {
-            mainController.AddData(((Shops)Enum.Parse(typeof(Shops), ShopList.Text)), ItemGroup.Text,             //(CategoryEnum)Enum.Parse(typeof(CategoryEnum), comboBox1.Text)
-                    ProductName.Text.Trim(), PriceUnit.Text, Price.Text.Trim());
+            Product Pr = new Product()
+            {
+                Shop = (Shops)Enum.Parse(typeof(Shops), ShopList.Text),
+                Category = ItemGroup.Text,
+                Name = ProductName.Text.Trim(),
+                PriceUnit = PriceUnit.Text,
+                Price = Price.Text.Trim()
+            };
+            mainController.AddData(Pr);
         }
 
         private void SearchButton_Click(object sender, EventArgs e)
