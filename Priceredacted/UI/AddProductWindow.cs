@@ -32,7 +32,8 @@ namespace Priceredacted.UI
                 Category = ItemGroup.Text,
                 Name = ProductName.Text.Trim(),
                 PriceUnit = PriceUnit.Text,
-                Price = Price.Text.Trim()
+                Price = Price.Text.Trim(),
+                Id = 0
             };
             AddController.AddProducts(Pr);
         }

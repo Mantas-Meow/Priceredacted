@@ -15,6 +15,9 @@ namespace Priceredacted.Tools
 
         public static string ReceiptsPath = System.IO.Directory.GetParent(Environment.CurrentDirectory).
             Parent.Parent.FullName + "\\DB\\Receipts.json";
+
+        public static string ItemsInReceiptPath = System.IO.Directory.GetParent(Environment.CurrentDirectory).
+            Parent.Parent.FullName + "\\DB\\ItemsInReceipt.json";
         public enum Shops {Default, Maxima, Lidl, Iki, Rimi, Norfa};
     }
 }

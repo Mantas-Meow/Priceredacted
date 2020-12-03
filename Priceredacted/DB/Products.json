@@ -75,6 +75,22 @@
       "Name": "Plikyti ryžiai",
       "PriceUnit": "Eur/unit",
       "Price": "0.58"
+    },
+    {
+      "Id": 200002,
+      "Shop": 2,
+      "Category": "Dairy",
+      "Name": "Milk",
+      "PriceUnit": "Eur/unit",
+      "Price": "1.09"
+    },
+    {
+      "Id": 200003,
+      "Shop": 2,
+      "Category": "Fruit",
+      "Name": "Kiwi",
+      "PriceUnit": "Eur/kg",
+      "Price": "0.69"
     }
   ]
 ]

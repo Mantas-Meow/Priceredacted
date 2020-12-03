@@ -1,0 +1,32 @@
+[
+  {
+    "UserId": "5e8365b7-1319-4d73-aa17-7cc3ec0a38e1",
+    "ReceiptId": "f276c4aa-5b03-4cc1-bee1-f957486ae727",
+    "Date": "12/03/2020 22:19:32",
+    "Sum": 0.58
+  },
+  {
+    "UserId": "ed53c4d0-8a56-498a-8b64-d7e2627cb760",
+    "ReceiptId": "cab47a07-6715-4c77-ac00-324db7694850",
+    "Date": "12/03/2020 22:21:27",
+    "Sum": 1.78
+  },
+  {
+    "UserId": "5e8365b7-1319-4d73-aa17-7cc3ec0a38e1",
+    "ReceiptId": "1d4e53f5-39d3-418f-8659-f79b4adc7cf8",
+    "Date": "12/03/2020 22:27:21",
+    "Sum": 1.67
+  },
+  {
+    "UserId": "5e8365b7-1319-4d73-aa17-7cc3ec0a38e1",
+    "ReceiptId": "d1a174b5-4bce-4270-ad74-9cc0bba61916",
+    "Date": "12/03/2020 22:37:30",
+    "Sum": 1.09
+  },
+  {
+    "UserId": "5e8365b7-1319-4d73-aa17-7cc3ec0a38e1",
+    "ReceiptId": "f1b74947-a6ac-4625-8e3a-fdfef144841d",
+    "Date": "12/03/2020 22:39:13",
+    "Sum": 1.09
+  }
+]
