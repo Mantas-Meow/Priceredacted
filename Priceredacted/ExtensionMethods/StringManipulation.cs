@@ -48,7 +48,8 @@ namespace Priceredacted.ExtensionMethods
                             Shop = pr.Shop,
                             Name = pr.Name,
                             PriceUnit = pr.PriceUnit,
-                            Price = Convert.ToDouble(pr.Price)
+                            Price = Convert.ToDouble(pr.Price),
+                            Id = pr.Id
                         };
                         SProducts.Add(Spr);
                     }                       
