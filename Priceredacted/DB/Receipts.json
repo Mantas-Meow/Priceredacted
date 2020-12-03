@@ -28,5 +28,23 @@
     "ReceiptId": "f1b74947-a6ac-4625-8e3a-fdfef144841d",
     "Date": "12/03/2020 22:39:13",
     "Sum": 1.09
+  },
+  {
+    "UserId": "5e8365b7-1319-4d73-aa17-7cc3ec0a38e1",
+    "ReceiptId": "a316812b-2382-4666-a41d-f4e17ffcf476",
+    "Date": "12/03/2020 22:51:00",
+    "Sum": 1.09
+  },
+  {
+    "UserId": "5e8365b7-1319-4d73-aa17-7cc3ec0a38e1",
+    "ReceiptId": "bc2a1cd5-3871-4016-b2fc-71436f11d0d4",
+    "Date": "12/03/2020 23:21:47",
+    "Sum": 1.09
+  },
+  {
+    "UserId": "5e8365b7-1319-4d73-aa17-7cc3ec0a38e1",
+    "ReceiptId": "debdd481-6ea1-4e4e-a3fa-cf148e74c599",
+    "Date": "12/03/2020 23:29:15",
+    "Sum": 7.16
   }
 ]
