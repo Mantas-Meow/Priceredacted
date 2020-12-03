@@ -78,7 +78,7 @@ namespace Priceredacted.Processors
             {
                 newRec.Date = CurrentTime;
                 newRec.UserId = CurrentUser.Id;
-                newRec.ProductId = GetID(Pr, productsList);//Add(GetID(Pr, productsList)); 
+                newRec.ProductId=1;// = 1; //GetID(Pr, productsList);//Add(GetID(Pr, productsList)); 
                 newRec.Sum += Pr.Price;
             }
             return newRec;

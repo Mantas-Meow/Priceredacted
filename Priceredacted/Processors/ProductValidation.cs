@@ -20,14 +20,14 @@ namespace Priceredacted.Processors
 
         public static Product AddProductID(List<Product> Products, Product ToAdd)
         {
-            var ProductsInOrder = Products.OrderBy(Products => Products.Id);
-            if (ProductsInOrder.Last().Id == 0)
+            //var ProductsInOrder = Products.OrderBy(Products => Products.Id);
+            if (Products.Count == 0)
             {
                 ToAdd.Id = ((int)ToAdd.Shop * 100000) + 1;
             }
             else
             {
-                ToAdd.Id = ProductsInOrder.Last().Id + 1;
+                ToAdd.Id = Products.Last().Id + 1;
             }
             return ToAdd;
         }

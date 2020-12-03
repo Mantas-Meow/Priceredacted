@@ -13,8 +13,6 @@ namespace Priceredacted.Interfaces
         public static string selectedFile;
         public Task<string> ScanImageAsync(string selectedFile);
         public IEnumerable<Product> SearchProducts(string query, string preferredShop);
-        public Product CreateProduct(Shops shop, string group,
-                string name, string priceUnit, string price);
         public void AddProduct(Product product);
         public void SaveToProductsJson<T>(IEnumerable<T> objects);
         public IEnumerable<T> LoadFromProductsJson<T>();

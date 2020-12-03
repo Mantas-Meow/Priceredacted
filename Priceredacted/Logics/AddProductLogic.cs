@@ -9,15 +9,15 @@ namespace Priceredacted.Logics
 {
     class AddProductLogic
     {
-        public void AddProduct(Shops shop,
-                string name, string priceUnit, string price)
+        public void AddProduct(Product Pr)
         {
             ScannedProduct pr = new ScannedProduct()
             {
-                Shop = shop,
-                Name = name,
-                PriceUnit = priceUnit,
-                Price = Convert.ToDouble(price)
+                Shop = Pr.Shop,
+                Name = Pr.Name,
+                PriceUnit = Pr.PriceUnit,
+                Price = Convert.ToDouble(Pr.Price),
+                Id = Pr.Id
             };
             ProductEditor.AddProducts(pr);
         }
