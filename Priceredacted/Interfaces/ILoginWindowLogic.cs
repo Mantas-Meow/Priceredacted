@@ -9,7 +9,7 @@ namespace Priceredacted.Interfaces
         public UserData CreateNewUser(string username, string email, string password, Guid id);
         public void AddUser(UserData user);
         public List<UserData> LoadUsers();
-        public bool RegisterUser(string username, string email, string pass1, string pass2, UserData user, Guid Id);
+        public bool CheckRegisterUser(string username, string email, string pass1, string pass2, UserData user, Guid Id);
         public UserData LogInUser(string user, string pass);
     }
 }

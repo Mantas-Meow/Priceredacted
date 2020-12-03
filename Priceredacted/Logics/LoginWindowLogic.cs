@@ -41,7 +41,7 @@ namespace Priceredacted.Logics
             return UserDataValidation.Login(user, pass, LoadUsers());
         }
 
-        public bool RegisterUser(string username, string email, string pass1, string pass2, UserData user, Guid Id)
+        public bool CheckRegisterUser(string username, string email, string pass1, string pass2, UserData user, Guid Id)
         {
             if (!UserDataValidation.CheckPasswords(pass1, pass2))
                 throw new PasswordValidationException();
