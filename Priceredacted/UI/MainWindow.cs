@@ -16,6 +16,7 @@ namespace Priceredacted
         public MainWindow(UserData user)
         {
             InitializeComponent();
+            InitializeMainWindow();
             mainController = new MainWindowController();
             mainController.homePanel = Home_panel;
             mainController.scanPanel = Scan_panel;
@@ -27,9 +28,12 @@ namespace Priceredacted
             mainController.SetCurrentUser(user);
         }
 
-        private void MainWindow_Load(object sender, EventArgs e)
+        private void InitializeMainWindow()
         {
-
+            this.BackColor = Settings.Default.FrgrColor;
+            this.Scan_panel.BackColor = Settings.Default.BkgrColor;
+            this.Home_panel.BackColor = Settings.Default.BkgrColor;
+            this.Search_panel.BackColor = Settings.Default.BkgrColor;
         }
 
         private void ScanImage_button_Click(object sender, EventArgs e)
@@ -128,6 +132,23 @@ namespace Priceredacted
         private void SaveReceipt_button_Click(object sender, EventArgs e)
         {
             mainController.SaveReceipt();
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ChangeColors_button_Click(object sender, EventArgs e)
+        {
+            if (FrgrColor_comboBox.Text != null && BkgrColor_comboBox.Text != null)
+            {
+                mainController.SaveColors(FrgrColor_comboBox.Text, BkgrColor_comboBox.Text);
+                this.BackColor = Settings.Default.FrgrColor;
+                this.Scan_panel.BackColor = Settings.Default.BkgrColor;
+                this.Home_panel.BackColor = Settings.Default.BkgrColor;
+                this.Search_panel.BackColor = Settings.Default.BkgrColor;
+            }
         }
     }
 }

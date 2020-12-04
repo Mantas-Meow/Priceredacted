@@ -46,5 +46,17 @@
     "ReceiptId": "debdd481-6ea1-4e4e-a3fa-cf148e74c599",
     "Date": "12/03/2020 23:29:15",
     "Sum": 7.16
+  },
+  {
+    "UserId": "5e8365b7-1319-4d73-aa17-7cc3ec0a38e1",
+    "ReceiptId": "420ba7e0-84a9-406f-a2b2-f2edc5511b5e",
+    "Date": "12/04/2020 01:43:09",
+    "Sum": 1.09
+  },
+  {
+    "UserId": "5e8365b7-1319-4d73-aa17-7cc3ec0a38e1",
+    "ReceiptId": "399dd357-eaf5-4619-b326-cd752bed3d2d",
+    "Date": "12/04/2020 02:08:54",
+    "Sum": 0.58
   }
 ]

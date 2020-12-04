@@ -46,5 +46,13 @@
   {
     "ReceiptId": "debdd481-6ea1-4e4e-a3fa-cf148e74c599",
     "ProductId": 200006
+  },
+  {
+    "ReceiptId": "420ba7e0-84a9-406f-a2b2-f2edc5511b5e",
+    "ProductId": 200002
+  },
+  {
+    "ReceiptId": "399dd357-eaf5-4619-b326-cd752bed3d2d",
+    "ProductId": 200001
   }
 ]
