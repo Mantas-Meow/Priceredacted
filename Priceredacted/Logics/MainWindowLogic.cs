@@ -17,7 +17,6 @@ namespace Priceredacted.Processors
             List<List<Product>> productsList = (List<List<Product>>) DataProcessor.LoadJson<List<Product>>(Tools.Utils.ProductsPath);
             List<List<Product>> productsAll = ProductsProcessor.AddData(product, productsList);
             DataProcessor.SaveJson(productsAll, Tools.Utils.ProductsPath);
-            product.Id = 5;
         }
 
         public Task<string> FilterText(string input)
