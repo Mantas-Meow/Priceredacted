@@ -29,5 +29,18 @@ namespace Priceredacted.UI
                     ProductName.Text.Trim(), PriceUnit.Text, Price.Text.Trim());
         }
 
+        private void AddProductWindow_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AddProductWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                Hide();
+            }
+        }
     }
 }

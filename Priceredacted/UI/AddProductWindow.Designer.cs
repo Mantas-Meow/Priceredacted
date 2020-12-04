@@ -191,6 +191,8 @@
             this.Controls.Add(this.label1);
             this.Name = "AddProductWindow";
             this.Text = "AddProductWindow";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AddProductWindow_FormClosing);
+            this.Load += new System.EventHandler(this.AddProductWindow_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
