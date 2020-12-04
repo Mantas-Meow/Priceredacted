@@ -1,6 +1,7 @@
 ﻿using Priceredacted.Controllers;
 using Priceredacted.Interfaces;
 using Priceredacted.Processors;
+using Priceredacted.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,8 +26,16 @@ namespace Priceredacted.UI
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            AddController.AddProducts((Shops)Enum.Parse(typeof(Shops), ShopList.Text), ItemGroup.Text,        //((Shops)Enum.Parse(typeof(Shops), ShopList.Text))
-                    ProductName.Text.Trim(), PriceUnit.Text, Price.Text.Trim());
+            Product Pr = new Product()
+            {
+                Shop = (Shops)Enum.Parse(typeof(Shops), ShopList.Text),
+                Category = ItemGroup.Text,
+                Name = ProductName.Text.Trim(),
+                PriceUnit = PriceUnit.Text,
+                Price = Price.Text.Trim(),
+                Id = 0
+            };
+            AddController.AddProducts(Pr);
         }
 
         private void AddProductWindow_Load(object sender, EventArgs e)

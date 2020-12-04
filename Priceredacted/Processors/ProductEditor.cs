@@ -46,58 +46,34 @@ namespace Priceredacted.Processors
             return resultStr;
         }
 
-        public static List<List<Receipt>> SaveReceipt(List<List<Receipt>> Receipts, UserData CurrentUser)
+        public static (List<Receipt>, List<ItemsInReceipt>) SaveReceipt(List<Receipt> Receipts, UserData CurrentUser, List<ItemsInReceipt> InRec)
         {
             if (Receipts == null)
             {
-                Receipts = new List<List<Receipt>>();
+                Receipts = new List<Receipt>();
             }
-            foreach (List<Receipt> rec in Receipts)
+            if (InRec == null)
             {
-                if (rec.First().UserId == CurrentUser.Id)
-                {
-                    Receipt newRec = AddNewReceipt(CurrentUser);
-                    rec.Add(newRec);
-                    return Receipts;
-                }
-
+                InRec = new List<ItemsInReceipt>();
             }
-            List<Receipt> newList = new List<Receipt>();
-            Receipt newRec1 = AddNewReceipt(CurrentUser);
-            newList.Add(newRec1);
-            Receipts.Add(newList);
-            return Receipts;
+            (Receipt newRec, List<ItemsInReceipt> NewInRec) = AddNewReceipt(CurrentUser, InRec);
+            Receipts.Add(newRec);
+            return (Receipts, NewInRec);
         }
 
-        private static Receipt AddNewReceipt(UserData CurrentUser)
+        private static (Receipt, List<ItemsInReceipt>) AddNewReceipt(UserData CurrentUser, List<ItemsInReceipt> InRec)
         {
             Receipt newRec = new Receipt();
-            DateTime CurrentTime = DateTime.Now;
-            List<List<Product>> productsList = (List<List<Product>>)DataProcessor.LoadJson<List<Product>>(Tools.Utils.ProductsPath);
+
+            newRec.Date = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
+            newRec.UserId = CurrentUser.Id;
+            newRec.ReceiptId = Guid.NewGuid();
             foreach (ScannedProduct Pr in ScannedProducts)
             {
-                newRec.Date = CurrentTime;
-                newRec.UserId = CurrentUser.Id;
-                newRec.ProductId = GetID(Pr, productsList);//Add(GetID(Pr, productsList)); 
+                InRec.Add(new ItemsInReceipt { ReceiptId = newRec.ReceiptId, ProductId = Pr.Id });
                 newRec.Sum += Pr.Price;
             }
-            return newRec;
-        }
-
-        private static int GetID (ScannedProduct Pr, List<List<Product>> ProductsList)
-        {
-            foreach (List<Product> list in ProductsList)
-            {
-                if (list.First().Shop == Pr.Shop)
-                {
-                    foreach (Product PrId in list)
-                    {
-                        if (PrId.Name == Pr.Name) return PrId.Id;
-
-                    }
-                }
-            }
-            return 1;
+            return (newRec,InRec);
         }
     }
 }

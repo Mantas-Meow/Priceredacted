@@ -1,0 +1,50 @@
+[
+  {
+    "ReceiptId": "f276c4aa-5b03-4cc1-bee1-f957486ae727",
+    "ProductId": 200001
+  },
+  {
+    "ReceiptId": "cab47a07-6715-4c77-ac00-324db7694850",
+    "ProductId": 0
+  },
+  {
+    "ReceiptId": "cab47a07-6715-4c77-ac00-324db7694850",
+    "ProductId": 0
+  },
+  {
+    "ReceiptId": "1d4e53f5-39d3-418f-8659-f79b4adc7cf8",
+    "ProductId": 200001
+  },
+  {
+    "ReceiptId": "1d4e53f5-39d3-418f-8659-f79b4adc7cf8",
+    "ProductId": 0
+  },
+  {
+    "ReceiptId": "d1a174b5-4bce-4270-ad74-9cc0bba61916",
+    "ProductId": 0
+  },
+  {
+    "ReceiptId": "f1b74947-a6ac-4625-8e3a-fdfef144841d",
+    "ProductId": 0
+  },
+  {
+    "ReceiptId": "a316812b-2382-4666-a41d-f4e17ffcf476",
+    "ProductId": 0
+  },
+  {
+    "ReceiptId": "bc2a1cd5-3871-4016-b2fc-71436f11d0d4",
+    "ProductId": 200002
+  },
+  {
+    "ReceiptId": "debdd481-6ea1-4e4e-a3fa-cf148e74c599",
+    "ProductId": 200001
+  },
+  {
+    "ReceiptId": "debdd481-6ea1-4e4e-a3fa-cf148e74c599",
+    "ProductId": 200005
+  },
+  {
+    "ReceiptId": "debdd481-6ea1-4e4e-a3fa-cf148e74c599",
+    "ProductId": 200006
+  }
+]

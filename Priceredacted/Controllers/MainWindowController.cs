@@ -52,12 +52,11 @@ namespace Priceredacted.Processors
         {
             Application.Exit();
         }
-        public void AddData(Shops shop, string group,
-                string name, string priceUnit, string price)
+        public void AddData(Product Pr)
         {
             try
             {
-                mainLogic.AddProduct(mainLogic.CreateProduct(shop, group, name, priceUnit, price));
+                mainLogic.AddProduct(Pr);
             }
             catch (SecurityException)
             {
@@ -116,7 +115,17 @@ namespace Priceredacted.Processors
         
         public void SaveReceipt()
         {
-            mainLogic.SaveReceipt();
+            try
+            {
+                mainLogic.SaveReceipt();
+            }
+            catch (SecurityException)
+            {
+                MessageBox.Show("Receipt was not saved!");
+                return;
+            }
+            MessageBox.Show("Receipt saved");
+            Clear();
         }
     }
 }

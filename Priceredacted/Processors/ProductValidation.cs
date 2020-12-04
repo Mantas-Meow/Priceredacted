@@ -11,6 +11,5 @@ namespace Priceredacted.Processors
         public static bool ValidateProduct(List<Product> Products, Product ToAdd) => 
             !Products.Any(pr => pr.Name == ToAdd.Name && pr.Category == ToAdd.Category &&
             pr.Shop == ToAdd.Shop && pr.PriceUnit == ToAdd.PriceUnit);
-
     }
 }
