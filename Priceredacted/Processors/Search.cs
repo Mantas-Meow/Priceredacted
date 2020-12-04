@@ -11,48 +11,7 @@ namespace Priceredacted.Processors
 {
     class SearchAndFind
     {
-        private delegate Product AddProductID (List<Product> Products, Product ToAdd);
-
-        public static List<List<Product>> AddData(Product productToBeAdded, List<List<Product>> products)
-        {
-            AddProductID makeProductId = delegate(List<Product> Products, Product ToAdd)
-            {
-                if (Products.Count == 0)
-                {
-                    ToAdd.Id = ((int)ToAdd.Shop * 100000) + 1;
-                }
-                else
-                {
-                    ToAdd.Id = Products.Last().Id + 1;
-                }
-                return ToAdd;
-            };
-
-            productToBeAdded.Price = Regex.Replace(productToBeAdded.Price, @",+", ".");
-
-            if (products == null)
-            {
-                products = new List<List<Product>>();
-            }
-            foreach (List<Product> li in products)
-            {
-                if (li.First().Shop == productToBeAdded.Shop)
-                { 
-                    if (ProductValidation.ValidateProduct(li, productToBeAdded))
-                    {
-                        productToBeAdded = makeProductId(li, productToBeAdded);
-                        li.Add(productToBeAdded);
-                        return products;
-                    }
-                    return products;
-                }
-            }
-            List<Product> newList = new List<Product>();
-            productToBeAdded = makeProductId(newList, productToBeAdded);
-            newList.Add(productToBeAdded);
-            products.Add(newList);
-            return products;
-        }
+        
         public static IEnumerable<Product> SearchForProduct(string query, string preferredShop,
             IEnumerable<IEnumerable<Product>> unfilteredProducts)
         {
