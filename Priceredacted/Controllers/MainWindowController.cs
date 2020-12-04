@@ -3,6 +3,7 @@ using Priceredacted.Properties;
 using Priceredacted.UI;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Security;
 using System.Threading.Tasks;
@@ -126,6 +127,15 @@ namespace Priceredacted.Processors
             }
             MessageBox.Show("Receipt saved");
             Clear();
+        }
+
+        public void SaveColors (String Fg, String Bk)
+        {
+            if (Fg == null) Fg = "SlateGray";
+            if (Bk == null) Bk = "LightSteelBlue";
+            Settings.Default.FrgrColor = Color.FromName(Fg);
+            Settings.Default.BkgrColor = Color.FromName(Bk);
+            Settings.Default.Save();
         }
     }
 }

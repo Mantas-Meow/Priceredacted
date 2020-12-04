@@ -22,5 +22,29 @@ namespace Priceredacted.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("SlateGray")]
+        public global::System.Drawing.Color FrgrColor {
+            get {
+                return ((global::System.Drawing.Color)(this["FrgrColor"]));
+            }
+            set {
+                this["FrgrColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("LightSteelBlue")]
+        public global::System.Drawing.Color BkgrColor {
+            get {
+                return ((global::System.Drawing.Color)(this["BkgrColor"]));
+            }
+            set {
+                this["BkgrColor"] = value;
+            }
+        }
     }
 }
