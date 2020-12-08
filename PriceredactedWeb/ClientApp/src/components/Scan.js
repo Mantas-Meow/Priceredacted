@@ -19,19 +19,20 @@ export class Scan extends Component {
         return (
             <main>
                 <div>
-                    <span style={{'fontSize': '1.5rem'}}>SCAN RECEIPT</span>
-                    <p>Current count: <strong>{this.state.skaicius}</strong></p>
-                    <button className="basicButton" onClick={this.incrementCounter}>Increment</button>
-                    <table className="table table-sm table-hover table-dark">
-                        <thead>
-                            <tr>
-                            <th scope="col">Shop</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Price</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {TestProductsData.map((item, index) => {
+                        <span style={{'fontSize': '1.5rem'}}>SCAN RECEIPT</span>
+                        <p>Current count: <strong>{this.state.skaicius}</strong></p>
+                        <button className="basicButton" onClick={this.incrementCounter}>Increment</button>
+                        <p style={{ 'padding': '2rem'}}></p>
+                        <table style={{'background-color': 'var(--bg-primary)'}} className="table table-sm table-hover table-dark">
+                            <thead>
+                                <tr>
+                                <th scope="col">Shop</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {TestProductsData.map((item, index) => {
                                     return(
                                         <tr key={index}>
                                         {/* <th scope="row">{item.index}</th> */}
@@ -40,9 +41,9 @@ export class Scan extends Component {
                                         <td>{item.price}</td>
                                         </tr>
                                     )
-                            })}
-                        </tbody>
-                    </table>
+                                })}
+                            </tbody>
+                        </table>
                 </div>
             </main>
         )
