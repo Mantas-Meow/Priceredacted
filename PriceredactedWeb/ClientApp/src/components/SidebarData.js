@@ -62,7 +62,7 @@ export const SidebarData = [
         textName: "link-text",
 
         title: 'Scan',
-        ref: "/counter"
+        ref: "/scan"
     },
     {
         className: "nav-item",
@@ -104,7 +104,7 @@ export const SidebarData = [
         textName: "link-text",
 
         title: 'Settings',
-        ref: "/"
+        ref: "/counter"
     },
     
 ]

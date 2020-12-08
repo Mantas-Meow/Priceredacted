@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2&display=swap');
 
 :root {
     font-size: 16px;
-    font-family: 'Lato';
+    font-family: 'Exo 2';
     --text-primary: #b6b6b6;
     --text-secondary: #FFAC1F; /*#ececec;*/
     --bg-primary: #23232e;
@@ -12,10 +13,16 @@
 }
 
 body {
+    font-family: 'Exo 2';
     color: black;
     background-color: #E7F4FA; /* white;*/
     margin: 0;
     padding: 0;
+    
+    text-align: left;
+    line-height: 1.5;
+    font-size: 1rem;
+    font-weight: 400;
 }
 
 body::-webkit-scrollbar {

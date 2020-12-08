@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Home } from './components/Home';
+import { Scan } from './components/Scan';
 import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
@@ -18,6 +19,7 @@ export default class App extends Component {
                 <Route exact path='/' component={Home} />
                 <Route path='/counter' component={Counter} />
                 <Route path='/fetch-data' component={FetchData} />
+                <Route path='/scan' component={Scan} />
             </Switch>
         </Router>
     );

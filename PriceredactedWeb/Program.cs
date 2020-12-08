@@ -22,6 +22,5 @@ namespace PriceredactedWeb
                 {
                     webBuilder.UseStartup<Startup>();
                 });
-        //test test test
     }
 }
