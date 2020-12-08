@@ -25,7 +25,8 @@ namespace PriceredactedWeb
 
             services.AddControllers();
             //services.AddDbContext<PriceredactedDBContext>();
-            services.AddDbContext<DbContext>(options => options.UseSqlServer("Server = (localdb\\Priceredacted; Database = PriceredactedDB; Trusted_Connection = True;)"));
+            //services.AddDbContext<PriceredactedDBContext>(options => options.UseSqlServer("Server = (localdb\\Priceredacted; Database = PriceredactedDB; Trusted_Connection = True;)"));
+            services.AddDbContext<PriceredactedDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
