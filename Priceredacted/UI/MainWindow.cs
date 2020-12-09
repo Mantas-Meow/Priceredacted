@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Priceredacted.Processors;
 using Priceredacted.Properties;
+using Priceredacted.UI;
 using static Priceredacted.Tools.Utils;
 
 
@@ -15,6 +16,7 @@ namespace Priceredacted
         public MainWindow(UserData user)
         {
             InitializeComponent();
+            InitializeMainWindow();
             mainController = new MainWindowController();
             mainController.homePanel = Home_panel;
             mainController.scanPanel = Scan_panel;
@@ -26,9 +28,12 @@ namespace Priceredacted
             mainController.SetCurrentUser(user);
         }
 
-        private void MainWindow_Load(object sender, EventArgs e)
+        private void InitializeMainWindow()
         {
-
+            this.BackColor = Settings.Default.FrgrColor;
+            this.Scan_panel.BackColor = Settings.Default.BkgrColor;
+            this.Home_panel.BackColor = Settings.Default.BkgrColor;
+            this.Search_panel.BackColor = Settings.Default.BkgrColor;
         }
 
         private void ScanImage_button_Click(object sender, EventArgs e)
@@ -48,8 +53,15 @@ namespace Priceredacted
 
         private void AddData_button_Click(object sender, EventArgs e)
         {
-            mainController.AddData(((Shops)Enum.Parse(typeof(Shops), ShopList.Text)), ItemGroup.Text,             //(CategoryEnum)Enum.Parse(typeof(CategoryEnum), comboBox1.Text)
-                    ProductName.Text.Trim(), PriceUnit.Text, Price.Text.Trim());
+            Product Pr = new Product()
+            {
+                Shop = (Shops)Enum.Parse(typeof(Shops), ShopList.Text),
+                Category = ItemGroup.Text,
+                Name = ProductName.Text.Trim(),
+                PriceUnit = PriceUnit.Text,
+                Price = Price.Text.Trim()
+            };
+            mainController.AddData(Pr);
         }
 
         private void SearchButton_Click(object sender, EventArgs e)
@@ -109,12 +121,34 @@ namespace Priceredacted
 
         private void AddProduct_Button_Click(object sender, EventArgs e)
         {
-            mainController.LoadAddProductWindow(Main_richTextBox); //Main_richTextBox perduoti pabandyt
+            mainController.LoadAddProductWindow();
         }
 
         private void currentUser_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void SaveReceipt_button_Click(object sender, EventArgs e)
+        {
+            mainController.SaveReceipt();
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ChangeColors_button_Click(object sender, EventArgs e)
+        {
+            if (FrgrColor_comboBox.Text != null && BkgrColor_comboBox.Text != null)
+            {
+                mainController.SaveColors(FrgrColor_comboBox.Text, BkgrColor_comboBox.Text);
+                this.BackColor = Settings.Default.FrgrColor;
+                this.Scan_panel.BackColor = Settings.Default.BkgrColor;
+                this.Home_panel.BackColor = Settings.Default.BkgrColor;
+                this.Search_panel.BackColor = Settings.Default.BkgrColor;
+            }
         }
     }
 }

@@ -1,8 +1,11 @@
-﻿using Priceredacted.Properties;
+﻿using Priceredacted.Interfaces;
+using Priceredacted.Properties;
 using Priceredacted.UI;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
+using System.Security;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Priceredacted.Tools.Utils;
@@ -10,7 +13,7 @@ using static Priceredacted.Tools.Utils;
 
 namespace Priceredacted.Processors
 {
-    class MainWindowController
+    class MainWindowController: IMainWindowController
     {
         public Panel homePanel;
         public Panel scanPanel;
@@ -19,10 +22,11 @@ namespace Priceredacted.Processors
         public RichTextBox outputTextField;
         public Label userText;
         private MainWindowLogic mainLogic = new MainWindowLogic();
+        Lazy<AddProductWindow> addProductWin;
 
         public MainWindowController()
         {
-
+            addProductWin = new Lazy<AddProductWindow>(() => new AddProductWindow(outputTextField, this));
         }
 
         public void ActivateScanPanel()
@@ -49,14 +53,13 @@ namespace Priceredacted.Processors
         {
             Application.Exit();
         }
-        public void AddData(Shops shop, string group,
-                string name, string priceUnit, string price)
+        public void AddData(Product Pr)
         {
             try
             {
-                mainLogic.AddProduct(mainLogic.CreateProduct(shop, group, name, priceUnit, price));
+                mainLogic.AddProduct(Pr);
             }
-            catch (Exception e)
+            catch (SecurityException)
             {
                 MessageBox.Show("Product was not added!");
                 return;
@@ -106,10 +109,33 @@ namespace Priceredacted.Processors
             outputTextField.Text = "";
             mainLogic.Clear();
         }
-        public void LoadAddProductWindow(RichTextBox Main_richTextBox)
+        public void LoadAddProductWindow()
         {
-            AddProductWindow AddWin = new AddProductWindow(outputTextField);
-            AddWin.Show();
+            addProductWin.Value.Show();
+        }
+        
+        public void SaveReceipt()
+        {
+            try
+            {
+                mainLogic.SaveReceipt();
+            }
+            catch (SecurityException)
+            {
+                MessageBox.Show("Receipt was not saved!");
+                return;
+            }
+            MessageBox.Show("Receipt saved");
+            Clear();
+        }
+
+        public void SaveColors (String Fg, String Bk)
+        {
+            if (Fg == null) Fg = "SlateGray";
+            if (Bk == null) Bk = "LightSteelBlue";
+            Settings.Default.FrgrColor = Color.FromName(Fg);
+            Settings.Default.BkgrColor = Color.FromName(Bk);
+            Settings.Default.Save();
         }
     }
 }

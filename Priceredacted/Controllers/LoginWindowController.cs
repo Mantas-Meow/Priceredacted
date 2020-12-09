@@ -61,7 +61,7 @@ namespace Priceredacted.Controllers
             UserData user = loginLogic.LogInUser(username, pass);
             if (user == null)
             {
-                MessageBox.Show("Wrong username or passowrd!");
+                MessageBox.Show("Wrong username or password!");
             }
             else
             {
