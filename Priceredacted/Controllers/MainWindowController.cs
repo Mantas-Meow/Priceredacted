@@ -15,12 +15,12 @@ namespace Priceredacted.Processors
 {
     class MainWindowController: IMainWindowController
     {
-        public Panel homePanel;
-        public Panel scanPanel;
-        public Panel searchPanel;
-        public DataGridView dataField;
-        public RichTextBox outputTextField;
-        public Label userText;
+        public Panel homePanel { get; set; }
+        public Panel scanPanel { get; set; }
+        public Panel searchPanel { get; set; }
+        public DataGridView dataField { get; set; }
+        public RichTextBox outputTextField { get; set; }
+        public Label userText { get; set; }
         private MainWindowLogic mainLogic = new MainWindowLogic();
         Lazy<AddProductWindow> addProductWin;
 

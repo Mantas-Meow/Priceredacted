@@ -47,6 +47,22 @@
       "Name": "Kiwi",
       "PriceUnit": "Eur/kg",
       "Price": "1.29"
+    },
+    {
+      "Id": 100007,
+      "Shop": 1,
+      "Category": "Vegetable",
+      "Name": "123",
+      "PriceUnit": "Eur/unit",
+      "Price": "132"
+    },
+    {
+      "Id": 100008,
+      "Shop": 1,
+      "Category": "Vegetable",
+      "Name": "",
+      "PriceUnit": "Eur/unit",
+      "Price": ""
     }
   ],
   [
@@ -115,6 +131,14 @@
       "Name": "Pepsi 1l",
       "PriceUnit": "Eur/unit",
       "Price": "1.09"
+    },
+    {
+      "Id": 200007,
+      "Shop": 2,
+      "Category": "Vegetable",
+      "Name": "13",
+      "PriceUnit": "Eur/kg",
+      "Price": ""
     }
   ]
 ]

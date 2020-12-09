@@ -2,7 +2,7 @@
 
 namespace Priceredacted.Properties
 {
-    struct Product
+    public struct Product
     {
         public int Id { get; set; }
         public Shops Shop { get; set; }

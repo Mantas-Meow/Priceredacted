@@ -15,8 +15,8 @@ namespace Priceredacted.Controllers
         }
         public void LoadMainWindow(UserData user)
         {
-            MainWindow main = new MainWindow(user);
-            main.Show();
+            //MainWindow main = new MainWindow(user);
+            //main.Show();
         }
         public bool RegisterUser(string username, string email, string password1, string password2, Guid Id)
         {

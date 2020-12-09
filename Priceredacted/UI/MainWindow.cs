@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Priceredacted.Interfaces;
 using Priceredacted.Processors;
 using Priceredacted.Properties;
 using Priceredacted.UI;
@@ -11,21 +12,21 @@ namespace Priceredacted
 {
     public partial class MainWindow : Form
     {
-        MainWindowController mainController;
+        IMainWindowController mainController;
 
-        public MainWindow(UserData user)
+        public MainWindow(IMainWindowController mainController)
         {
+            this.mainController = mainController;
+
             InitializeComponent();
             InitializeMainWindow();
-            mainController = new MainWindowController();
+
             mainController.homePanel = Home_panel;
             mainController.scanPanel = Scan_panel;
             mainController.searchPanel = Search_panel;
             mainController.dataField = SearchResults;
             mainController.outputTextField = Main_richTextBox;
             ManualReceipInput_richTextBox.Text = " ";
-            mainController.userText = currentUser;
-            mainController.SetCurrentUser(user);
         }
 
         private void InitializeMainWindow()
