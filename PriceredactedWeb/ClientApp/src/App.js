@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router';
-import { Layout } from './components/Layout';
 import { Home } from './components/Home';
+import { Scan } from './components/Scan';
 import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { NavMenu as Navbar } from './components/NavMenu.js'
 
 import './custom.css'
 
@@ -12,11 +13,15 @@ export default class App extends Component {
 
   render () {
     return (
-      <Layout>
-        <Route exact path='/' component={Home} />
-        <Route path='/counter' component={Counter} />
-        <Route path='/fetch-data' component={FetchData} />
-      </Layout>
+        <Router>
+            <Navbar />
+            <Switch>
+                <Route exact path='/' component={Home} />
+                <Route path='/counter' component={Counter} />
+                <Route path='/fetch-data' component={FetchData} />
+                <Route path='/scan' component={Scan} />
+            </Switch>
+        </Router>
     );
   }
 }

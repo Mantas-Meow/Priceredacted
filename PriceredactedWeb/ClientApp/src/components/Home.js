@@ -6,18 +6,21 @@ export class Home extends Component {
     static displayName = Home.name;
     componentDidMount() {
             this.makeAPICall();
-        }
-        async makeAPICall() {
-            const response = await fetch('api/users');
-            const data = await response.json();
-            console.log(data);
-        }
+    }
+    async makeAPICall() {
+        const response = await fetch('api/users');
+        const data = await response.json();
+        console.log(data);
+    }
 
-  render () {
-    return (
-      <div>
-            <img src={Logo} className="title"/>
-      </div>
-    );
+
+    render () {
+        return (
+            <main>
+                <div>
+                    <img src={Logo}/>
+                </div>
+            </main>
+        );
   }
 }
