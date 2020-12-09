@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Logo from '../Resources/PriceRedacted.png';
+import './Style.css';
 
 export class Home extends Component {
     static displayName = Home.name;
@@ -11,6 +12,7 @@ export class Home extends Component {
         const data = await response.json();
         console.log(data);
     }
+
 
     render () {
         return (
