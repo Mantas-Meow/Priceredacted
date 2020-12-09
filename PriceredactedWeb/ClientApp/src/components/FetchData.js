@@ -14,26 +14,29 @@ export class FetchData extends Component {
 
   static renderForecastsTable(forecasts) {
     return (
-      <table className='table table-striped' aria-labelledby="tabelLabel">
-        <thead>
+      <table style={{'background-color': 'var(--bg-primary)'}} className="table table-hover table-dark table-striped">
+        <caption>Products in database</caption>
+        <thead >
           <tr>
-            <th>Shop</th>
-            <th>Item group</th>
-            <th>Name</th>
-            <th>Price Unit</th>
-            <th>Price</th>
+            <th scope="col">Shop</th>
+            <th scope="col">Item group</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price Unit</th>
+            <th scope="col">Price</th>
           </tr>
         </thead>
         <tbody>
-          {//forecasts.map(forecast =>
-            forecasts.map(Product =>
-            <tr key={Product.Shop}>
-              <td>{Product.ItemGroup}</td>
-              <td>{Product.Name}</td>
-              <td>{Product.PriceUnit}</td>
-              <td>{Product.Price}</td>
-            </tr>
-          )}
+          {forecasts.map((Product, index) => {
+              return(
+              <tr key={index}>
+              <td>{Product.shop}</td>
+              <td>{Product.itemGroup}</td>
+              <td>{Product.name}</td>
+              <td>{Product.priceUnit}</td>
+              <td>{Product.price}</td>
+              </tr>
+              )
+            })}
         </tbody>
       </table>
     );
@@ -45,8 +48,8 @@ export class FetchData extends Component {
       return (
         <main>
              <div>
-                <h1 id="tabelLabel" >Weather forecast</h1>
-                <p>This component demonstrates fetching data from the server.</p>
+                <span className="headline-text">Search</span>
+                <p>Search for a product</p>
                 {contents}
             </div>
         </main>
@@ -54,7 +57,7 @@ export class FetchData extends Component {
   }
 
   async populateWeatherData() {
-      const response = await fetch('https://localhost:44310/api/Products');
+      const response = await fetch('https://localhost:5001/api/Products');
     const data = await response.json();
     this.setState({ forecasts: data, loading: false });
   }

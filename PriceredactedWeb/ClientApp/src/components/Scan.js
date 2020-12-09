@@ -19,11 +19,11 @@ export class Scan extends Component {
         return (
             <main>
                 <div>
-                        <span style={{'fontSize': '1.5rem'}}>SCAN RECEIPT</span>
+                        <span className="headline-text">SCAN RECEIPT</span>
                         <p>Current count: <strong>{this.state.skaicius}</strong></p>
                         <button className="basicButton" onClick={this.incrementCounter}>Increment</button>
                         <p style={{ 'padding': '2rem'}}></p>
-                        <table style={{'background-color': 'var(--bg-primary)'}} className="table table-sm table-hover table-dark">
+                        <table style={{'backgroundColor': 'var(--bg-primary)'}} className="table table-sm table-hover table-dark">
                             <thead>
                                 <tr>
                                 <th scope="col">Shop</th>
