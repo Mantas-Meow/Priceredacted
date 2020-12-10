@@ -11,27 +11,7 @@ namespace Priceredacted.Processors
 {
     class SearchAndFind
     {
-        public static List<List<Product>> AddData(Product productToBeAdded, string path, List<List<Product>> products)
-        {
-            //List<List<Product>> products = (List<List<Product>>) DataProcessor.LoadJson<List<Product>>(path);
-            productToBeAdded.Price = Regex.Replace(productToBeAdded.Price, @",+", ".");
-            if (products == null)
-            {
-                products = new List<List<Product>>();
-            }
-            foreach (List<Product> li in products)
-            {
-                if (li.First().Name[0] == productToBeAdded.Name[0])
-                { 
-                    li.Add(productToBeAdded);
-                    return products;
-                }
-            }
-            List<Product> newList = new List<Product>();
-            newList.Add(productToBeAdded);
-            products.Add(newList);
-            return products;
-        }
+        
         public static IEnumerable<Product> SearchForProduct(string query, string preferredShop,
             IEnumerable<IEnumerable<Product>> unfilteredProducts)
         {
@@ -45,7 +25,7 @@ namespace Priceredacted.Processors
                 }
                 else
                 {
-                    filteredProducts = unfilteredProducts.SelectMany(iepr => iepr.Where(pr => (pr.Group.ToLower().Contains(query)
+                    filteredProducts = unfilteredProducts.SelectMany(iepr => iepr.Where(pr => (pr.Category.ToLower().Contains(query)
                                        || pr.Name.ToLower().Contains(query)
                                        || pr.PriceUnit.ToLower().Contains(query)
                                        || pr.Price.ToLower().Contains(query))));
@@ -59,7 +39,7 @@ namespace Priceredacted.Processors
                 }
                 else
                 {
-                    filteredProducts = unfilteredProducts.SelectMany(iepr => iepr.Where(pr => (pr.Group.ToLower().Contains(query)
+                    filteredProducts = unfilteredProducts.SelectMany(iepr => iepr.Where(pr => (pr.Category.ToLower().Contains(query)
                                        || pr.Name.ToLower().Contains(query)
                                        || pr.PriceUnit.ToLower().Contains(query)
                                        || pr.Price.ToLower().Contains(query))
@@ -79,7 +59,7 @@ namespace Priceredacted.Processors
             }
             else
             {
-                filteredProducts = unfilteredProducts.SelectMany(iepr => iepr.Where(pr => (pr.Group.ToLower().Contains(query)
+                filteredProducts = unfilteredProducts.SelectMany(iepr => iepr.Where(pr => (pr.Category.ToLower().Contains(query)
                                        || pr.Name.ToLower().Contains(query)
                                        || pr.PriceUnit.ToLower().Contains(query)
                                        || pr.Price.ToLower().Contains(query))));

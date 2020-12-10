@@ -36,12 +36,12 @@ namespace Priceredacted.Logics
             return (List<UserData>) DataProcessor.LoadJson<UserData>(Tools.Utils.UserDataPath);
         }
 
-        public bool LogInUser(string user, string pass)
+        public UserData LogInUser(string user, string pass)
         {
             return UserDataValidation.Login(user, pass, LoadUsers());
         }
 
-        public bool RegisterUser(string username, string email, string pass1, string pass2, UserData user, Guid Id)
+        public bool CheckRegisterUser(string username, string email, string pass1, string pass2, UserData user, Guid Id)
         {
             if (!UserDataValidation.CheckPasswords(pass1, pass2))
                 throw new PasswordValidationException();

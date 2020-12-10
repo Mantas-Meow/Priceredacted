@@ -53,6 +53,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.SearchResults = new System.Windows.Forms.DataGridView();
             this.Scan_panel = new System.Windows.Forms.Panel();
+            this.SaveReceipt_button = new System.Windows.Forms.Button();
             this.AddProduct_button = new System.Windows.Forms.Button();
             this.Clear_button = new System.Windows.Forms.Button();
             this.ComparePrices_button = new System.Windows.Forms.Button();
@@ -61,6 +62,12 @@
             this.ScanNewImage_Button = new System.Windows.Forms.Button();
             this.Main_richTextBox = new System.Windows.Forms.RichTextBox();
             this.ScannedImage = new System.Windows.Forms.PictureBox();
+            this.currentUser = new System.Windows.Forms.Label();
+            this.FrgrColor_comboBox = new System.Windows.Forms.ComboBox();
+            this.BkgrColor_comboBox = new System.Windows.Forms.ComboBox();
+            this.ChangeColors_button = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PriceRedactedImage)).BeginInit();
             this.Home_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -93,7 +100,7 @@
             // 
             // Exit_button
             // 
-            this.Exit_button.Location = new System.Drawing.Point(57, 396);
+            this.Exit_button.Location = new System.Drawing.Point(42, 378);
             this.Exit_button.Name = "Exit_button";
             this.Exit_button.Size = new System.Drawing.Size(58, 23);
             this.Exit_button.TabIndex = 2;
@@ -351,6 +358,7 @@
             // Scan_panel
             // 
             this.Scan_panel.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.Scan_panel.Controls.Add(this.SaveReceipt_button);
             this.Scan_panel.Controls.Add(this.AddProduct_button);
             this.Scan_panel.Controls.Add(this.Clear_button);
             this.Scan_panel.Controls.Add(this.ComparePrices_button);
@@ -363,6 +371,16 @@
             this.Scan_panel.Name = "Scan_panel";
             this.Scan_panel.Size = new System.Drawing.Size(620, 457);
             this.Scan_panel.TabIndex = 4;
+            // 
+            // SaveReceipt_button
+            // 
+            this.SaveReceipt_button.Location = new System.Drawing.Point(269, 427);
+            this.SaveReceipt_button.Name = "SaveReceipt_button";
+            this.SaveReceipt_button.Size = new System.Drawing.Size(132, 23);
+            this.SaveReceipt_button.TabIndex = 7;
+            this.SaveReceipt_button.Text = "Save Receipt";
+            this.SaveReceipt_button.UseVisualStyleBackColor = true;
+            this.SaveReceipt_button.Click += new System.EventHandler(this.SaveReceipt_button_Click);
             // 
             // AddProduct_button
             // 
@@ -441,6 +459,90 @@
             this.ScannedImage.TabStop = false;
             this.ScannedImage.Click += new System.EventHandler(this.ScannedImage_Click);
             // 
+            // currentUser
+            // 
+            this.currentUser.AllowDrop = true;
+            this.currentUser.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.currentUser.Location = new System.Drawing.Point(12, 406);
+            this.currentUser.Name = "currentUser";
+            this.currentUser.Size = new System.Drawing.Size(160, 42);
+            this.currentUser.TabIndex = 5;
+            this.currentUser.Text = "Current user: admin";
+            this.currentUser.Click += new System.EventHandler(this.currentUser_Click);
+            // 
+            // FrgrColor_comboBox
+            // 
+            this.FrgrColor_comboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.FrgrColor_comboBox.FormattingEnabled = true;
+            this.FrgrColor_comboBox.Items.AddRange(new object[] {
+            "LightSteelBlue",
+            "SlateGray",
+            "SteelBlue",
+            "BlueViolet",
+            "Crimson",
+            "DarkCyan",
+            "DarkSlateBlue",
+            "DeepPink",
+            "HotPink",
+            "LightCoral",
+            "PaleGreen",
+            "MediumSpringGreen"});
+            this.FrgrColor_comboBox.Location = new System.Drawing.Point(12, 317);
+            this.FrgrColor_comboBox.Name = "FrgrColor_comboBox";
+            this.FrgrColor_comboBox.Size = new System.Drawing.Size(74, 23);
+            this.FrgrColor_comboBox.TabIndex = 6;
+            // 
+            // BkgrColor_comboBox
+            // 
+            this.BkgrColor_comboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.BkgrColor_comboBox.FormattingEnabled = true;
+            this.BkgrColor_comboBox.Items.AddRange(new object[] {
+            "LightSteelBlue",
+            "SlateGray",
+            "SteelBlue",
+            "BlueViolet",
+            "Crimson",
+            "DarkCyan",
+            "DarkSlateBlue",
+            "DeepPink",
+            "HotPink",
+            "LightCoral",
+            "PaleGreen",
+            "MediumSpringGreen"});
+            this.BkgrColor_comboBox.Location = new System.Drawing.Point(105, 318);
+            this.BkgrColor_comboBox.Name = "BkgrColor_comboBox";
+            this.BkgrColor_comboBox.Size = new System.Drawing.Size(76, 23);
+            this.BkgrColor_comboBox.TabIndex = 7;
+            this.BkgrColor_comboBox.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            // 
+            // ChangeColors_button
+            // 
+            this.ChangeColors_button.Location = new System.Drawing.Point(42, 347);
+            this.ChangeColors_button.Name = "ChangeColors_button";
+            this.ChangeColors_button.Size = new System.Drawing.Size(98, 26);
+            this.ChangeColors_button.TabIndex = 8;
+            this.ChangeColors_button.Text = "Change Colors";
+            this.ChangeColors_button.UseVisualStyleBackColor = true;
+            this.ChangeColors_button.Click += new System.EventHandler(this.ChangeColors_button_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(11, 301);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(57, 15);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "FrgrColor";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(105, 301);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(60, 15);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "BkgrColor";
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -448,19 +550,24 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.SlateGray;
             this.ClientSize = new System.Drawing.Size(807, 457);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.ChangeColors_button);
+            this.Controls.Add(this.BkgrColor_comboBox);
+            this.Controls.Add(this.FrgrColor_comboBox);
+            this.Controls.Add(this.currentUser);
             this.Controls.Add(this.Home_button);
             this.Controls.Add(this.PriceRedactedImage);
             this.Controls.Add(this.Exit_button);
             this.Controls.Add(this.SearchItems_button);
             this.Controls.Add(this.ScanImage_button);
+            this.Controls.Add(this.Search_panel);
             this.Controls.Add(this.Home_panel);
             this.Controls.Add(this.Scan_panel);
-            this.Controls.Add(this.Search_panel);
             this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.Text = "PriceRedacted";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
-            this.Load += new System.EventHandler(this.MainWindow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PriceRedactedImage)).EndInit();
             this.Home_panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -470,6 +577,7 @@
             this.Scan_panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ScannedImage)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -507,5 +615,12 @@
         private System.Windows.Forms.ComboBox SearchShopList;
         private System.Windows.Forms.Button Clear_button;
         private System.Windows.Forms.Button AddProduct_button;
+        private System.Windows.Forms.Label currentUser;
+        private System.Windows.Forms.Button SaveReceipt_button;
+        private System.Windows.Forms.ComboBox FrgrColor_comboBox;
+        private System.Windows.Forms.ComboBox BkgrColor_comboBox;
+        private System.Windows.Forms.Button ChangeColors_button;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
     }
 }

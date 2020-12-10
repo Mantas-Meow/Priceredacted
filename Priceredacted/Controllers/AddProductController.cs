@@ -1,4 +1,5 @@
-﻿using Priceredacted.Logics;
+﻿using Priceredacted.Interfaces;
+using Priceredacted.Logics;
 using Priceredacted.Processors;
 using Priceredacted.Properties;
 using System;
@@ -12,23 +13,22 @@ namespace Priceredacted.Controllers
     class AddProductController
     {
         private AddProductLogic AddLogic;
-        private MainWindowController Main;
+        private IMainWindowController Main;
         public RichTextBox output;
         public TextBox product;
         public TextBox price;
 
-        public AddProductController(RichTextBox outputTextField)
+        public AddProductController(RichTextBox outputTextField, IMainWindowController Main)
         {
-            Main = new MainWindowController();
+            this.Main = Main;
             AddLogic = new AddProductLogic();
             output = outputTextField;
         }
 
-        public void AddProducts(Shops shop, string group,
-                string name, string priceUnit, string price)
+        public void AddProducts(Product Pr)
         {
-            Main.AddData(shop, group, name, priceUnit, price);
-            AddLogic.AddProduct(shop, name, priceUnit, price);
+            Main.AddData(Pr);
+            AddLogic.AddProduct(Pr);
             output.Text = AddLogic.ComparePrices();
             product.Text = "";
             this.price.Text = "";

@@ -1,69 +1,60 @@
 ﻿using Priceredacted.Interfaces;
+using Priceredacted.Models;
 using Priceredacted.Properties;
 using Priceredacted.Tesseract_Ocr;
 using System;
 using System.Collections.Generic;
-
+using System.Threading.Tasks;
 
 namespace Priceredacted.Processors
 {
     class MainWindowLogic : IMainWindowLogic
     {
-        public static string selectedFile;
+        public UserData currentUser;
 
         public void AddProduct(Product product)
         {
             List<List<Product>> productsList = (List<List<Product>>) DataProcessor.LoadJson<List<Product>>(Tools.Utils.ProductsPath);
-            List<List<Product>> productsAll = SearchAndFind.AddData(product, Tools.Utils.ProductsPath, productsList);
+            List<List<Product>> productsAll = ProductsProcessor.AddData(product, productsList);
             DataProcessor.SaveJson(productsAll, Tools.Utils.ProductsPath);
+            product.Id = 5;
         }
 
-        public Product CreateProduct(Tools.Utils.Shops shop, string group,
-                string name, string priceUnit, string price)
+        public Task<string> FilterText(string input)
         {
-            Product pr = new Product()
-            {
-                Shop = shop,
-                Group = group,
-                Name = name,
-                PriceUnit = priceUnit,
-                Price = price
-            };
-            return pr;
+            return Task.Run(() => ProductEditor.FilterScanned(input, Tools.Utils.ProductsPath));
         }
 
-        public string FilterText(string input)
+        public Task<string> ComparePrices()
         {
-            return ProductEditor.FilterScanned(input, Tools.Utils.ProductsPath);
-        }
-
-        public string ComparePrices()
-        {
-            return ProductEditor.ComparePrices(Tools.Utils.ProductsPath);
+            return Task.Run(() => ProductEditor.ComparePrices(Tools.Utils.ProductsPath));
         }
 
         public void SaveToProductsJson<T>(IEnumerable<T> objects)
         {
             DataProcessor.SaveJson<T>(objects, Tools.Utils.ProductsPath);
         }
-
-        public string ScanImage(string selectedFile)
-        {
-            return ImageRecognition.GetTextFromImage(imagePath: selectedFile);
-        }
-
         public IEnumerable<Product> SearchProducts(string query, string preferredShop)
         {
             IEnumerable<IEnumerable<Product>> products = DataProcessor.LoadJson <IEnumerable<Product>>(Tools.Utils.ProductsPath);
             return SearchAndFind.SearchForProduct(query, preferredShop, products);
         }
-        public IEnumerable<T> LoadFromProductsJson<T>()
+
+        public Task<string> ScanImageAsync(string selectedFile) => 
+            Task.Run(() => ImageRecognition.GetTextFromImage(imagePath: selectedFile));
+
+        public IEnumerable<T> LoadFromProductsJson<T>() => 
+            DataProcessor.LoadJson<T>(Tools.Utils.ProductsPath);
+
+        public void Clear() => ProductEditor.ClearProducts();
+
+        public void SaveReceipt()
         {
-            return DataProcessor.LoadJson<T>(Tools.Utils.ProductsPath);
-        }
-        public void Clear()
-        {
-            ProductEditor.ClearProducts();
+            List<Receipt> ReceiptsList = (List<Receipt>)DataProcessor.LoadJson<Receipt>(Tools.Utils.ReceiptsPath);
+            List<ItemsInReceipt> InRec = (List<ItemsInReceipt>)DataProcessor.LoadJson<ItemsInReceipt>(Tools.Utils.ItemsInReceiptPath);
+            (List<Receipt> ReceiptsAll, List<ItemsInReceipt> InRecAll) = ProductEditor.SaveReceipt(ReceiptsList, currentUser,InRec);
+            DataProcessor.SaveJson(ReceiptsAll, Tools.Utils.ReceiptsPath);
+            DataProcessor.SaveJson(InRecAll, Tools.Utils.ItemsInReceiptPath);
         }
     }
 }

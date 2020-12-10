@@ -1,4 +1,7 @@
 ﻿using Priceredacted.Controllers;
+using Priceredacted.Interfaces;
+using Priceredacted.Processors;
+using Priceredacted.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,18 +17,39 @@ namespace Priceredacted.UI
     {
         AddProductController AddController;
 
-        public AddProductWindow(RichTextBox outputTextField)
+        public AddProductWindow(RichTextBox outputTextField, object main)
         {
             InitializeComponent();
-            AddController = new AddProductController(outputTextField);
+            AddController = new AddProductController(outputTextField, main as IMainWindowController);
             AddController.product = ProductName;
             AddController.price = Price; 
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            AddController.AddProducts((Shops)Enum.Parse(typeof(Shops), ShopList.Text), ItemGroup.Text,        //((Shops)Enum.Parse(typeof(Shops), ShopList.Text))
-                    ProductName.Text.Trim(), PriceUnit.Text, Price.Text.Trim());
+            Product Pr = new Product()
+            {
+                Shop = (Shops)Enum.Parse(typeof(Shops), ShopList.Text),
+                Category = ItemGroup.Text,
+                Name = ProductName.Text.Trim(),
+                PriceUnit = PriceUnit.Text,
+                Price = Price.Text.Trim(),
+                Id = 0
+            };
+            AddController.AddProducts(Pr);
         }
 
+        private void AddProductWindow_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AddProductWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                Hide();
+            }
+        }
     }
 }

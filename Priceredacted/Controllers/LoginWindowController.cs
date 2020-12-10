@@ -8,18 +8,17 @@ namespace Priceredacted.Controllers
 {
     class LoginWindowController
     {
-        public int i = 0;
         private LoginWindowLogic loginLogic;
         public LoginWindowController()
         {
             loginLogic = new LoginWindowLogic();
         }
-        public void LoadMainWindow()
+        public void LoadMainWindow(UserData user)
         {
-            MainWindow main = new MainWindow();
+            MainWindow main = new MainWindow(user);
             main.Show();
         }
-        public void RegisterUser(string username, string email, string password1, string password2, Guid Id)
+        public bool RegisterUser(string username, string email, string password1, string password2, Guid Id)
         {
             UserData newUser;
             try
@@ -29,42 +28,46 @@ namespace Priceredacted.Controllers
             catch (Exception e)
             {
                 MessageBox.Show("User was not created!");
-                return;
+                return false;
             }
             try
             {
-                if (loginLogic.RegisterUser(username, email, password1, password2, newUser, Id))
+                if (loginLogic.CheckRegisterUser(username, email, password1, password2, newUser, Id))
                 {
                     MessageBox.Show("User registered!");
-                    i = 1;
+                    return true;
                 }
+                
             }
             catch (PasswordValidationException)
             {
                 MessageBox.Show("Passwords do not match. Please check and try again.");
-                i = 0;
+                return false;
             }
             catch(EmailValidationException)
             {
                 MessageBox.Show("The entered email is not valid.");
-                i = 0;
+                return false;
             }
             catch(UsernameValidationException)
             {
                 MessageBox.Show("Username is taken or not valid. Username must be atleast 3 characters long.");
-                i = 0;
+                return false;
             }
+            return false;
         }
         public void LoginUser(string username, string pass, Form logInForm)
         {
-            if (!loginLogic.LogInUser(username, pass))
+            UserData user = loginLogic.LogInUser(username, pass);
+            if (user == null)
             {
-                MessageBox.Show("Wrong username or passowrd!");
+                MessageBox.Show("Wrong username or password!");
             }
             else
             {
+                user.Password = null;
                 logInForm.Hide();
-                LoadMainWindow();
+                LoadMainWindow(user);
             }
         }
     }

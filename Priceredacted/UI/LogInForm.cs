@@ -1,15 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Linq;
-using Newtonsoft.Json;
-using Priceredacted.Properties;
-using Priceredacted.Processors;
 using Priceredacted.Controllers;
 
 namespace Priceredacted.UI
@@ -58,12 +48,11 @@ namespace Priceredacted.UI
 
         private void Register_button_Click(object sender, EventArgs e)
         {
-            loginController.RegisterUser(RegUsername_textbox.Text.Trim(),
+            if (loginController.RegisterUser(RegUsername_textbox.Text.Trim(),
                     RegEmail_textbox.Text.Trim(),
                     RegPassword_textbox.Text.Trim(),
                     RegRPassword_textbox.Text.Trim(),
-                    Guid.NewGuid());
-            if(loginController.i == 1)
+                    Guid.NewGuid()) == true)
             {
                 RegUsername_textbox.Clear();
                 RegEmail_textbox.Clear();
