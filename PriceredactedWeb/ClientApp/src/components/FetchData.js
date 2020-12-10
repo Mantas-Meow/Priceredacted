@@ -14,9 +14,9 @@ export class FetchData extends Component {
 
   static renderForecastsTable(forecasts) {
     return (
-      <table style={{'background-color': 'var(--bg-primary)'}} className="table table-hover table-dark table-striped">
+      <table style={{'background-color': 'var(--table-color)'}} className="table table-hover table-dark ">
         <caption>Products in database</caption>
-        <thead >
+        <thead style={{'background-color': 'var(--bg-primary)'}}>
           <tr>
             <th scope="col">Shop</th>
             <th scope="col">Item group</th>
