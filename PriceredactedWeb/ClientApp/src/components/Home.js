@@ -18,7 +18,8 @@ export class Home extends Component {
         return (
             <main>
                 <div>
-                    <img src={Logo}/>
+                    <span className="headline-text">Home</span>
+                    
                 </div>
             </main>
         );

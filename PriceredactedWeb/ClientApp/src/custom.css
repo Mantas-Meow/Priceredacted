@@ -8,6 +8,8 @@
     --text-secondary: #FFAC1F; /*#ececec;*/
     --bg-primary: #23232e;
     --bg-secondary: #141418;
+    --table-color: #3C3C53;
+    --table-color-secondary: #B9B9CA;
     --icon-color: #FFAC1F;
     --transition-speed: 600ms;
 }
@@ -15,7 +17,7 @@
 body {
     font-family: 'Exo 2';
     color: black;
-    background-color: #E7F4FA; /* white;*/
+     background-color: #DCDCE5;/* #E7F4FA; white; */
     margin: 0;
     padding: 0;
     
@@ -26,7 +28,8 @@ body {
 }
 
 body::-webkit-scrollbar {
-    width: 0.25rem;
+    width: 0.35rem;
+    height: 0.35rem;
 }
 
 body::-webkit-scrollbar-track {
@@ -34,11 +37,12 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-    background: #6649b8;
+    background: #FFAC1F;
 }
 
 main {
-    margin-left: 5rem;
+    margin-left: 7rem;
+    margin-right: 2rem;
     padding: 1rem;
 }
 
@@ -228,4 +232,8 @@ img{
     max-width: 50%;
     height: auto;
     width: auto;
+}
+
+.headline-text{
+    font-size: 2.5rem;
 }
