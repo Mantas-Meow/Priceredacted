@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Home } from './components/Home';
-import { Scan } from './components/Scan';
+import { default as Scan } from './components/Scan';
 import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'

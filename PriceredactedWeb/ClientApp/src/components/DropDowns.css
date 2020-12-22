@@ -1,0 +1,22 @@
+.basicDropDown {
+	/* background:linear-gradient(to bottom, #637aad 5%, #5972a7 100%); */
+	background-color:var(--bg-primary);
+	border:1px solid var(--bg-secondary);
+	display:inline-block;
+	cursor:pointer;
+	color:var(--text-primary);
+	font-size:14px;
+	padding:6px 10px;
+	text-decoration:none;
+}
+.basicDropDown:hover {
+    background:linear-gradient(to bottom, var(--bg-secondary) 5%,var(--bg-secondary)100%);
+    /* background:linear-gradient(to bottom, #5972a7 5%, #637aad 100%); */
+    color: var(--text-secondary);
+    /* background-color:var(--bg-secondary);  */
+    transition: var(--transition-speed);
+}
+.basicDropDown:active {
+	position:relative;
+	top:1px;
+}
