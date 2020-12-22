@@ -5,6 +5,8 @@ import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { NavMenu as Navbar } from './components/NavMenu.js'
+import {  LoginPage } from './components/Login.js'
+import {  RegisterPage } from './components/Registration.js'
 
 import './custom.css'
 
@@ -17,6 +19,8 @@ export default class App extends Component {
             <Navbar />
             <Switch>
                 <Route exact path='/' component={Home} />
+                <Route path='/login' component={LoginPage} />
+                <Route path='/register' component={RegisterPage} />
                 <Route path='/counter' component={Counter} />
                 <Route path='/fetch-data' component={FetchData} />
                 <Route path='/scan' component={Scan} />

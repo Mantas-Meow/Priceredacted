@@ -90,6 +90,27 @@ export const SidebarData = [
         aria_hidden: "true",
         focusable: "false",
         data_prefix: "fas",
+        data_icon: "user-circle",
+        svgName: "svg-inline--fa fa-user-circle fa-w-16",
+        role: "img",
+        xmlns: "http://www.w3.org/2000/svg",
+        viewBox: "0 0 640 512",
+
+        g_name: "fa-group",
+        fill: "currentColor",
+        d1: "M 248 8 C 111 8 0 119 0 256 s 111 248 248 248 s 248 -111 248 -248 S 385 8 248 8 Z m 0 96 c 48.6 0 88 39.4 88 88 s -39.4 88 -88 88 s -88 -39.4 -88 -88 s 39.4 -88 88 -88 Z m 0 344 c -58.7 0 -111.3 -26.6 -146.5 -68.2 c 18.8 -35.4 55.6 -59.8 98.5 -59.8 c 2.4 0 4.8 0.4 7.1 1.1 c 13 4.2 26.6 6.9 40.9 6.9 c 14.3 0 28 -2.7 40.9 -6.9 c 2.3 -0.7 4.7 -1.1 7.1 -1.1 c 42.9 0 79.7 24.4 98.5 59.8 C 359.3 421.4 306.7 448 248 448 Z",
+
+        d2: "M 248 8 C 111 8 0 119 0 256 s 111 248 248 248 s 248 -111 248 -248 S 385 8 248 8 Z m 0 96 c 48.6 0 88 39.4 88 88 s -39.4 88 -88 88 s -88 -39.4 -88 -88 s 39.4 -88 88 -88 Z m 0 344 c -58.7 0 -111.3 -26.6 -146.5 -68.2 c 18.8 -35.4 55.6 -59.8 98.5 -59.8 c 2.4 0 4.8 0.4 7.1 1.1 c 13 4.2 26.6 6.9 40.9 6.9 c 14.3 0 28 -2.7 40.9 -6.9 c 2.3 -0.7 4.7 -1.1 7.1 -1.1 c 42.9 0 79.7 24.4 98.5 59.8 C 359.3 421.4 306.7 448 248 448 Z",
+        textName: "link-text",
+
+        title: 'Login',
+        ref: "/login"
+    },
+    {
+        className: "nav-item",
+        aria_hidden: "true",
+        focusable: "false",
+        data_prefix: "fas",
         data_icon: "cogs",
         svgName: "svg-inline--fa fa-cogs fa-w-20",
         role: "img",
@@ -106,5 +127,4 @@ export const SidebarData = [
         title: 'Settings',
         ref: "/counter"
     },
-    
 ]
