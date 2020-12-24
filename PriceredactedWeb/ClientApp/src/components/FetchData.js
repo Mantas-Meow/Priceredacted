@@ -62,6 +62,7 @@ export class FetchData extends Component {
                       <Grid item>
                           <label for="Shop">Shop:</label>
                           <select name="Shop" className="basicDropDown" id="Shop">
+                              <option value=""></option>
                               <option value="Iki">Iki</option>
                               <option value="Lidl">Lidl</option>
                               <option value="Maxima">Maxima</option>
@@ -72,6 +73,7 @@ export class FetchData extends Component {
                       <Grid item>
                           <label for="ItemGroup">Item group:</label>
                           <select name="ItemGroup" className="basicDropDown" id="ItemGroup">
+                              <option value=""></option>
                               <option value="Fruit">Fruit</option>
                               <option value="Vegetable">Vegetable</option>
                               <option value="Dairy">Dairy</option>
@@ -98,6 +100,7 @@ export class FetchData extends Component {
                       <Grid item>
                           <label for="PriceUnit">Price unit:</label>
                           <select name="PriceUnit" className="basicDropDown" id="PriceUnit">
+                              <option value=""></option>
                               <option value="Eur/Unit">Eur/Unit</option>
                               <option value="Eur/kg">Eur/kg</option>
                           </select>
