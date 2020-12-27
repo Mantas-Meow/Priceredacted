@@ -10,13 +10,12 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-      flexGrow: 1,
+        flexGrow: 1,
     },
-    product:{
+    product: {
         padding: 1,
-        
     },
-    productWindow:{
+    productWindow: {
         padding: theme.spacing(2),
         backgroundColor: 'var(--table-color-secondary)',
         minWidth: 300,
@@ -49,8 +48,9 @@ function Scan() {
     const classes = useStyles();
     return (
         <main>
+            <span className="headline-text">Scan receipt</span>
             <div className={classes.root}>
-                <span className="headline-text">Scan receipt</span>
+                
                 <p style={{ 'padding': '0.5rem'}}></p>
                 
                 <Grid container direction="row" spacing={4}>
