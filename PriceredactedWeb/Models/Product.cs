@@ -12,5 +12,6 @@ namespace PriceredactedWeb.Models
         public string Name { get; set; }
         public string PriceUnit { get; set; }
         public string Price { get; set; }
+        public int? Id { get; set; }
     }
 }
