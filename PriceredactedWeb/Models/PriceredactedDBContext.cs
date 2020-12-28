@@ -60,7 +60,7 @@ namespace PriceredactedWeb.Models
 
             modelBuilder.Entity<UserDatum>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Email)
                     .HasMaxLength(50)
