@@ -40,17 +40,31 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
+ function fetchAPI() {
+    // param is a highlighted word from the user before it clicked the button
+    return fetch("https://localhost:5001/api/products");
+  }
 
 function Scan() {
+    const [products, setProducts] = useState([]);
     const [count, setCount] = useState(0);
     const [upload, setUpload] = useState(0);
     const [scan, setScan] = useState(0);
     const classes = useStyles();
+
+    async function fetchButtonClick (){
+        const response = await fetchAPI();
+        const result = await response.json();
+        setProducts(result);
+        setScan(true);
+    }
+
     return (
         <main>
             <span className="headline-text">Scan receipt</span>
+
             <div className={classes.root}>
-                
+            <button className="basicButton" onClick={fetchButtonClick}>TEST FETCH</button>
                 <p style={{ 'padding': '0.5rem'}}></p>
                 
                 <Grid container direction="row" spacing={4}>
@@ -82,13 +96,15 @@ function Scan() {
                         }  
                         </Grid>
                     </Grid>
-                    <Grid container item xs>
+                    <Grid container item xs>{
+                            products == [] && 
+                            <span> NO products</span>}
                         <Paper className={classes.productWindow}>Products
                         {
                             scan == true &&
                             <Grid container wrap="nowrap" direction="column" spacing={1}>
                             {
-                                TestProductsData.map((item, index) => {
+                                products.map((item, index) => {
                                     return(
                                         <Grid key={index} item xs>
                                             <Paper className={classes.product}>
