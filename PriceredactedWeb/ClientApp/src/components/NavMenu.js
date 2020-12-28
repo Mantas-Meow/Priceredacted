@@ -30,7 +30,7 @@ export class NavMenu extends Component {
                     {SidebarData.map((item, index) => {
                         return (
                             <li key={index} className={item.className}>
-                                <a href={item.ref} className="nav-link">
+                                <Link to={item.ref} className="nav-link">
                                     <svg
                                         aria-hidden={item.aria_hidden}
                                         focusable={item.focusable}
@@ -47,7 +47,7 @@ export class NavMenu extends Component {
                                     </g>
                                     </svg>
                                     <span className={item.textName}>{item.title}</span>
-                                </a>
+                                </Link>
                             </li>
                             )
                     })}
