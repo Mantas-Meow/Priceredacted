@@ -31,29 +31,31 @@ namespace PriceredactedWeb.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
+
             modelBuilder.Entity<Product>(entity =>
             {
                 entity.HasKey(e => e.Name);
 
                 entity.Property(e => e.Name)
-                    .HasMaxLength(100)
-                    .IsFixedLength(true);
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.ItemGroup)
-                    .HasMaxLength(50)
-                    .IsFixedLength(true);
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Price)
-                    .HasMaxLength(10)
-                    .IsFixedLength(true);
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.PriceUnit)
-                    .HasMaxLength(10)
-                    .IsFixedLength(true);
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Shop)
-                    .HasMaxLength(50)
-                    .IsFixedLength(true);
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<UserDatum>(entity =>
