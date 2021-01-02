@@ -119,7 +119,7 @@ export class FetchData extends Component {
   }
 
   async populateWeatherData() {
-      const response = await fetch('https://localhost:44310/api/Products');
+      const response = await fetch('https://localhost:5001/api/Products');
     const data = await response.json();
     this.setState({ forecasts: data, loading: false });
   }
