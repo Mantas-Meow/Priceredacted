@@ -6,12 +6,12 @@ namespace Priceredacted.Tesseract_Ocr
 {
     static class ImageRecognition
     {
-        public static string GetTextFromImage(string imagePath)
+        public static string GetTextFromImage(Bitmap image)
         {
             string text;
             try
             {
-                Bitmap tempImage = new Bitmap(imagePath);
+                Bitmap tempImage = image;
 
                 string imageSavePath = "./Tesseract Ocr/testImage11.png";
                 string imageSavePath2 = "./Tesseract Ocr/testImage111.png";

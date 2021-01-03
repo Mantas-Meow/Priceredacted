@@ -4,6 +4,7 @@ using Priceredacted.Properties;
 using Priceredacted.Tesseract_Ocr;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Threading.Tasks;
 
 namespace Priceredacted.Processors
@@ -46,8 +47,8 @@ namespace Priceredacted.Processors
             return SearchAndFind.SearchForProduct(query, preferredShop, products);
         }
 
-        public Task<string> ScanImageAsync(string selectedFile) => 
-            Task.Run(() => ImageRecognition.GetTextFromImage(imagePath: selectedFile));
+        public Task<string> ScanImageAsync(Bitmap image) => 
+            Task.Run(() => ImageRecognition.GetTextFromImage(image));
 
         public IEnumerable<T> LoadFromProductsJson<T>() => 
             // DataProcessor.LoadJson<T>(Tools.Utils.ProductsPath);

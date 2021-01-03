@@ -28,31 +28,40 @@ namespace PriceredactedWeb.Controllers
         }
 
         [HttpPost("Scan")]
-        public async Task<ActionResult<string>> ScanReceipt([FromBody] JsonElement imageString){
+        public async Task<ActionResult<Product>> ScanReceipt([FromBody] ImageStringDTO imageString){
 
-            string filePath = "./mainImage.png";
-            
-            // string converted = imageString.ToString().Replace('-', '+');
-            // converted = converted.Replace('_', '/');
+            string filePath = "./tempImages/mainImage";
+            Random random = new Random();
+            char a = (char)('a' + random.Next(0, 26));
+            char b = (char)('a' + random.Next(0, 26));
+            char c = (char)('a' + random.Next(0, 26));
+            char d = (char)('a' + random.Next(0, 26));
 
-            byte[] bytes = Convert.FromBase64String(imageString.ToString());
-            
+            string newPath = filePath + a + b + c + d + ".png";
 
-            Image image;
-            using (MemoryStream ms = new MemoryStream(bytes))
-            {
-                image = Image.FromStream(ms);
-            }
-            image.Save(filePath);
+            Bitmap image = (Bitmap)Image.FromStream(new MemoryStream(Convert.FromBase64String(imageString.ImageString)));
 
-            string scannedText = await _scanPageLogic.ScanImageAsync(filePath);
+            //System.IO.File.WriteAllText(filePath, "");
+            // System.IO.File.Delete(filePath);
+            // System.IO.DirectoryInfo di = new DirectoryInfo("./tempImages");
+            // foreach (FileInfo file in di.GetFiles())
+            // {
+            //     file.Delete(); 
+            // }
+
+            //image.Save(newPath);
+
+            string scannedText = await _scanPageLogic.ScanImageAsync(image);
+
+            //System.IO.File.Delete(filePath);
+
             if (scannedText == null)
             {
                 return NoContent();
             }
             else
             {
-                return await _scanPageLogic.FilterText(scannedText);
+                return new Product {Name = scannedText};//await _scanPageLogic.FilterText(scannedText);
             }
         }
 
@@ -88,7 +97,6 @@ namespace PriceredactedWeb.Controllers
         {  
         }
     }
-
 
     // [Route("api/[controller]")]
     // [ApiController]

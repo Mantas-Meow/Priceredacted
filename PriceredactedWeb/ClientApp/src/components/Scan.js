@@ -50,12 +50,42 @@ function Scan() {
     const [count, setCount] = useState(0);
     const [upload, setUpload] = useState(0);
     const [scan, setScan] = useState(0);
+    const [image, setImage] = useState(null);
+    const [base64String, setImageString] = useState(0);
     const classes = useStyles();
 
-    async function fetchButtonClick (){
+    const [fetchedString, setFetchedString] = useState(0);
+
+    const handleImageUpload = event => {
+        let reader = new FileReader();
+        reader.onload = function(e) {
+            setImage(e.target.result);
+            setUpload(true);
+            var img = e.target.result;
+            setImageString(img.replace("data:image/png;base64,", ""));
+          };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+
+    async function fetchButtonClick() {
         const response = await fetchAPI();
         const result = await response.json();
         setProducts(result);
+        setUpload(true);
+    }
+
+    async function scanImage() {
+        const data = {imageString: base64String}
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        };
+        const response = await fetch('https://localhost:5001/api/ScanPage/Scan', requestOptions);
+        const result = await response.json();
+        setFetchedString(result);
+        console.log(result);
         setScan(true);
     }
 
@@ -64,13 +94,15 @@ function Scan() {
             <span className="headline-text">Scan receipt</span>
 
             <div className={classes.root}>
-            <button className="basicButton" onClick={fetchButtonClick}>TEST FETCH</button>
                 <p style={{ 'padding': '0.5rem'}}></p>
                 
                 <Grid container direction="row" spacing={4}>
                                     
                     <Grid item>
-                        <button className="basicButton" onClick={() => setUpload(true)}>Upload</button>
+                        <input id="imageFile" type="file" onChange={handleImageUpload}/>
+                        {
+                        // <button className="basicButton" onClick={() => setUpload(true)}>Upload</button>
+                        }
                     </Grid>
                     {
                         upload == true &&
@@ -81,41 +113,40 @@ function Scan() {
                     {
                         upload == true &&
                         <Grid item>
-                            <button className="basicButton" onClick={() => setScan(true)}>Scan</button>
+                            <button className="basicButton" onClick={scanImage}>Scan</button>
                         </Grid>
                     }
                     
                 </Grid>
-
+                
                 <Grid container justify="center" direction="row" spacing={6}>
                     <Grid className={classes.paper} item xs={4}>
                         <Grid item xs>
                         {
                             upload == true &&
-                            <img className={classes.img} alt="complex" src={require("../Resources/iki22.png")}/>
+                            <img src={image} alt={""} className={classes.img}/>
                         }  
                         </Grid>
                     </Grid>
-                    <Grid container item xs>{
-                            products == [] && 
-                            <span> NO products</span>}
+                    <Grid container item xs>
                         <Paper className={classes.productWindow}>Products
                         {
-                            scan == true &&
-                            <Grid container wrap="nowrap" direction="column" spacing={1}>
-                            {
-                                products.map((item, index) => {
-                                    return(
-                                        <Grid key={index} item xs>
-                                            <Paper className={classes.product}>
-                                            <span style={{'float':'left', 'padding':'0rem 1rem'}}>{item.name}</span>
-                                            <span style={{'float':'right', 'padding':'0rem 1rem'}}>{item.price}</span>​                                           
-                                            </Paper>   
-                                        </Grid>
-                                    )
-                                })
-                            }
-                            </Grid>
+                            <span> {fetchedString.name}</span>
+                            // scan == true &&
+                            // <Grid container wrap="nowrap" direction="column" spacing={1}>
+                            // {
+                            //     products.map((item, index) => {
+                            //         return(
+                            //             <Grid key={index} item xs>
+                            //                 <Paper className={classes.product}>
+                            //                 <span style={{'float':'left', 'padding':'0rem 1rem'}}>{item.name}</span>
+                            //                 <span style={{'float':'right', 'padding':'0rem 1rem'}}>{item.price}</span>​                                           
+                            //                 </Paper>   
+                            //             </Grid>
+                            //         )
+                            //     })
+                            // }
+                            // </Grid>
                         }
                         </Paper> 
                     </Grid>
