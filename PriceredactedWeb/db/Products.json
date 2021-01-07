@@ -53,10 +53,10 @@
     {
       "Id": 300001,
       "Shop": 3,
-      "Category": "Dairy",
-      "Name": "Pienas",
+      "Category": "Fruit",
+      "Name": "Bananas",
       "PriceUnit": "Eur/unit",
-      "Price": "1.24"
+      "Price": "1.29"
     },
     {
       "Id": 300002,
@@ -65,7 +65,31 @@
       "Name": "Plikyti ryžiai",
       "PriceUnit": "Eur/unit",
       "Price": "0.69"
-    }
+    },
+    {
+      "Id": 300003,
+      "Shop": 3,
+      "Category": "Baked goods",
+      "Name": "Spurga",
+      "PriceUnit": "Eur/unit",
+      "Price": "0.29"
+    },
+    {
+      "Id": 300004,
+      "Shop": 3,
+      "Category": "Dairy",
+      "Name": "Pienas",
+      "PriceUnit": "Eur/unit",
+      "Price": "1.24"
+    },
+    {
+      "Id": 300005,
+      "Shop": 3,
+      "Category": "Soda",
+      "Name": "Kolos skonio gai.",
+      "PriceUnit": "Eur/unit",
+      "Price": "1.49"
+    }    
   ],
   [
     {
@@ -115,6 +139,14 @@
       "Name": "Pepsi 1l",
       "PriceUnit": "Eur/unit",
       "Price": "1.09"
+    },
+    {
+      "Id": 200007,
+      "Shop": 2,
+      "Category": "Soda",
+      "Name": "Kolos skonio gai.",
+      "PriceUnit": "Eur/unit",
+      "Price": "1.05"
     }
   ]
 ]

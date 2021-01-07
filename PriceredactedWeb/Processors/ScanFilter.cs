@@ -39,7 +39,7 @@ namespace Priceredacted.Processors
 
                 case "PALINK":
                     tempStr[0] = "xxx";
-                    Scan(path, SProducts);
+                    ScanIki(path, SProducts);
                     break;
 
                 case "RIMI":
@@ -83,6 +83,19 @@ namespace Priceredacted.Processors
                 }
             }
             tempStr.PickProducts((Shops)2, path, SProducts);
+        }
+        private static void ScanIki(string path, List<ScannedProduct> SProducts)
+        {
+            for (int i=0; i<tempStr.Length;i++)
+            {
+                if (tempStr[i].Length>18)
+                {
+                    string temp = tempStr[i];
+                    temp = temp.Remove(0,7);
+                    tempStr[i] = temp.Remove(temp.Length-8,7);
+                }
+            }
+            tempStr.PickProducts((Shops)3, path, SProducts);
         }
     }
 }

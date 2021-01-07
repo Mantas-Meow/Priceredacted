@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Priceredacted.ExtensionMethods;
 using Priceredacted.Properties;
+using System.Linq;
 using static Priceredacted.Tools.Utils;
 
 
@@ -16,23 +17,22 @@ namespace Priceredacted.Processors
             foreach (ScannedProduct SPr in SProducts)
             {
                 SPr.Comapared = null;
-                bool found = false;
                 IEnumerable<Product> filtered = SearchAndFind.SearchForProduct(SPr.Name.ToLower().Trim(), path);
-                foreach (Product pr in filtered)
+                Product pr = null;
+                try {
+                    pr = filtered.Aggregate((i, j) => Convert.ToDouble(i.Price) < Convert.ToDouble(j.Price) ? i : j);
+                }
+                catch{
+                    pr = null;
+                }
+                
+                if (pr != null && pr.Shop != SPr.Shop)
                 {
-                    
-                    if (pr.Shop != SPr.Shop)
-                    {
-                        found = true;
-                        //SPr.Comapared += Enum.GetName(typeof(Shops),pr.Shop) + ": " + pr.Price + "€ /";
-                        double price = Convert.ToDouble(pr.Price);
-                        comparedProducts.Add(new ComparedProduct(){Shop = Enum.GetName(typeof(Shops),pr.Shop), Price = price, Compared = price - SPr.Price});
-                    }
-                    
+                    //SPr.Comapared += Enum.GetName(typeof(Shops),pr.Shop) + ": " + pr.Price + "€ /";
+                    double price = Convert.ToDouble(pr.Price);
+                    comparedProducts.Add(new ComparedProduct(){Shop = Enum.GetName(typeof(Shops),pr.Shop), Price = price, Compared = price - SPr.Price});
                 }
-                if (!found){
-                    comparedProducts.Add(new ComparedProduct(){Shop = "-", Price = 0, Compared = 0});
-                }
+                else comparedProducts.Add(new ComparedProduct(){Shop = "-", Price = 0, Compared = 0});
             } 
             return comparedProducts;    
         }
