@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Home } from './components/Home';
 import { default as Scan } from './components/Scan';
 import { FetchData } from './components/FetchData';
-import { Counter } from './components/Counter';
+import  Counter  from './components/Counter.js';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { NavMenu as Navbar } from './components/NavMenu.js'
 import  Login  from './components/Login.js'
