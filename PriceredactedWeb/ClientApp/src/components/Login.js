@@ -30,6 +30,7 @@ const Login = () => (
         handleSubmit
       } = props;
       return (
+      <main>
         <form onSubmit={handleSubmit}>
           <div>
             <span className="headline-text">Login</span>
@@ -65,6 +66,7 @@ const Login = () => (
           </button>
           <Link to="/register" className="btn btn-link">Register</Link>
         </form>
+        </main>
       );
     }}
   </Formik>

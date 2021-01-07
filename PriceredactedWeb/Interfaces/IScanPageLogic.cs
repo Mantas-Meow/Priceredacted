@@ -17,7 +17,7 @@ namespace Priceredacted.Interfaces
         public void AddProduct(Product product);
         public void SaveToProductsJson<T>(IEnumerable<T> objects);
         public IEnumerable<T> LoadFromProductsJson<T>();
-
-        public Task<string> FilterText(string input);
+        public Task<List<ScannedProduct>> FilterText(string input);
+        public Task<List<ComparedProduct>> ComparePrices(List<ScannedProduct> prod);
     }
 }

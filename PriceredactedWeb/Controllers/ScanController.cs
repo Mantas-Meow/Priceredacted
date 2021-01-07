@@ -5,13 +5,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using PriceredactedWeb.Models;
 using Priceredacted.Interfaces;
-using Priceredacted.Processors;
 using System.Drawing;
-using System.Text.Json;
-using Newtonsoft.Json;
+
+
 
 namespace PriceredactedWeb.Controllers
 {
@@ -28,32 +26,11 @@ namespace PriceredactedWeb.Controllers
         }
 
         [HttpPost("Scan")]
-        public async Task<ActionResult<Product>> ScanReceipt([FromBody] ImageStringDTO imageString){
-
-            string filePath = "./tempImages/mainImage";
-            Random random = new Random();
-            char a = (char)('a' + random.Next(0, 26));
-            char b = (char)('a' + random.Next(0, 26));
-            char c = (char)('a' + random.Next(0, 26));
-            char d = (char)('a' + random.Next(0, 26));
-
-            string newPath = filePath + a + b + c + d + ".png";
+        public async Task<ActionResult<IEnumerable<Priceredacted.Properties.ScannedProduct>>> ScanReceipt([FromBody] ImageStringDTO imageString){
 
             Bitmap image = (Bitmap)Image.FromStream(new MemoryStream(Convert.FromBase64String(imageString.ImageString)));
 
-            //System.IO.File.WriteAllText(filePath, "");
-            // System.IO.File.Delete(filePath);
-            // System.IO.DirectoryInfo di = new DirectoryInfo("./tempImages");
-            // foreach (FileInfo file in di.GetFiles())
-            // {
-            //     file.Delete(); 
-            // }
-
-            //image.Save(newPath);
-
             string scannedText = await _scanPageLogic.ScanImageAsync(image);
-
-            //System.IO.File.Delete(filePath);
 
             if (scannedText == null)
             {
@@ -61,14 +38,21 @@ namespace PriceredactedWeb.Controllers
             }
             else
             {
-                return new Product {Name = scannedText};//await _scanPageLogic.FilterText(scannedText);
+                return await _scanPageLogic.FilterText(scannedText);
             }
         }
+        [HttpPost("Compare")]
+        public async Task<ActionResult<IEnumerable<Priceredacted.Properties.ComparedProduct>>> ComparePrices(
+            [FromBody] List<Priceredacted.Properties.ScannedProduct> products){
 
-        [HttpPost("AddProduct")]
-        public void AddProduct([FromBody] Product product){
-            _context.Products.Add(product);
-            _context.SaveChanges();
+            if (products.Count == 0)
+            {
+                return NoContent();
+            }
+            else
+            {
+                return await _scanPageLogic.ComparePrices(products);
+            }
         }
 
 

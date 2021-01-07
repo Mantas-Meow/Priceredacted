@@ -12,6 +12,7 @@ namespace Priceredacted.Processors
     class ScanPageLogic : IScanPageLogic
     {
         public UserData currentUser;
+        string productsPath = "./db/Products.json";
 
         public void AddProduct(Product product)
         {
@@ -23,16 +24,16 @@ namespace Priceredacted.Processors
             product.Id = 5;
         }
 
-        public Task<string> FilterText(string input)
+        public Task<List<ScannedProduct>> FilterText(string input)
         {
             // return Task.Run(() => ProductEditor.FilterScanned(input, Tools.Utils.ProductsPath));
-            return Task.Run(() => ProductEditor.FilterScanned(input, null));
+            return Task.Run(() => ProductEditor.FilterScanned(input, productsPath));
         }
 
-        public Task<string> ComparePrices()
+        public Task<List<ComparedProduct>> ComparePrices(List<ScannedProduct> products)
         {
             // return Task.Run(() => ProductEditor.ComparePrices(Tools.Utils.ProductsPath));
-            return Task.Run(() => ProductEditor.ComparePrices(null));
+            return Task.Run(() => ProductEditor.ComparePrices(products, productsPath));
         }
 
         public void SaveToProductsJson<T>(IEnumerable<T> objects)

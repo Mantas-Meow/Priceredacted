@@ -32,12 +32,5 @@ namespace Priceredacted.Logics
             };
             ProductEditor.AddProducts(pr);
         }
-
-        public string ComparePrices()
-        {
-            // return ProductEditor.ComparePrices(Tools.Utils.ProductsPath);
-            return ProductEditor.ComparePrices(null);
-        }
-
     }
 }
