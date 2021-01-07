@@ -21,12 +21,13 @@ namespace PriceredactedWeb.Controllers
             _context = context;
         }
 
-        [HttpPost("Register")]
+        [Route("api/Auth/Register")]
+        [HttpPost]
         public IActionResult Register(UserRegisterDTO request)
         {
             var user = _AuthRepository.Register(request.Username , request.Password, request.Email);
 
-            return user != null ? Ok(user) : NotFound();
+            return user != false ? Ok(user) : NotFound();
         }
 
 
@@ -42,10 +43,6 @@ namespace PriceredactedWeb.Controllers
             }
 
             return User;
-
-            //var User = _context.UserData.First(a => a.Email == userEmail);//_context.UserData.Find(userEmail);
-
-            //return User != null ? User : NotFound();
         }
 
         [Route("api/Auth/UserById/{userId:int}")]
@@ -60,13 +57,16 @@ namespace PriceredactedWeb.Controllers
             }
 
             return User;
-
-            //var User = _context.UserData.First(a => a.Email == userEmail);//_context.UserData.Find(userEmail);
-
-            //return User != null ? User : NotFound();
         }
 
+        [Route("api/Auth/DeleteUser/{userId:int}")]
+        [HttpDelete]
+        public IActionResult DeleteUser(int userId)
+        {
+            var User = _AuthRepository.DeleteUser(userId);
 
+            return User != false ? Ok(User) : NotFound();
+        }
 
 
 

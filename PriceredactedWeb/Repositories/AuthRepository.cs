@@ -17,22 +17,59 @@ namespace PriceredactedWeb.Repositories
         {
             _context = context;
         }
-        public UserDatum Register(string username, string password, string email)
+        public bool Register(string username, string password, string email)
         {
-            Random rnd = new Random();
 
-
-            UserDatum user = new UserDatum()
+            using (var cn = new SqlConnection())
             {
-                Username = username,
-                Email = email,
-                Password = password,
-                Id = rnd.Next(1000)
-            };
-            _context.Add(user);
-            _context.SaveChanges();
+                cn.ConnectionString = "Server=(localdb)\\Priceredacted;Database=PriceredactedDB";
+                try
+                {
+                    cn.Open();
+                    using (var insert = new SqlCommand())
+                    {
+                        insert.Connection = cn;
+                        insert.CommandType = CommandType.Text;
+                        insert.CommandText = "INSERT INTO UserData (Email, Password, Username)" +
+                            " VALUES (@EM,@PS,@UN)";
 
-            return user;
+                        insert.Parameters.Add(new SqlParameter("@EM", SqlDbType.VarChar, 50, "Email"));
+                        insert.Parameters.Add(new SqlParameter("@PS", SqlDbType.VarChar, 50, "Password"));
+                        insert.Parameters.Add(new SqlParameter("@UN", SqlDbType.VarChar, 50, "Username"));
+
+                        SqlDataAdapter da = new SqlDataAdapter("SELECT Email, Id, Password, Username FROM UserData", cn);
+                        da.InsertCommand = insert;
+
+                        DataSet ds = new DataSet();
+                        da.Fill(ds, "UserData");
+
+                        DataRow newRow = ds.Tables[0].NewRow();
+                        newRow["Email"] = email;
+                        newRow["Id"] = 11111;
+                        newRow["Password"] = password;
+                        newRow["Username"] = username;
+                        ds.Tables[0].Rows.Add(newRow);
+
+                        da.Update(ds.Tables[0]);
+                        cn.Close();
+                        da.Dispose();
+
+                        return true;
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    return false;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+                finally
+                {
+                    cn.Close();
+                }
+            }
         }
 
         public UserDatum GetUser(string userEmail)
@@ -46,7 +83,7 @@ namespace PriceredactedWeb.Repositories
                     using (var select = new SqlCommand())
                     {
                         SqlDataAdapter da = new SqlDataAdapter();
-                        SqlCommand command = new SqlCommand("SELECT Email, Password, Id, Username FROM UserData" +
+                        SqlCommand command = new SqlCommand("SELECT Email, Id, Password, Username FROM UserData" +
                             " WHERE Email = @EM", cn);
                         command.Parameters.AddWithValue("@EM", userEmail);
 
@@ -70,21 +107,16 @@ namespace PriceredactedWeb.Repositories
                 catch (SqlException ex)
                 {
                     return null;
-                    // maybe some retry logic could be applied if connection failed
                 }
                 catch (Exception e)
                 {
                     return null;
-                    // log it here
                 }
                 finally
                 {
                     cn.Close();
                 }
             }
-        //}
-
-            //return _context.UserData.First(t => t.Email == userEmail);
         }
 
         public UserDatum GetUser(int userId)
@@ -98,7 +130,7 @@ namespace PriceredactedWeb.Repositories
                     using (var select = new SqlCommand())
                     {
                         SqlDataAdapter da = new SqlDataAdapter();
-                        SqlCommand command = new SqlCommand("SELECT Email, Password, Id, Username FROM UserData" +
+                        SqlCommand command = new SqlCommand("SELECT Email, Id, Password, Username FROM UserData" +
                             " WHERE Id = @ID", cn);
                         command.Parameters.AddWithValue("@ID", userId);
 
@@ -122,12 +154,56 @@ namespace PriceredactedWeb.Repositories
                 catch (SqlException ex)
                 {
                     return null;
-                    // maybe some retry logic could be applied if connection failed
                 }
                 catch (Exception e)
                 {
                     return null;
-                    // log it here
+                }
+                finally
+                {
+                    cn.Close();
+                }
+            }
+        }
+
+        public bool DeleteUser(int userId)
+        {
+            using (var cn = new SqlConnection())
+            {
+                cn.ConnectionString = "Server=(localdb)\\Priceredacted;Database=PriceredactedDB";
+                try
+                {
+                    cn.Open();
+                    using (var delete = new SqlCommand())
+                    {
+                        delete.Connection = cn;
+                        delete.CommandType = CommandType.Text;
+                        delete.CommandText = "DELETE FROM UserData WHERE Id = @ID";
+
+                        delete.Parameters.Add(new SqlParameter("@ID", SqlDbType.Int, 50, "Email"));
+
+                        SqlDataAdapter da = new SqlDataAdapter("SELECT Email, Id, Password, Username FROM UserData", cn);
+                        da.InsertCommand = delete;
+
+                        DataSet ds = new DataSet();
+                        da.Fill(ds, "UserData");
+
+                        ds.Tables[0].Rows[0].Delete();
+
+                        da.Update(ds.Tables[0]);
+                        cn.Close();
+                        da.Dispose();
+
+                        return true;
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    return false;
+                }
+                catch (Exception e)
+                {
+                    return false;
                 }
                 finally
                 {

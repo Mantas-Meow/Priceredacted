@@ -9,8 +9,9 @@ namespace PriceredactedWeb.Repositories
 {
     public interface IAuthRepository
     {
-        public UserDatum Register(string username, string password, string email);
+        public bool Register(string username, string password, string email);
         public UserDatum GetUser(string userEmail);
         public UserDatum GetUser(int userId);
+        public bool DeleteUser(int userId);
     }
 }

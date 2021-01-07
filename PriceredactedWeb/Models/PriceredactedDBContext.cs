@@ -67,7 +67,7 @@ namespace PriceredactedWeb.Models
                     .IsFixedLength(true);
 
                 entity.Property(e => e.Id)
-                    .HasMaxLength(100)
+                    .HasMaxLength(50)
                     .IsFixedLength(true);
 
                 entity.Property(e => e.Password)
