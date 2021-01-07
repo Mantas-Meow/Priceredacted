@@ -142,10 +142,18 @@ main {
 
 /* Small screens */
 @media only screen and (max-width: 600px) {
+    .nav-link svg {
+        width: 2rem;
+        min-width: 1.7rem;
+        margin: 0 1.3rem;
+    }
+    .nav-link {
+        height: 4rem;
+    }
     .navbar {
         bottom: 0;
-        width: 100vw;
-        height: 5rem;
+        width: 130vw;
+        height: 4rem;
     }
 
     .logo {
@@ -158,10 +166,12 @@ main {
 
     .nav-link {
         justify-content: center;
+        
     }
 
     main {
         margin: 0;
+        margin-bottom: 5rem;
     }
 }
 
