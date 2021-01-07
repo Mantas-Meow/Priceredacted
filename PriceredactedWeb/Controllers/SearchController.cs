@@ -23,11 +23,22 @@ namespace PriceredactedWeb.Controllers
         
 
         // // GET: api/Products
-        // [HttpGet]
-        // public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
-        // {
-        //     return await _context.Products.ToListAsync();
-        // }
+        [HttpPost]
+        public async Task<ActionResult<IEnumerable<Product>>> GetProducts([FromBody] SearchParamsDTO param)
+        {
+            List<Product> products = new List<Product>();
+            products.Add(
+                new Product(){
+                    Shop = param.Shop,
+                    ItemGroup = param.ItemGroup,
+                    Name = param.Name,
+                    PriceUnit = param.PriceUnit,
+                    Price = param.Price}
+                    );
+
+            return products;
+            //return await _context.Products.ToListAsync();
+        }
 
         // // GET: api/Products/5
         // [HttpGet("{id}")]
