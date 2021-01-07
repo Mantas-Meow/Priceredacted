@@ -12,18 +12,18 @@ namespace Priceredacted.Processors
         static List<ScannedProduct> ScannedProducts = new List<ScannedProduct>();
         private static string resultStr;
 
-        public static string ComparePrices(string path)
+        public static List<ComparedProduct> ComparePrices(List<ScannedProduct> products, string path)
         {
-            PriceComparer.ComparePrices(path,ScannedProducts);
-            return SProductsToString(ScannedProducts); 
+            return PriceComparer.ComparePrices(path, products);
+            //return SProductsToString(ScannedProducts); 
         }
 
-        public static string FilterScanned(string input, string path)
+        public static List<ScannedProduct> FilterScanned(string input, string path)
         {
             ClearProducts();
             ScanFilter.Filter(input, path, ScannedProducts);
-            resultStr = SProductsToString(ScannedProducts);
-            return resultStr;
+            //resultStr = SProductsToString(ScannedProducts);
+            return ScannedProducts;//resultStr;
         }
 
         public static void AddProducts(ScannedProduct pr)
