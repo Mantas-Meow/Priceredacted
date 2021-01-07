@@ -18,7 +18,7 @@ export class FetchData extends Component {
     const data = {Shop: this.state.shop,
                    ItemGroup: this.state.itemGroup,
                    Name: this.state.productName,
-                   PriceUnit: this.state.riceUnit,
+                   PriceUnit: this.state.priceUnit,
                    Price: this.state.price}
         const requestOptions = {
             method: 'POST',
