@@ -47,7 +47,7 @@ export class NavMenu extends Component {
                                     </g>
                                     </svg>
                                     <span className={item.textName}>{item.title}</span>
-                               </Link>
+                                </Link>
                             </li>
                             )
                     })}
