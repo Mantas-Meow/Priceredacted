@@ -44,6 +44,8 @@ main {
     margin-left: 7rem;
     margin-right: 2rem;
     padding: 1rem;
+    align-content: center;
+
 }
 
 .navbar {
@@ -199,6 +201,10 @@ main {
     .navbar:hover .logo-text {
         left: 0px;
     }
+    main{
+        max-width: 70vw;
+        margin: 0 auto;
+    }
 }
 
 .dark {
@@ -246,4 +252,8 @@ img{
 
 .headline-text{
     font-size: 2.5rem;
+}
+.label-text{
+    font-size: 1.7rem;
+
 }

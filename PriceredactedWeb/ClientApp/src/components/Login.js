@@ -31,10 +31,10 @@ const Login = () => (
       } = props;
       return (
       <main>
+        <div>
+          <span className="headline-text">Login</span>
+        </div>
         <form onSubmit={handleSubmit}>
-          <div>
-            <span className="headline-text">Login</span>
-          </div>
           <label htmlFor="username">Username</label>
           <input
             name="username"

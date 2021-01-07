@@ -40,10 +40,11 @@ const Registration = () => (
       } = props;
       return (
         <main>
-        <form onSubmit={handleSubmit}>
-           <div>
+          <div>
             <span className="headline-text">Register</span>
           </div>
+        <form onSubmit={handleSubmit}>
+           
           <label htmlFor="username">Username</label>
           <input
             name="username"

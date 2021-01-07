@@ -55,6 +55,7 @@ namespace Priceredacted.Tesseract_Ocr
             //img = proccessImage.AdaptiveBinarization(imageSavePath, 11, 5);
             //img.Save(imageSavePath2);
             proccessImage.ProcessImageWithEMGU(img);
+            proccessImage.ProcessImageWithEMGU(img);
         }
     }
 }

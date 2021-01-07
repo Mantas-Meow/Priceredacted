@@ -34,9 +34,10 @@ const Counter = () => (
       } = props;
       return (
         <main>
+        <span className="headline-text">Settings</span>
         <form onSubmit={handleSubmit}>
           <div>
-            <span className="headline-text">Change Password</span>
+            <span className="label-text">Change Password</span>
             <p>Please enter your email and new password</p>
           </div>
           <label htmlFor="email">Email</label>
@@ -71,7 +72,7 @@ const Counter = () => (
         </form>
         <div class="spacing"></div>
         <div class="newdiv">
-        <span className="headline-text">Delete account</span>
+        <span className="label-text">Delete account</span>
         </div>
         <div class="newdiv">
         <button className="deletebutton" disabled={isSubmitting}>

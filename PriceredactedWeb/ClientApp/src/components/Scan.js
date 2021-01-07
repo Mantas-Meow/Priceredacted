@@ -87,7 +87,8 @@ function Scan() {
         const response = await fetch('https://localhost:5001/api/ScanPage/Scan', requestOptions);
         const result = await response.json();
         setProducts(result);
-        await comparePrices(result);
+        console.log(result);
+        comparePrices(result);
     }
 
     async function comparePrices(prod) {
