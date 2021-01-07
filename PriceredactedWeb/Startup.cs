@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PriceredactedWeb.Models;
 using Microsoft.EntityFrameworkCore;
+using PriceredactedWeb.Repositories;
 using Priceredacted.Interfaces;
 using Priceredacted.Processors;
 
@@ -30,8 +31,8 @@ namespace PriceredactedWeb
             //services.AddDbContext<PriceredactedDBContext>(options => options.UseSqlServer("Server = (localdb\\Priceredacted; Database = PriceredactedDB; Trusted_Connection = True;)"));
             
             services.AddDbContext<PriceredactedDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
+            services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IScanPageLogic, ScanPageLogic>();
-            
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
