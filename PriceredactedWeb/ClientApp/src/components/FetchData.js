@@ -8,18 +8,35 @@ export class FetchData extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { forecasts: [], loading: true };
+    this.state = { forecasts: [], loading: true, shop: "", itemGroup: "", productName: "", priceUnit: "", price: ""};
   }
 
   componentDidMount() {
     this.populateWeatherData();
   }
-
+  async filterClick() {
+    const data = {Shop: this.state.shop,
+                   ItemGroup: this.state.itemGroup,
+                   Name: this.state.productName,
+                   PriceUnit: this.state.priceUnit,
+                   Price: this.state.price}
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        };
+        const response = await fetch('https://localhost:5001/api/Search', requestOptions);
+        const result = await response.json();
+        this.setState({forecasts: result});
+        console.log(result);
+  }
   static renderForecastsTable(forecasts) {
+    
     return (
-      <table style={{'background-color': 'var(--table-color)'}} className="table table-hover table-dark ">
+      <table style={{'backgroundColor': 'var(--table-color)'}} className="table table-hover table-dark ">
         <caption>Products in database</caption>
-        <thead style={{'background-color': 'var(--bg-primary)'}}>
+        <thead style={{'backgroundColor': 'var(--bg-primary)'}}>
           <tr>
             <th scope="col">Shop</th>
             <th scope="col">Item group</th>
@@ -57,11 +74,11 @@ export class FetchData extends Component {
               <div>
                   <Grid container direction="row" spacing={4}>
                       <Grid item>
-                          <button className="basicButton" /*onClick={() => setUpload(true)}*/>Filter</button>
+                          <button className="basicButton" onClick={() => this.filterClick()}/*onClick={() => setUpload(true)}*/>Filter</button>
                       </Grid>
                       <Grid item>
-                          <label for="Shop">Shop:</label>
-                          <select name="Shop" className="basicDropDown" id="Shop">
+                          <label htmlFor="Shop">Shop:</label>
+                          <select name="Shop" className="basicDropDown" id="Shop" onChange={(e) => this.setState({shop: e.target.value})}>
                               <option value=""></option>
                               <option value="Iki">Iki</option>
                               <option value="Lidl">Lidl</option>
@@ -71,8 +88,8 @@ export class FetchData extends Component {
                           </select>
                       </Grid>
                       <Grid item>
-                          <label for="ItemGroup">Item group:</label>
-                          <select name="ItemGroup" className="basicDropDown" id="ItemGroup">
+                          <label htmlFor="ItemGroup">Item group:</label>
+                          <select name="ItemGroup" className="basicDropDown" id="ItemGroup" onChange={(e) => this.setState({itemGroup: e.target.value})}>
                               <option value=""></option>
                               <option value="Fruit">Fruit</option>
                               <option value="Vegetable">Vegetable</option>
@@ -94,20 +111,20 @@ export class FetchData extends Component {
                           </select>
                       </Grid>
                       <Grid item>
-                          <label for="Product">Product:</label>
-                          <input type="text" id="Product" name="Product"></input>
+                          <label htmlFor="Product">Product:</label>
+                          <input type="text" id="Product" name="Product" onChange={(e) => this.setState({productName: e.target.value})}></input>
                       </Grid>
                       <Grid item>
-                          <label for="PriceUnit">Price unit:</label>
-                          <select name="PriceUnit" className="basicDropDown" id="PriceUnit">
+                          <label htmlFor="PriceUnit">Price unit:</label>
+                          <select name="PriceUnit" className="basicDropDown" id="PriceUnit" onChange={(e) => this.setState({priceUnit: e.target.value})}>
                               <option value=""></option>
                               <option value="Eur/Unit">Eur/Unit</option>
                               <option value="Eur/kg">Eur/kg</option>
                           </select>
                       </Grid>
                       <Grid item>
-                          <label for="Price">Price:</label>
-                          <input type="text" id="Price" name="Price"></input>
+                          <label htmlFor="Price">Price:</label>
+                          <input type="float" id="Price" name="Price" onChange={(e) => this.setState({price: e.target.value})}></input>
                       </Grid>
                   </Grid>
               </div>
@@ -119,7 +136,7 @@ export class FetchData extends Component {
   }
 
   async populateWeatherData() {
-      const response = await fetch('https://localhost:44310/api/Products');
+      const response = await fetch('https://localhost:5001/api/Products');
     const data = await response.json();
     this.setState({ forecasts: data, loading: false });
   }

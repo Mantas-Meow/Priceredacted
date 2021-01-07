@@ -54,4 +54,26 @@
     background-color: white;
     color: rgb(70, 153, 179);
   }
-  
+  .newdiv{
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .spacing{
+    height: 50px;
+  }
+  .deletebutton {
+    position: relative;
+    padding: 10px 15px;
+    top: 3px;
+    background-color: rgb(248, 72, 72);
+    color: white;
+    border: 1px solid rgb(248, 72, 72);
+    background-color: 250ms;
+  }
+  .deletebutton:hover{
+    cursor: pointer;
+    background-color: white;
+    color: rgb(248, 72, 72);
+
+  }

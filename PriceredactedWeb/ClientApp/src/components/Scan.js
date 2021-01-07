@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './Buttons.css'
 import { TestProductsData } from './TestProductsData'
-
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -10,10 +9,12 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 
 const useStyles = makeStyles((theme) => ({
     root: {
+        margin: 2,
         flexGrow: 1,
     },
     product: {
-        padding: 1,
+        margin: 2,
+        padding: 2,
     },
     productWindow: {
         padding: theme.spacing(2),
@@ -40,23 +41,84 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
+ function fetchAPI() {
+    // param is a highlighted word from the user before it clicked the button
+    return fetch("https://localhost:5001/api/products");
+  }
 
 function Scan() {
+    const [products, setProducts] = useState([]);
+    const [compared, setCompared] = useState([]);
     const [count, setCount] = useState(0);
     const [upload, setUpload] = useState(0);
     const [scan, setScan] = useState(0);
+    const [image, setImage] = useState(null);
+    const [base64String, setImageString] = useState(0);
     const classes = useStyles();
+
+    const [fetchedString, setFetchedString] = useState(0);
+
+    const handleImageUpload = event => {
+        let reader = new FileReader();
+        reader.onload = function(e) {
+            setImage(e.target.result);
+            setUpload(true);
+            var img = e.target.result;
+            setImageString(img.replace("data:image/png;base64,", ""));
+          };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+
+    async function fetchButtonClick() {
+        const response = await fetchAPI();
+        const result = await response.json();
+        setProducts(result);
+        setUpload(true);
+    }
+
+    async function scanImage() {
+        const data = {imageString: base64String}
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        };
+        const response = await fetch('https://localhost:5001/api/ScanPage/Scan', requestOptions);
+        const result = await response.json();
+        setProducts(result);
+        console.log(result);
+        comparePrices(result);
+    }
+
+    async function comparePrices(prod) {
+        //console.log(prod);
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'},
+            body: JSON.stringify(prod)
+        };
+        const response = await fetch('https://localhost:5001/api/ScanPage/Compare', requestOptions);
+        const result = await response.json();
+        setCompared(result);
+        setScan(true);
+    }
+
     return (
         <main>
             <span className="headline-text">Scan receipt</span>
+
             <div className={classes.root}>
-                
                 <p style={{ 'padding': '0.5rem'}}></p>
                 
                 <Grid container direction="row" spacing={4}>
                                     
                     <Grid item>
-                        <button className="basicButton" onClick={() => setUpload(true)}>Upload</button>
+                        <input id="imageFile" type="file" onChange={handleImageUpload}/>
+                        {
+                        // <button className="basicButton" onClick={() => setUpload(true)}>Upload</button>
+                        }
                     </Grid>
                     {
                         upload == true &&
@@ -67,38 +129,57 @@ function Scan() {
                     {
                         upload == true &&
                         <Grid item>
-                            <button className="basicButton" onClick={() => setScan(true)}>Scan</button>
+                            <button className="basicButton" onClick={scanImage}>Scan</button>
                         </Grid>
                     }
                     
                 </Grid>
-
+                
                 <Grid container justify="center" direction="row" spacing={6}>
                     <Grid className={classes.paper} item xs={4}>
                         <Grid item xs>
                         {
                             upload == true &&
-                            <img className={classes.img} alt="complex" src={require("../Resources/iki22.png")}/>
+                            <img src={image} alt={""} className={classes.img}/>
                         }  
                         </Grid>
                     </Grid>
                     <Grid container item xs>
                         <Paper className={classes.productWindow}>Products
-                        {
-                            scan == true &&
-                            <Grid container wrap="nowrap" direction="column" spacing={1}>
-                            {
-                                TestProductsData.map((item, index) => {
-                                    return(
-                                        <Grid key={index} item xs>
-                                            <Paper className={classes.product}>
-                                            <span style={{'float':'left', 'padding':'0rem 1rem'}}>{item.name}</span>
-                                            <span style={{'float':'right', 'padding':'0rem 1rem'}}>{item.price}</span>​                                           
-                                            </Paper>   
-                                        </Grid>
-                                    )
-                                })
-                            }
+                        {   scan == true &&
+                            <Grid container justify="center" direction="row">
+                                <Grid container wrap="nowrap" direction="column" spacing={1}>
+                                {
+                                    products.map((item, index) => {
+                                        return(
+                                            <Grid key={index} container direction="row" item xs>
+                                                <Paper variant="outlined" elevation={2} className={classes.product}>
+                                                <span style={{'float':'left', 'padding':'0rem 1rem'}}>{item.name}</span>
+                                                <span style={{'float':'right', 'padding':'0rem 1rem'}}>{item.price}</span>​                                           
+                                                </Paper>
+                                                {compared[index].shop != "-" ? 
+                                                <Paper variant="outlined" elevation={2} className={classes.product}>
+                                                    {
+                                                    compared[index].compared.toFixed(2) > 0 ?
+                                                    <div>
+                                                        <span style={{'float':'left', 'padding':'0rem 1rem', 'color': 'red', 'fontWeight': 'bold'}}>{compared[index].shop}</span>
+                                                        <span style={{'float':'right', 'padding':'0rem 1rem', 'color': 'red', 'fontWeight': 'bold'}}>+{compared[index].compared.toFixed(2)}</span>
+                                                    </div>
+                                                    :
+                                                    <div>
+                                                        <span style={{'float':'left', 'padding':'0rem 1rem', 'color': 'green', 'fontWeight': 'bold'}}>{compared[index].shop}</span>
+                                                        <span style={{'float':'right', 'padding':'0rem 1rem', 'color': 'green', 'fontWeight': 'bold'}}>{compared[index].compared.toFixed(2)}</span>
+                                                    </div>
+                                                    }
+                                                                                           
+                                                </Paper> : ""}
+                                            </Grid>
+                                            
+                                            
+                                        )
+                                    })
+                                }
+                                </Grid>
                             </Grid>
                         }
                         </Paper> 

@@ -4,7 +4,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 const Registration = () => (
   <Formik
-    initialValues={{ username: "", email: "", password: "" }}
+    initialValues={{ username: "", email: "", password: "", Cpassword: "" }}
     onSubmit={(values, { setSubmitting }) => {
       setTimeout(() => {
         console.log("Registering", values);
@@ -39,7 +39,12 @@ const Registration = () => (
         handleSubmit
       } = props;
       return (
+        <main>
+          <div>
+            <span className="headline-text">Register</span>
+          </div>
         <form onSubmit={handleSubmit}>
+           
           <label htmlFor="username">Username</label>
           <input
             name="username"
@@ -97,6 +102,7 @@ const Registration = () => (
           </button>
           <Link to="/login" className="btn btn-link">Login</Link>
         </form>
+        </main>
       );
     }}
   </Formik>
