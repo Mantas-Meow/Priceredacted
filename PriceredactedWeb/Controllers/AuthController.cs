@@ -31,11 +31,11 @@ namespace PriceredactedWeb.Controllers
         }
 
 
-        [Route("api/Auth/UserByEmail/{userEmail}")]
+        [Route("api/Auth/UserByUsername/{username}")]
         [HttpGet]
-        public ActionResult<UserDatum> GetUser(string userEmail)
+        public ActionResult<UserDatum> GetUser(string username)
         {
-            var User = _AuthRepository.GetUser(userEmail);
+            var User = _AuthRepository.GetUser(username);
 
             if (User == null)
             {
@@ -65,69 +65,17 @@ namespace PriceredactedWeb.Controllers
         {
             var User = _AuthRepository.DeleteUser(userId);
 
-            return User != false ? Ok(User) : NotFound();
+            return User != false ? Ok() : NotFound();
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /*[HttpPost("Login")]
-        public async Task<IActionResult> Login(UserLoginDto request)
+        [Route("api/Auth/UpdatePassword")]
+        [HttpPut]
+        public IActionResult UpdatePassword(UpdatePasswordDTO data)
         {
-            ServiceResponse<string> response = await _authRepo.Login(
-                request.Username, request.Password
-            );
-            if (!response.Success)
-            {
-                return BadRequest(response);
-            }
-            return Ok(response);
+            var User = _AuthRepository.UpdatePassword(data);
+
+            return User != false ? Ok() : NotFound();
         }
-        // GET: api/<AuthController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<AuthController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<AuthController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<AuthController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<AuthController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }*/
     }
 }
