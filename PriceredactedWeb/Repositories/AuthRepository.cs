@@ -215,6 +215,7 @@ namespace PriceredactedWeb.Repositories
 
         public bool UpdatePassword(UpdatePasswordDTO data)
         {
+
             using (var cn = new SqlConnection())
             {
                 cn.ConnectionString = "Server=(localdb)\\Priceredacted;Database=PriceredactedDB";
@@ -230,7 +231,7 @@ namespace PriceredactedWeb.Repositories
                         update.Parameters.AddWithValue("@PS", data.NewPassword);//(new SqlParameter("@ID", SqlDbType.Int, 50, "Id"));
                         update.Parameters.AddWithValue("@EM", data.CurrentEmail);
 
-                        SqlDataAdapter da = new SqlDataAdapter("SELECT Email, Password FROM UserData", cn);
+                        SqlDataAdapter da = new SqlDataAdapter("SELECT Email, Id, Password, Username FROM UserData", cn);
                         da.UpdateCommand = update;
 
                         DataSet ds = new DataSet();
