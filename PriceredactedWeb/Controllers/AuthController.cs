@@ -31,11 +31,11 @@ namespace PriceredactedWeb.Controllers
         }
 
 
-        [Route("api/Auth/UserByEmail/{userEmail}")]
+        [Route("api/Auth/UserByUsername/{username}")]
         [HttpGet]
-        public ActionResult<UserDatum> GetUser(string userEmail)
+        public ActionResult<UserDatum> GetUser(string username)
         {
-            var User = _AuthRepository.GetUser(userEmail);
+            var User = _AuthRepository.GetUser(username);
 
             if (User == null)
             {
@@ -65,11 +65,18 @@ namespace PriceredactedWeb.Controllers
         {
             var User = _AuthRepository.DeleteUser(userId);
 
-            return User != false ? Ok(User) : NotFound();
+            return User != false ? Ok() : NotFound();
         }
 
 
+        [Route("api/Auth/UpdatePassword")]
+        [HttpPut]
+        public IActionResult UpdatePassword(UpdatePasswordDTO data)
+        {
+            var User = _AuthRepository.UpdatePassword(data);
 
+            return User != false ? Ok() : NotFound();
+        }
 
 
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.IdentityModel.Protocols;
+using PriceredactedWeb.DTOs;
 using PriceredactedWeb.Models;
 using System;
 using System.Collections.Generic;
@@ -72,7 +73,7 @@ namespace PriceredactedWeb.Repositories
             }
         }
 
-        public UserDatum GetUser(string userEmail)
+        public UserDatum GetUser(string username)
         {
             using (var cn = new SqlConnection())
             {
@@ -84,8 +85,8 @@ namespace PriceredactedWeb.Repositories
                     {
                         SqlDataAdapter da = new SqlDataAdapter();
                         SqlCommand command = new SqlCommand("SELECT Email, Id, Password, Username FROM UserData" +
-                            " WHERE Email = @EM", cn);
-                        command.Parameters.AddWithValue("@EM", userEmail);
+                            " WHERE Username = @UN", cn);
+                        command.Parameters.AddWithValue("@UN", username);
 
                         da.SelectCommand = command;
 
@@ -180,15 +181,60 @@ namespace PriceredactedWeb.Repositories
                         delete.CommandType = CommandType.Text;
                         delete.CommandText = "DELETE FROM UserData WHERE Id = @ID";
 
-                        delete.Parameters.Add(new SqlParameter("@ID", SqlDbType.Int, 50, "Email"));
+                        delete.Parameters.AddWithValue("@ID", userId);//(new SqlParameter("@ID", SqlDbType.Int, 50, "Id"));
 
                         SqlDataAdapter da = new SqlDataAdapter("SELECT Email, Id, Password, Username FROM UserData", cn);
-                        da.InsertCommand = delete;
+                        da.DeleteCommand = delete;
 
                         DataSet ds = new DataSet();
                         da.Fill(ds, "UserData");
 
                         ds.Tables[0].Rows[0].Delete();
+
+                        da.Update(ds.Tables[0]);
+                        cn.Close();
+                        da.Dispose();
+
+                        return true;
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    return false;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+                finally
+                {
+                    cn.Close();
+                }
+            }
+        }
+
+        public bool UpdatePassword(UpdatePasswordDTO data)
+        {
+            using (var cn = new SqlConnection())
+            {
+                cn.ConnectionString = "Server=(localdb)\\Priceredacted;Database=PriceredactedDB";
+                try
+                {
+                    cn.Open();
+                    using (var update = new SqlCommand())
+                    {
+                        update.Connection = cn;
+                        update.CommandType = CommandType.Text;
+                        update.CommandText = "UPDATE UserData SET Password = @PS WHERE Email = @EM";
+
+                        update.Parameters.AddWithValue("@PS", data.NewPassword);//(new SqlParameter("@ID", SqlDbType.Int, 50, "Id"));
+                        update.Parameters.AddWithValue("@EM", data.CurrentEmail);
+
+                        SqlDataAdapter da = new SqlDataAdapter("SELECT Email, Password FROM UserData", cn);
+                        da.UpdateCommand = update;
+
+                        DataSet ds = new DataSet();
+                        da.Fill(ds, "UserData");
 
                         da.Update(ds.Tables[0]);
                         cn.Close();
