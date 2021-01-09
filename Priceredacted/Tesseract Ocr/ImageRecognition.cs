@@ -8,7 +8,7 @@ using Tesseract;
 
 namespace Priceredacted.Tesseract_Ocr
 {
-    class ImageRecognition
+    static class ImageRecognition
     {
         public static string GetTextFromImage(string imagePath)
         {
@@ -16,13 +16,14 @@ namespace Priceredacted.Tesseract_Ocr
             try
             {
                 Bitmap tempImage = new Bitmap(imagePath);
-                
+
                 string imageSavePath = "./Tesseract Ocr/testImage11.png";
+                string imageSavePath2 = "./Tesseract Ocr/testImage111.png";
 
                 // improving image quality
                 ProcessImage(tempImage, imageSavePath);
 
-                
+
 
                 var imga = Pix.LoadFromFile(imageSavePath);
 
@@ -36,120 +37,28 @@ namespace Priceredacted.Tesseract_Ocr
                 //File.Delete(imageSavePath);
                 text = page.GetText();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return null;
+                return e.ToString();
             }
             return text;
         }
 
         private static void ProcessImage(Bitmap img, string imageSavePath)
         {
-            img = ResizeImage(img, img.Width * 3, img.Height * 2);
-            //img = SetContrast(img, 128);
-            //img = SetBlackWhite(img);
+            //string imageSavePath2 = "./Tesseract Ocr/testImage111.png";
+            ImagePreProcessing proccessImage = new ImagePreProcessing();
+            //img = proccessImage.ResizeImage(img, img.Width * 3, img.Height * 2);
+            //img = proccessImage.InvertColors(img);
+            //img = proccessImage.SetContrast(img, 100);
+            //img = proccessImage.SetGrayscale(img);
+            //img = proccessImage.InvertColors(img);
+            //img = proccessImage.SetBlackWhite(img);
 
-            img.Save(imageSavePath);
-        }
-
-        private static Bitmap ResizeImage(Bitmap image, int width, int height)
-        {
-            var destRect = new Rectangle(0, 0, width, height);
-            var destImage = new Bitmap(width, height);
-
-            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
-
-            using (var graphics = Graphics.FromImage(destImage))
-            {
-                graphics.CompositingMode = CompositingMode.SourceCopy;
-                graphics.CompositingQuality = CompositingQuality.HighQuality;
-                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                graphics.SmoothingMode = SmoothingMode.HighQuality;
-                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
-
-                using (var wrapMode = new ImageAttributes())
-                {
-                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
-                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
-                }
-            }
-            return destImage;
-        }
-
-        public static Bitmap SetBlackWhite(Bitmap img)
-        {
-
-            Bitmap temp = (Bitmap)img;
-            Bitmap bmap = (Bitmap)temp.Clone();
-            Color c;
-            float avgDarkness = 100;
-
-            /*for (int i = 0; i < bmap.Width; i++)
-            {
-                for (int j = 0; j < bmap.Height; j++)
-                {
-                    c = bmap.GetPixel(i, j);
-                    avgDarkness += (float)(c.R * 0.299 + c.G * 0.578 + c.B * 0.114);
-                }
-            }
-            avgDarkness /= (bmap.Width * bmap.Height);*/
-
-            for (int i = 0; i < bmap.Width; i++)
-            {
-                for (int j = 0; j < bmap.Height; j++)
-                {
-                    c = bmap.GetPixel(i, j);
-                    int color = (int)(c.R * 0.299 + c.G * 0.578 + c.B * 0.114);
-
-                    if (color > avgDarkness)
-                    {
-                        color = 255;
-                    }
-                    else
-                    {
-                        color = 0;
-                    }
-                    bmap.SetPixel(i, j, Color.FromArgb(color, color, color));
-                }
-            }
-            return (Bitmap)bmap.Clone();
-
-        }
-        private static Bitmap SetContrast(Bitmap original, int value)
-        {
-            Bitmap newBitmap = new Bitmap(original.Width, original.Height);
-
-            Graphics g = Graphics.FromImage(newBitmap);
-            float F = (259 * (value + 255)) / (255 * (259 - value));
-
-            /*
-                R' = F(R - 0.5f) + 0.5f
-                R' = FR + (-0.5f * F + 0.5f)
-                q = (-0.5f * F + 0.5f)
-            */
-
-            float q = (-0.5f * F + 0.5f);
-
-
-            ColorMatrix colorMatrix = new ColorMatrix(
-               new float[][]
-               {
-                     new float[] {F, 0, 0, 0, 0},
-                     new float[] {0, F, 0, 0, 0},
-                     new float[] {0, 0, F, 0, 0},
-                     new float[] {0, 0, 0, 1, 0},
-                     new float[] {q, q, q, 0, 1}
-               });
-
-            ImageAttributes attributes = new ImageAttributes();
-
-            attributes.SetColorMatrix(colorMatrix);
-
-            g.DrawImage(original, new Rectangle(0, 0, original.Width, original.Height),
-               0, 0, original.Width, original.Height, GraphicsUnit.Pixel, attributes);
-
-            g.Dispose();
-            return newBitmap;
+            img.Save(imageSavePath); //save image for emgu cv
+            //img = proccessImage.AdaptiveBinarization(imageSavePath, 11, 5);
+            //img.Save(imageSavePath2);
+            proccessImage.ProcessImageWithEMGU(img);
         }
     }
 }
